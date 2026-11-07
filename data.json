@@ -94,8 +94,8 @@
   "incident": {
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
-    "cause": "Web3Auth security issue. Official line: key-share reconstruction path (unconfirmed). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T12:20:00-05:00",
+    "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
+    "lastUpdated": "2026-11-07T12:31:00-05:00",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -142,9 +142,9 @@
         "url": "https://www.mintscan.io/babylon"
       }
     ],
-    "safe": "Wallets created with a recovery (seed) phrase or a hardware wallet (Ledger / Trezor) are NOT affected, per Keplr's initial assessment. MetaMask users are not affected. Do not export keys or move a social-login account into another wallet (Leap, Cosmostation, MetaMask) until Web3Auth publishes a post-mortem — the key-reconstruction path itself may be exposed.",
+    "safe": "Seed-phrase and hardware wallets are NOT affected (confirmed again by Keplr Nov 7). If you used Google/Apple login: do not send new funds to that account; move any remaining liquid assets to a recovery-phrase or hardware-wallet account. Do not export the social-login account’s keys into another wallet. Keplr + Web3Auth are building a checker for whether your account is affected.",
     "started": "2026-11-06",
-    "status": "ACTIVE — INVESTIGATING",
+    "status": "DRAIN OVER — MITIGATION ONGOING",
     "timeline": [
       {
         "event": "Web3Auth pauses its embedded-wallet service after a security issue affecting third parties.",
@@ -229,6 +229,10 @@
       {
         "time": "2026-11-07 ~17:00 UTC",
         "event": "Supporting wallets traced: fee payer funded by 3 transfers totaling 228.61 ATOM with 2,520 batch self-sends; control wallet rehearsed every step; the wtdg key spans 8 chains (Cosmos, Osmosis, Babylon, Noble, dYdX, Axelar, Saga, Agoric). Funding-source identities remain unverified. (On-chain block scan, part 2)"
+      },
+      {
+        "time": "2026-11-07 ~12:18 EST",
+        "event": "Keplr: “What this means for Keplr users” — seed/hardware wallets NOT affected (confirmed again). Web3Auth infrastructure vulnerability led to a private key breach. Keplr + Web3Auth are actively securing/protecting assets; some Google/Apple accounts may show a reduced or empty balance as a result of that mitigation, not theft. Advice: do not send new funds; move remaining liquid assets to a seed/hardware account. A checker for whether your account is affected is being built. Only trust @keplrwallet / @Web3Auth; ignore “recovery” DMs."
       }
     ],
     "title": "Keplr / Web3Auth Incident",

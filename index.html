@@ -9,13 +9,13 @@
 <meta property="og:url" content="https://keplr-tracker.vercel.app/">
 <meta property="og:title" content="Galactic Tracker — $4.5M+ Keplr Hack: Drain Over, $0 Moved">
 <meta property="og:description" content="The Keplr / Web3Auth drain is over. $0 cashed out. Live map of all 12 wallets, over $4.5M tracked, and what to do if you were hit. Real on-chain data.">
-<meta property="og:image" content="https://keplr-tracker.vercel.app/og-image.png">
+<meta property="og:image" content="https://keplr-tracker.vercel.app/og-image-v3.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Galactic Tracker — $4.5M+ Keplr Hack: Drain Over, $0 Moved">
 <meta name="twitter:description" content="The Keplr / Web3Auth drain is over. $0 cashed out. Live map of all 12 wallets, over $4.5M tracked, and what to do if you were hit. Real on-chain data.">
-<meta name="twitter:image" content="https://keplr-tracker.vercel.app/og-image.png">
+<meta name="twitter:image" content="https://keplr-tracker.vercel.app/og-image-v3.png">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: #070303; color: #f2e9e4; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.5; min-height: 100vh; }
@@ -332,24 +332,26 @@
     <div class="panel risk">
       <div class="riskrow">
         <div class="t">MNEMONIC — SEED PHRASE <span class="tag safe">SAFE</span></div>
-        <div class="d">Seed-phrase wallets were <b>not affected</b>, per Keplr's initial assessment.</div>
+        <div class="d">Seed-phrase wallets were <b>not affected</b>, confirmed again by Keplr Nov 7.</div>
       </div>
       <div class="riskrow">
         <div class="t">HARDWARE WALLET <span class="tag safe">SAFE</span></div>
-        <div class="d">Ledger / Trezor wallets were <b>not affected</b>, per Keplr's initial assessment.</div>
+        <div class="d">Ledger / Trezor wallets were <b>not affected</b>, confirmed again by Keplr Nov 7.</div>
       </div>
       <div class="riskrow">
         <div class="t">GOOGLE / APPLE LOGIN <span class="tag danger">AFFECTED</span></div>
-        <div class="d">About <b>20% affected</b> (early estimate), only a fraction of those actually drained. Do not send new funds to these accounts.</div>
+        <div class="d">About <b>20% affected</b> (early estimate), only a fraction of those actually drained. Do not send new funds to these accounts. Keplr + Web3Auth are actively securing assets — some accounts may show a reduced or empty balance because of that mitigation, not because they were drained.</div>
       </div>
     </div>
     <h2>Stay <span>safe</span></h2>
     <div class="panel"><ul class="checklist">
       <li><b>Do NOT send new funds</b> to any wallet created with Google or Apple login until Keplr says it is safe.</li>
+      <li><b>Move any remaining liquid assets</b> to a recovery-phrase or hardware-wallet account (Keplr's latest advice, Nov 7).</li>
       <li><b>Do NOT re-import or recreate</b> a Google/Apple-login Keplr account anywhere.</li>
       <li><b>Seed-phrase and hardware wallets are safe</b> — move funds there if you can do it from a safe wallet.</li>
       <li><b>Trust only official Keplr / Web3Auth channels.</b> Ignore every DM offering “recovery” — they are scams.</li>
       <li><b>Check activity read-only</b> in an explorer (links below). Reading never needs a wallet connection or a signature.</li>
+      <li><b>A checker is coming:</b> Keplr + Web3Auth are building an official way to check whether your account is affected. Wait for it — never use a random “checker” site.</li>
     </ul></div>
     <h2>Trace the <span>thief</span></h2>
     <div class="panel"><ul class="checklist">
@@ -377,12 +379,12 @@
     <div class="stage">
       <div class="stagelabel">2 · CHECK — WERE YOU HIT?</div>
       <div class="mid">If your Keplr wallet was created with Google or Apple login, check it now</div>
-      <div class="sm">1. Find your address: check the withdrawal history of any exchange you funded the wallet from — the destination address there is your wallet. Or check the Keplr extension's local storage in your browser's Developer Tools.<br>2. Paste the address into Mintscan (links in the Stay Safe tab) and look at Nov 6–7. Any outgoing transfer you did not make means you were hit.<br>3. If nothing moved, you may be one of the lucky ones — <b style="color:#f2e9e4">only a fraction of affected accounts were actually drained</b>, and Keplr says the remaining accounts may be recoverable. Still: do not send new funds there until Keplr says it is safe.</div>
+      <div class="sm">1. Find your address: check the withdrawal history of any exchange you funded the wallet from — the destination address there is your wallet. Or check the Keplr extension's local storage in your browser's Developer Tools.<br>2. Paste the address into Mintscan (links in the Stay Safe tab) and look at Nov 6–7. Any outgoing transfer you did not make means you were hit.<br>3. If nothing moved, you may be one of the lucky ones — <b style="color:#f2e9e4">only a fraction of affected accounts were actually drained</b>, and Keplr says the remaining accounts may be recoverable. Still: do not send new funds there until Keplr says it is safe.<br>4. <b style="color:#f2e9e4">Important:</b> if your balance looks reduced or empty, it may be Keplr + Web3Auth's mitigation moving your funds to safety — not the thief. Check the transaction history: a transfer to one of the drain wallets on this tracker means theft; a transfer done by the mitigation effort means protection.</div>
     </div>
     <div class="arrow">▼</div>
     <div class="stage">
-      <div class="stagelabel">3 · DO THIS NOW — FIVE STEPS</div>
-      <div class="sm">1. <b style="color:#f2e9e4">Stop.</b> Do not send new funds to the affected wallet.<br>2. <b style="color:#f2e9e4">Do not re-import or recreate</b> the Google/Apple-login account anywhere.<br>3. <b style="color:#f2e9e4">Save evidence:</b> your address, every transaction hash, timestamps, and screenshots of your balances before the drain.<br>4. <b style="color:#f2e9e4">Ignore every DM offering recovery.</b> They are all scams. No one legitimate will DM you first.<br>5. <b style="color:#f2e9e4">Never enter your seed phrase or private key</b> on any "wallet checker" or "recovery" site. Checking an address on Mintscan is read-only and safe.</div>
+      <div class="stagelabel">3 · DO THIS NOW — SIX STEPS</div>
+      <div class="sm">1. <b style="color:#f2e9e4">Stop.</b> Do not send new funds to the affected wallet.<br>2. <b style="color:#f2e9e4">Move what is left.</b> Move any remaining liquid assets to a recovery-phrase or hardware-wallet account (Keplr's latest advice).<br>3. <b style="color:#f2e9e4">Do not re-import or recreate</b> the Google/Apple-login account anywhere.<br>4. <b style="color:#f2e9e4">Save evidence:</b> your address, every transaction hash, timestamps, and screenshots of your balances before the drain.<br>5. <b style="color:#f2e9e4">Ignore every DM offering recovery.</b> They are all scams. No one legitimate will DM you first.<br>6. <b style="color:#f2e9e4">Never enter your seed phrase or private key</b> on any "wallet checker" or "recovery" site. Checking an address on Mintscan is read-only and safe.</div>
     </div>
     <div class="arrow">▼</div>
     <div class="stage">
@@ -392,7 +394,7 @@
     <div class="arrow">▼</div>
     <div class="stage good">
       <div class="stagelabel">5 · HOPE — WHY THIS CAN STILL END WELL</div>
-      <div class="sm">· <b style="color:#f2e9e4">$0 moved.</b> The thief has not cashed out anything — the money is still there to be frozen and recovered.<br>· <b style="color:#f2e9e4">The drain is over.</b> No new victims since Nov 7 15:33 UTC. The attack has stopped; now it is about freezing and recovering what is still there.<br>· <b style="color:#f2e9e4">Freezes are already in motion.</b> Circle can freeze ~$188K of USDC. Exchanges, bridges and staking providers have been asked to flag all 12 wallets.<br>· <b style="color:#f2e9e4">The trail is public and permanent.</b> Every move the thief makes is on-chain, visible to everyone, forever. There is nowhere to hide the money once it moves.<br>· <b style="color:#f2e9e4">Not everyone was drained.</b> Only a fraction of affected accounts lost funds — if yours did not move, recovery is likely.<br>· <b style="color:#f2e9e4">You are being watched over.</b> This tracker checks the thief's wallets every 60 seconds, searches the whole web for new information every 10 minutes, and updates itself the moment anything changes. You do not have to watch alone.</div>
+      <div class="sm">· <b style="color:#f2e9e4">$0 moved.</b> The thief has not cashed out anything — the money is still there to be frozen and recovered.<br>· <b style="color:#f2e9e4">The drain is over.</b> No new victims since Nov 7 15:33 UTC. The attack has stopped; now it is about freezing and recovering what is still there.<br>· <b style="color:#f2e9e4">Keplr + Web3Auth are working on it right now.</b> They are actively securing and protecting assets from affected users, and building an official checker so you can find out if your account was affected. Staked and locked assets take longer — that is expected, not a bad sign.<br>· <b style="color:#f2e9e4">Freezes are already in motion.</b> Circle can freeze ~$188K of USDC. Exchanges, bridges and staking providers have been asked to flag all 12 wallets.<br>· <b style="color:#f2e9e4">The trail is public and permanent.</b> Every move the thief makes is on-chain, visible to everyone, forever. There is nowhere to hide the money once it moves.<br>· <b style="color:#f2e9e4">Not everyone was drained.</b> Only a fraction of affected accounts lost funds — if yours did not move, recovery is likely.<br>· <b style="color:#f2e9e4">You are being watched over.</b> This tracker checks the thief's wallets every 60 seconds, searches the whole web for new information every 10 minutes, and updates itself the moment anything changes. You do not have to watch alone.</div>
     </div>
     <p class="note" style="margin-top:14px">If you are feeling overwhelmed, step away from the screen for a bit. The tracker keeps watching while you rest — nothing here needs you to act in the next five minutes. When you are ready, start at step 2.</p>
   </section>
