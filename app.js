@@ -95,7 +95,7 @@
   function initTabs() {
     var saved = null;
     try { saved = localStorage.getItem(TAB_KEY); } catch (e) {}
-    var valid = ['attack', 'wallets', 'money', 'chains', 'safe', 'hit'];
+    var valid = ['attack', 'wallets', 'money', 'chains', 'safe', 'hit', 'sith'];
     if (saved && valid.indexOf(saved) !== -1) setTab(saved);
     document.querySelectorAll('.tabbtn').forEach(function (b) {
       b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); });
@@ -375,7 +375,25 @@
     });
   }
 
-  function refreshAll() { renderWatchlist(); fetchLive(); }
+
+  /* ---------- Sith Lord case wallet — live OSMO balance + sequence ---------- */
+  var CASE_ADDR = 'osmo10p7dg5nh8kwjhfucq0uxjppg6wkevzm' + 'g67c4hx';
+  var CASE_LCD = 'https://lcd-osmosis.keplr.app';
+  function fetchCase() {
+    fetchJson(CASE_LCD + '/cosmos/bank/v1beta1/balances/' + CASE_ADDR + '/by_denom?denom=uosmo')
+      .then(function (d) {
+        var row = d.balance;
+        if (!row || row.denom !== 'uosmo') return;
+        setAll('js-caseOsmo', trimNum(Number(row.amount) / 1e6) + ' OSMO');
+        setAll('js-caseSub', 'Updated just now from the Osmosis chain.');
+      })
+      .catch(function () { setAll('js-caseSub', 'Chain API did not answer — retrying in 60s.'); });
+    fetchJson(CASE_LCD + '/cosmos/auth/v1beta1/accounts/' + CASE_ADDR)
+      .then(function (d) { var s = findSeq(d); if (s != null) setAll('js-caseSeq', 'seq ' + s); })
+      .catch(function () {});
+  }
+
+  function refreshAll() { renderWatchlist(); fetchLive(); fetchCase(); }
 
   /* ---------- boot ---------- */
   fetch('data.json').then(function (r) { return r.json(); }).then(function (d) {
@@ -385,6 +403,7 @@
     renderStatic();
     renderWatchlist();
     fetchLive();
+    fetchCase();
     setInterval(tickClock, 1000);
     setInterval(refreshAll, REFRESH_MS);
     el('refreshBtn').addEventListener('click', refreshAll);

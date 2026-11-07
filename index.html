@@ -169,6 +169,7 @@
     <button class="tabbtn" role="tab" data-tab="chains" aria-selected="false">Chains<small>Impact + freezes</small></button>
     <button class="tabbtn" role="tab" data-tab="safe" aria-selected="false">Stay Safe<small>Risk, help, timeline</small></button>
     <button class="tabbtn" role="tab" data-tab="hit" aria-selected="false">Were You Hit?<small>Compromised? Start here</small></button>
+    <button class="tabbtn" role="tab" data-tab="sith" aria-selected="false">Sith Lord's Wallet<small>Reported case · 40,000+ AKT</small></button>
   </nav>
 
   <!-- TAB 1 : THE ATTACK -->
@@ -397,6 +398,83 @@
       <div class="sm">· <b style="color:#f2e9e4">$0 moved.</b> The thief has not cashed out anything — the money is still there to be frozen and recovered.<br>· <b style="color:#f2e9e4">The drain is over.</b> No new victims since Nov 7 15:33 UTC. The attack has stopped; now it is about freezing and recovering what is still there.<br>· <b style="color:#f2e9e4">Keplr + Web3Auth are working on it right now.</b> They are actively securing and protecting assets from affected users, and building an official checker so you can find out if your account was affected. Staked and locked assets take longer — that is expected, not a bad sign.<br>· <b style="color:#f2e9e4">Freezes are already in motion.</b> Circle can freeze ~$188K of USDC. Exchanges, bridges and staking providers have been asked to flag all 12 wallets.<br>· <b style="color:#f2e9e4">The trail is public and permanent.</b> Every move the thief makes is on-chain, visible to everyone, forever. There is nowhere to hide the money once it moves.<br>· <b style="color:#f2e9e4">Not everyone was drained.</b> Only a fraction of affected accounts lost funds — if yours did not move, recovery is likely.<br>· <b style="color:#f2e9e4">You are being watched over.</b> This tracker checks the thief's wallets every 60 seconds, searches the whole web for new information every 10 minutes, and updates itself the moment anything changes. You do not have to watch alone.</div>
     </div>
     <p class="note" style="margin-top:14px">If you are feeling overwhelmed, step away from the screen for a bit. The tracker keeps watching while you rest — nothing here needs you to act in the next five minutes. When you are ready, start at step 2.</p>
+  </section>
+
+
+  <!-- TAB 7 : SITH LORD'S WALLET -->
+  <section class="tabpanel" id="tab-sith" role="tabpanel">
+    <p class="tabdesc">A community member's case, tracked live. <b>Sith Lord</b> reported this wallet in the $ATOM OG Community Chat — here is the wallet, the live tracker, the money map, and what he needs to know and to do.</p>
+    <div class="livehead"><span class="livedot"></span> REPORTED CASE — UNDER INVESTIGATION <span class="livetime">reported Nov 7 13:17 EST</span></div>
+    <div class="stage">
+      <div class="stagelabel">THE WALLET — REPORTED BY SITH LORD</div>
+      <div class="mid" style="word-break:break-all">osmo10p7dg5nh8kwjhfucq0uxjppg6wkevzmg67c4hx</div>
+      <div class="sm">Osmosis. Reported Nov 7 13:17 EST in the $ATOM OG Community Chat: "one of the main hackers addresses with the money on it". <b style="color:#f2e9e4">Status: reported, under investigation — NOT confirmed as one of the main drain wallets.</b> The main drain wallets are the 4 on the Wallets tab; this one is different.</div>
+      <div class="minigrid" style="grid-template-columns:1fr 1fr">
+        <div class="minicard"><div class="c">LIVE BALANCE — OSMO</div><div class="v js-caseOsmo">3,853,217.84 OSMO</div><div class="s js-caseSub">Verified Nov 7 13:28 EST — refreshing live every 60s</div></div>
+        <div class="minicard"><div class="c">ACTIVITY</div><div class="v js-caseSeq">seq 13007</div><div class="s">Old, active account — it CAN move funds, so it is watched live</div></div>
+      </div>
+      <div class="sm" style="margin-top:10px"><a href="https://www.mintscan.io/osmosis/address/osmo10p7dg5nh8kwjhfucq0uxjppg6wkevzmg67c4hx" target="_blank" rel="noopener">Open this wallet in Mintscan</a> &nbsp;·&nbsp; <a href="https://www.mintscan.io/osmosis/address/osmo13pet0rwjjzgz7f3058xklc2y05eg5cjneaad94" target="_blank" rel="noopener">Open its funder in Mintscan</a></div>
+    </div>
+    <h2>What Sith Lord <span>reported</span></h2>
+    <div class="panel">
+      <ul class="checklist" style="font-size:14px">
+        <li><b>Over 40,000 AKT taken</b> from his wallet ("You'll see, over 40,000 Akt bro lol" — Nov 7 13:27 EST).</li>
+        <li><b>"They sent to another AKT address then swapped for Osmo like 1,000 AKT at a time."</b> The AKT was moved, then swapped for OSMO in ~1,000 AKT batches.</li>
+        <li>He has <b>not yet posted</b> his own wallet address, the "another AKT address", or a transaction hash. Those three things are the missing link — see "What he needs to do" below.</li>
+      </ul>
+    </div>
+    <h2>What we verified <span>on-chain</span></h2>
+    <div class="panel">
+      <ul class="checklist" style="font-size:14px">
+        <li><b>Holds 3,853,217.84 OSMO</b> + small IBC holdings (COOK, P2P, DEC, HUAHUA, ODIN). Verified Nov 7 13:28 EST. No AKT left in it — consistent with the AKT already being swapped.</li>
+        <li><b>Sequence 13007, account 2941961</b> — an old, active account that has signed 13,007 transactions. The main drain wallets are all sequence 0 (never signed). This one is different: it is active and CAN move money.</li>
+        <li><b>Every incoming transfer we found came from ONE sender</b> — osmo13pet0...neaad94 (osmo13pet0rwjjzgz7f3058xklc2y05eg5cjneaad94). Not from thousands of victims. That sender is the wallet's only funder.</li>
+        <li><b>It DID receive money during the drain</b> — including 2,499,999.87 OSMO on Nov 7 ~09:30 UTC, right in the middle of the attack, from that same sender.</li>
+        <li><b>The sender still holds 579.19 AKT on Osmosis</b> — a remainder, consistent with swapping AKT for OSMO in batches and leaving a little behind.</li>
+        <li><b>It never sent anything to the main Osmosis drain wallet</b> (osmo1atuap…). It does not appear in our full block scans of the drain.</li>
+        <li><b>Verdict:</b> not confirmed as a main drain wallet. The pattern fits a consolidation wallet funded by one source. The AKT remainder + Sith Lord's report make it a live lead — the proof is his own wallet address, the AKT address, and a transaction hash.</li>
+      </ul>
+    </div>
+    <h2>Live <span>map</span> — the money trail as reported + verified</h2>
+    <div class="stage">
+      <div class="stagelabel">1 · SITH LORD'S WALLET — REPORTED</div>
+      <div class="mid">40,000+ AKT taken</div>
+      <div class="sm">Reported by Sith Lord, Nov 7 13:27 EST. His wallet address is not posted yet — that is the missing link.</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">2 · ANOTHER AKT ADDRESS — REPORTED</div>
+      <div class="mid">AKT moved here, then swapped for OSMO ~1,000 AKT at a time</div>
+      <div class="sm">Reported by Sith Lord. This address is not posted yet — once it is, we trace it here.</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">3 · THE FUNDER — VERIFIED ON-CHAIN</div>
+      <div class="mid">osmo13pet0...neaad94</div>
+      <div class="sm">The only sender into the case wallet. Still holds <b style="color:#f2e9e4">579.19 AKT</b> on Osmosis — the swap remainder. Sequence 29475, an old active account.</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">4 · THE CASE WALLET — VERIFIED ON-CHAIN, TRACKED LIVE</div>
+      <div class="big"><span class="amber js-caseOsmo">3,853,217.84 OSMO</span></div>
+      <div class="sm">osmo10p7dg...g67c4hx. Received 2,499,999.87 OSMO during the drain (Nov 7 ~09:30 UTC). <span class="js-caseSeq">seq 13007</span> — active, watched live every 60 seconds. If it moves, it shows up here.</div>
+    </div>
+    <h2>What he needs <span>to know</span></h2>
+    <div class="panel"><ul class="checklist" style="font-size:14px">
+      <li>His 40,000 AKT is only a small part of the 3.85M OSMO in this wallet — if his funds are in there at all. This wallet may hold funds from many people, or be something else entirely. The proof is his transaction hash.</li>
+      <li>His funds did <b>not</b> go to the main drain wallets (the 4 on the Wallets tab) — unless his own transaction history says otherwise. Check it first.</li>
+      <li>Unlike the main drain wallets (sequence 0, frozen in place), this wallet is <b>active and can move money</b> — that is why it is tracked live here.</li>
+      <li>$0 has moved out of the main drain wallets. The drain is over. Freezes are in motion.</li>
+    </ul></div>
+    <h2>What he needs <span>to do</span></h2>
+    <div class="panel"><ul class="checklist" style="font-size:14px">
+      <li><b>Post 3 things:</b> (1) his own wallet address, (2) the "another AKT address", (3) one transaction hash of the theft. With those, the connection is proven in minutes and the wallet gets flagged everywhere.</li>
+      <li><b>Find the theft transaction:</b> paste his address into Mintscan, look at Nov 6–7, open the outgoing transfer he did not make — the recipient is where his money went, the 64-character hash is the proof.</li>
+      <li><b>Report it:</b> send his address + the thief's address + the hash + timestamps to Keplr/Web3Auth incident response, to Osmosis and Akash, and to the exchanges' security desks to ask for a freeze.</li>
+      <li><b>Move what is left</b> to a recovery-phrase or hardware-wallet account. Do not send new funds to the affected account. Do not re-import it anywhere.</li>
+      <li><b>Ignore every DM offering recovery.</b> They are all scams.</li>
+    </ul></div>
+    <p class="note">This case is tracked live on this page and by the auto-watch, which searches the web every 5 minutes for new information. The moment Sith Lord posts the missing addresses or hash, or this wallet moves, this tab updates.</p>
   </section>
 
   <footer id="footerNote"></footer>

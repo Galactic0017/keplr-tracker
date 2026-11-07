@@ -95,7 +95,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T13:12:00-05:00",
+    "lastUpdated": "2026-11-07T13:36:00-05:00",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -237,6 +237,10 @@
       {
         "time": "2026-11-07 17:43 UTC",
         "event": "Keplr: recovery operations may explain some empty social-login balances. Web3Auth plans a verified list so users can identify recovery transfers. (The Defiant)"
+      },
+      {
+        "time": "2026-11-07 ~13:17 EST",
+        "event": "Community report — Sith Lord ($ATOM OG Community Chat): wallet osmo10p7dg5nh8kwjhfucq0uxjppg6wkevzmg67c4hx reported as holding stolen funds; he lost 40,000+ AKT, which the attacker moved to another AKT address then swapped for OSMO ~1,000 AKT at a time. On-chain check: the wallet holds 3,853,217.84 OSMO, seq 13007 (old active account, not a seq-0 drain wallet); its only funder is osmo13pet0rwjjzgz7f3058xklc2y05eg5cjneaad94, which still holds 579.19 AKT; it received 2,499,999.87 OSMO during the drain (Nov 7 ~09:30 UTC) and never sent to the main Osmosis drain wallet. Reported case, under investigation — new tab added to the tracker."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
