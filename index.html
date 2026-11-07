@@ -3,69 +3,108 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Keplr / Web3Auth Incident Tracker</title>
-<meta name="description" content="Live tracker for the Keplr / Web3Auth security incident — real confirmed info only: live wallet watch, money-flow map, and a step-by-step guide to trace stolen funds.">
+<title>Galactic Tracker — Keplr / Web3Auth Incident, Live</title>
+<meta name="description" content="Galactic Tracker — live map of the Keplr / Web3Auth incident: who was hit, where the money is right now, and what happens next. Real on-chain data, updated live.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://keplr-tracker.vercel.app/">
-<meta property="og:title" content="Keplr / Web3Auth Incident Tracker">
-<meta property="og:description" content="Live tracker for the Keplr / Web3Auth security incident — real confirmed info only: live wallet watch, money-flow map, and a step-by-step guide to trace stolen funds.">
+<meta property="og:title" content="Galactic Tracker — Keplr / Web3Auth Incident, Live">
+<meta property="og:description" content="Live map of the Keplr / Web3Auth incident: who was hit, where the money is right now, and what happens next. Real on-chain data, updated live.">
 <meta property="og:image" content="https://keplr-tracker.vercel.app/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Keplr / Web3Auth Incident Tracker">
-<meta name="twitter:description" content="Live tracker for the Keplr / Web3Auth security incident — real confirmed info only: live wallet watch, money-flow map, and a step-by-step guide to trace stolen funds.">
+<meta name="twitter:title" content="Galactic Tracker — Keplr / Web3Auth Incident, Live">
+<meta name="twitter:description" content="Live map of the Keplr / Web3Auth incident: who was hit, where the money is right now, and what happens next. Real on-chain data, updated live.">
 <meta name="twitter:image" content="https://keplr-tracker.vercel.app/og-image.png">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: #070303; color: #f2e9e4; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.5; min-height: 100vh; }
   a { color: #ffb020; }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 20px 16px 60px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
   .eyebrow { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11px; letter-spacing: 3px; color: #ff453a; font-weight: 700; margin-bottom: 6px; }
-  header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 6px 0 6px; border-bottom: 2px solid #ff453a; }
-  h1 { font-size: 28px; letter-spacing: .5px; text-transform: uppercase; }
+  header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 6px 0 12px; border-bottom: 2px solid #ff453a; }
+  h1 { font-size: 30px; letter-spacing: .5px; text-transform: uppercase; }
   h1 span { color: #ffb020; }
+  .byline { font-size: 13px; color: #b8a49c; margin-top: 2px; }
+  .byline a { color: #ffb020; text-decoration: none; font-weight: 700; }
+  .headright { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
   .status { background: #2a0a0a; border: 1px solid #ff453a; color: #ff8a80; font-weight: 700; font-size: 13px; padding: 6px 12px; border-radius: 6px; box-shadow: 0 0 18px rgba(255,69,58,.3); }
-  .sub { color: #b8a49c; font-size: 15px; margin: 14px 0 20px; }
+  .xbtn { background: #ffb020; color: #111; font-weight: 800; font-size: 13px; padding: 7px 12px; border-radius: 6px; text-decoration: none; }
+  .sub { color: #b8a49c; font-size: 15px; margin: 14px 0 12px; }
   .sub b { color: #f2e9e4; }
-  .strip { background: rgba(255,69,58,.1); border: 1px solid rgba(255,69,58,.5); border-left: 4px solid #ff453a; color: #ffb3ad; border-radius: 6px; padding: 10px 14px; font-size: 13px; font-weight: 700; letter-spacing: .4px; margin: 0 0 14px; }
+  .strip { background: rgba(255,69,58,.1); border: 1px solid rgba(255,69,58,.5); border-left: 4px solid #ff453a; color: #ffb3ad; border-radius: 6px; padding: 10px 14px; font-size: 13px; font-weight: 700; letter-spacing: .4px; margin: 0 0 12px; }
   .strip b { color: #ff453a; }
-  .ticker { overflow: hidden; background: #100707; border: 1px solid rgba(255,176,32,.35); border-radius: 6px; margin: 0 0 20px; }
+  .ticker { overflow: hidden; background: #100707; border: 1px solid rgba(255,176,32,.35); border-radius: 6px; margin: 0 0 16px; }
   .ticker-inner { display: inline-block; white-space: nowrap; padding: 8px 0; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; color: #ffb020; animation: tick 30s linear infinite; }
   @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .note { color: #9c8a83; font-size: 13px; margin: 4px 0 18px; }
-  h2 { font-size: 17px; letter-spacing: 2px; text-transform: uppercase; color: #ff453a; margin: 30px 0 12px; border-bottom: 1px solid rgba(255,69,58,.3); padding-bottom: 6px; }
+  /* tabs */
+  .tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 4px; scrollbar-width: thin; }
+  .tabbtn { flex: 1 0 auto; background: #160a0a; color: #b8a49c; border: 1px solid rgba(255,69,58,.25); border-radius: 8px 8px 0 0; border-bottom: 0; padding: 12px 14px; font-size: 14px; font-weight: 800; letter-spacing: .5px; cursor: pointer; text-transform: uppercase; white-space: nowrap; }
+  .tabbtn small { display: block; font-size: 11px; font-weight: 400; letter-spacing: 0; color: #9c8a83; text-transform: none; margin-top: 2px; }
+  .tabbtn.active { background: #2a0a0a; color: #ffb020; border-color: #ff453a; box-shadow: 0 -2px 12px rgba(255,69,58,.25); }
+  .tabbtn.active small { color: #b8a49c; }
+  .tabpanel { display: none; background: #100707; border: 1px solid rgba(255,69,58,.3); border-radius: 0 8px 8px 8px; padding: 20px 16px; }
+  .tabpanel.active { display: block; }
+  .tabdesc { color: #b8a49c; font-size: 14px; margin-bottom: 16px; }
+  .tabdesc b { color: #f2e9e4; }
+  h2 { font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: #ff453a; margin: 22px 0 12px; border-bottom: 1px solid rgba(255,69,58,.3); padding-bottom: 6px; }
+  h2:first-child { margin-top: 0; }
   h2 span { color: #ffb020; }
   h3 { font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase; color: #ffb020; margin-bottom: 12px; }
-  .panel { background: #160a0a; border: 1px solid rgba(255,69,58,.22); border-left: 4px solid #ff453a; border-radius: 8px; padding: 20px; margin-bottom: 14px; }
+  .panel { background: #160a0a; border: 1px solid rgba(255,69,58,.22); border-left: 4px solid #ff453a; border-radius: 8px; padding: 18px; margin-bottom: 14px; }
   .panel p { margin-bottom: 10px; }
   .panel p:last-child { margin-bottom: 0; }
-  .maphead { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: 2px; color: #ffb020; margin-bottom: 12px; }
+  /* attack map flow */
+  .stage { background: #160a0a; border: 1px solid rgba(255,69,58,.35); border-radius: 10px; padding: 18px; margin-bottom: 0; }
+  .stage.good { border-color: rgba(74,222,128,.5); }
+  .stagelabel { font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #ff453a; margin-bottom: 8px; }
+  .stage.good .stagelabel { color: #4ade80; }
+  .stage .big { font-size: 26px; font-weight: 800; line-height: 1.2; }
+  .stage .big .amber { color: #ffb020; }
+  .stage .big .green { color: #4ade80; }
+  .stage .mid { font-size: 17px; font-weight: 700; }
+  .stage .sm { font-size: 14px; color: #b8a49c; margin-top: 6px; }
+  .arrow { text-align: center; font-size: 22px; color: #ff453a; line-height: 1; padding: 6px 0; animation: bob 1.4s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+  .minigrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 12px; }
+  .minicard { background: #100707; border: 1px solid rgba(255,176,32,.4); border-radius: 8px; padding: 12px; }
+  .minicard .c { font-size: 12px; font-weight: 800; letter-spacing: .5px; color: #ffb020; }
+  .minicard .a { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11px; color: #b8a49c; margin-top: 2px; word-break: break-all; }
+  .minicard .v { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 16px; font-weight: 800; color: #ffb020; margin-top: 6px; word-break: break-word; }
+  .minicard .s { font-size: 11px; color: #9c8a83; margin-top: 2px; }
+  .livehead { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #ffb020; margin-bottom: 10px; }
   .livedot { width: 10px; height: 10px; border-radius: 50%; background: #ff453a; animation: pulse 1.2s ease-in-out infinite; }
   @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,69,58,.6); } 50% { box-shadow: 0 0 0 7px rgba(255,69,58,0); } }
   .livetime { margin-left: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #b8a49c; letter-spacing: 0; }
-  #bigmap { width: 100%; overflow-x: auto; }
-  #bigmap svg { min-width: 640px; width: 100%; height: auto; display: block; }
-  .maplive { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; border-top: 1px solid rgba(255,69,58,.15); padding-top: 12px; }
-  .maplive .livelabel { font-size: 11px; letter-spacing: 1px; color: #b8a49c; text-transform: uppercase; }
-  .maplive .livesub { font-size: 12px; color: #b8a49c; margin-top: 2px; }
-  .mapnote { font-size: 12px; color: #9c8a83; margin-top: 12px; }
-  .risk { display: flex; flex-direction: column; gap: 10px; }
-  .riskrow { border: 1px solid rgba(255,69,58,.25); border-radius: 8px; padding: 14px; background: #100707; }
-  .riskrow .t { font-weight: 800; font-size: 14px; letter-spacing: .5px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-  .riskrow .d { color: #b8a49c; font-size: 14px; margin-top: 4px; }
-  .tag { font-size: 11px; font-weight: 800; letter-spacing: .6px; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
-  .tag.safe { background: rgba(74,222,128,.15); color: #4ade80; border: 1px solid rgba(74,222,128,.4); }
-  .tag.danger { background: rgba(255,69,58,.15); color: #ff8a80; border: 1px solid rgba(255,69,58,.45); }
-  .tag.warn { background: rgba(255,176,32,.12); color: #ffb020; border: 1px solid rgba(255,176,32,.4); }
-  .tag.live { background: rgba(255,69,58,.15); color: #ff8a80; border: 1px solid rgba(255,69,58,.45); }
-  .threat { border: 1px solid rgba(255,69,58,.3); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; background: rgba(42,10,10,.4); }
-  .threat .addr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #ffb3ad; word-break: break-all; }
-  .threat .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
-  .threat .chain { font-size: 12px; font-weight: 800; letter-spacing: .5px; color: #ffb020; }
-  .threat .note2 { font-size: 12px; color: #b8a49c; margin-top: 6px; }
-  .moregrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
-  .moregrid .panel { margin-bottom: 0; }
+  .livesub { font-size: 13px; color: #b8a49c; margin-top: 6px; }
+  .alert { color: #ff453a !important; }
+  /* wallets */
+  .walletgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+  .wallet { background: #160a0a; border: 1px solid rgba(255,69,58,.22); border-left: 4px solid #ff453a; border-radius: 8px; padding: 16px; }
+  .wallet h3 { font-size: 15px; margin-bottom: 2px; }
+  .wallet .addr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #ffb020; word-break: break-all; }
+  .wallet .role { font-size: 13px; color: #b8a49c; margin: 8px 0 4px; }
+  .balrows { margin: 10px 0 4px; border-top: 1px solid rgba(255,69,58,.15); }
+  .balrow { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px solid rgba(255,69,58,.12); font-size: 14px; }
+  .balrow .coin { font-weight: 700; }
+  .balrow .amt { font-family: ui-monospace, Menlo, Consolas, monospace; text-align: right; word-break: break-word; }
+  .balrow .amt small { color: #9c8a83; font-size: 11px; display: block; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .walletsum { font-size: 13px; color: #b8a49c; padding: 6px 0; border-bottom: 1px solid rgba(255,69,58,.12); }
+  .txs { margin-top: 12px; font-size: 14px; }
+  .txs table { width: 100%; border-collapse: collapse; }
+  .txs th, .txs td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #2a0f0f; vertical-align: top; }
+  .txs th { color: #b8a49c; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
+  .in { color: #4ade80; font-weight: 700; }
+  .out { color: #ff8a80; font-weight: 700; }
+  .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .muted { color: #9c8a83; }
+  form.add { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+  form.add input { flex: 1 1 260px; background: #100707; border: 1px solid #3a1515; color: #f2e9e4; border-radius: 6px; padding: 10px 12px; font-size: 14px; }
+  form.add input::placeholder { color: #6b5750; }
+  button { background: #ffb020; color: #111; border: 0; border-radius: 6px; padding: 10px 16px; font-size: 14px; font-weight: 700; cursor: pointer; }
+  button.ghost { background: transparent; color: #ffb020; border: 1px solid #ffb020; padding: 6px 10px; font-size: 12px; }
+  /* money / chains */
   .kv2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; font-size: 14px; }
   .kv2 div { border-bottom: 1px solid rgba(255,69,58,.15); padding-bottom: 6px; }
   .kv2 dt { color: #b8a49c; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
@@ -80,26 +119,20 @@
   .impact .row .t { font-weight: 800; font-size: 14px; display: flex; justify-content: space-between; gap: 8px; }
   .impact .row .t b { color: #ffb020; font-family: ui-monospace, Menlo, Consolas, monospace; }
   .impact .row .d { color: #b8a49c; font-size: 13px; margin-top: 4px; }
-  .unknown { color: #ff8a80; font-weight: 700; }
-  .safe { color: #4ade80; font-weight: 700; }
-  .wallet { background: #160a0a; border: 1px solid rgba(255,69,58,.22); border-left: 4px solid #ff453a; border-radius: 8px; padding: 18px 20px; margin-bottom: 14px; }
-  .wallet h3 { font-size: 16px; margin-bottom: 4px; }
-  .wallet .addr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; color: #ffb020; word-break: break-all; }
-  .bal { font-size: 22px; font-weight: 800; margin: 10px 0 2px; font-family: ui-monospace, Menlo, Consolas, monospace; }
-  .bal small { font-size: 13px; color: #b8a49c; font-weight: 400; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-  .txs { margin-top: 12px; font-size: 14px; }
-  .txs table { width: 100%; border-collapse: collapse; }
-  .txs th, .txs td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #2a0f0f; vertical-align: top; }
-  .txs th { color: #b8a49c; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
-  .in { color: #4ade80; font-weight: 700; }
-  .out { color: #ff8a80; font-weight: 700; }
-  .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
-  .muted { color: #9c8a83; }
-  form.add { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
-  form.add input { flex: 1 1 260px; background: #100707; border: 1px solid #3a1515; color: #f2e9e4; border-radius: 6px; padding: 10px 12px; font-size: 14px; }
-  form.add input::placeholder { color: #6b5750; }
-  button { background: #ffb020; color: #111; border: 0; border-radius: 6px; padding: 10px 16px; font-size: 14px; font-weight: 700; cursor: pointer; }
-  button.ghost { background: transparent; color: #ffb020; border: 1px solid #ffb020; padding: 6px 10px; font-size: 12px; }
+  .threat { border: 1px solid rgba(255,69,58,.3); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; background: rgba(42,10,10,.4); }
+  .threat .addr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #ffb3ad; word-break: break-all; }
+  .threat .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .threat .chain { font-size: 12px; font-weight: 800; letter-spacing: .5px; color: #ffb020; }
+  .threat .note2 { font-size: 12px; color: #b8a49c; margin-top: 6px; }
+  .tag { font-size: 11px; font-weight: 800; letter-spacing: .6px; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+  .tag.safe { background: rgba(74,222,128,.15); color: #4ade80; border: 1px solid rgba(74,222,128,.4); }
+  .tag.danger { background: rgba(255,69,58,.15); color: #ff8a80; border: 1px solid rgba(255,69,58,.45); }
+  .tag.warn { background: rgba(255,176,32,.12); color: #ffb020; border: 1px solid rgba(255,176,32,.4); }
+  .tag.live { background: rgba(255,69,58,.15); color: #ff8a80; border: 1px solid rgba(255,69,58,.45); }
+  .risk { display: flex; flex-direction: column; gap: 10px; }
+  .riskrow { border: 1px solid rgba(255,69,58,.25); border-radius: 8px; padding: 14px; background: #100707; }
+  .riskrow .t { font-weight: 800; font-size: 14px; letter-spacing: .5px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .riskrow .d { color: #b8a49c; font-size: 14px; margin-top: 4px; }
   .timeline { list-style: none; }
   .timeline li { padding: 10px 0 10px 18px; border-left: 2px solid #ffb020; margin-left: 6px; position: relative; }
   .timeline li::before { content: ""; position: absolute; left: -7px; top: 16px; width: 12px; height: 12px; background: #ffb020; border-radius: 50%; }
@@ -107,163 +140,150 @@
   .checklist li { margin: 0 0 8px 20px; }
   .links li { margin: 0 0 8px 20px; }
   .refresh { font-size: 13px; color: #9c8a83; }
-  footer { margin-top: 36px; color: #6b5750; font-size: 13px; }
-  @media (max-width: 860px) { .moregrid { grid-template-columns: 1fr; } .maplive { grid-template-columns: 1fr; } }
-  @media (max-width: 640px) { .kv2 { grid-template-columns: 1fr; } h1 { font-size: 22px; } }
+  footer { margin-top: 28px; color: #6b5750; font-size: 13px; }
+  @media (max-width: 860px) { .minigrid { grid-template-columns: 1fr 1fr; } .walletgrid { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .kv2 { grid-template-columns: 1fr; } h1 { font-size: 24px; } .stage .big { font-size: 22px; } .minigrid { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="eyebrow">GALACTICTOOLS // INCIDENT COMMAND</div>
+  <div class="eyebrow">GALACTIC TRACKER // LIVE INCIDENT COMMAND</div>
   <header>
-    <h1>KEPLR / WEB3AUTH <span>INCIDENT TRACKER</span></h1>
-    <span class="status" id="statusBadge">LOADING…</span>
+    <div>
+      <h1>Galactic <span>Tracker</span></h1>
+      <div class="byline">by <b>GalacticBuilder</b> · <a href="https://x.com/GalacticTools" target="_blank" rel="noopener">𝕏 @GalacticTools</a></div>
+    </div>
+    <div class="headright">
+      <a class="xbtn" href="https://x.com/GalacticTools" target="_blank" rel="noopener">𝕏 @GalacticTools</a>
+      <span class="status" id="statusBadge">LOADING…</span>
+    </div>
   </header>
-  <p class="sub">One live map of the whole hack — who was hit, how the money moved, where it is right now, and what happens next. <span class="refresh" id="updatedLine"></span></p>
+  <p class="sub">Live map of the <b>Keplr / Web3Auth incident</b> — who was hit, where the money is right now, and what happens next. <span class="refresh" id="updatedLine"></span></p>
   <div class="strip">INCIDENT STATUS: <b>WEB3AUTH EXPLOIT</b> — SOCIAL LOGINS PAUSED, INVESTIGATION ACTIVE</div>
   <div class="ticker"><div class="ticker-inner" id="tickerText">● LIVE — loading chain data…</div></div>
 
-  <h2>The whole attack — <span>one live map</span></h2>
-  <div class="panel">
-    <div class="maphead"><span class="livedot"></span> LIVE MAP <span class="livetime" id="liveClock">—</span></div>
-    <div id="bigmap">
-      <svg viewBox="0 0 960 820" role="img" aria-label="Live map of the whole attack">
-        <defs>
-          <marker id="marr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ff453a"/></marker>
-        </defs>
-        <style>
-          .st{font:700 13px sans-serif;fill:#ff453a;letter-spacing:2px}
-          .big{font:800 30px sans-serif;fill:#f2e9e4}
-          .bigA{font:800 30px ui-monospace,Menlo,Consolas,monospace;fill:#ffb020}
-          .bigG{font:800 34px sans-serif;fill:#4ade80}
-          .mid{font:700 17px sans-serif;fill:#f2e9e4}
-          .sm{font:13px sans-serif;fill:#b8a49c}
-          .smA{font:700 13px sans-serif;fill:#ffb020}
-          .wal{font:700 15px sans-serif;fill:#ffb020}
-          .wsub{font:12px sans-serif;fill:#b8a49c}
-          .wbal{font:700 19px ui-monospace,Menlo,Consolas,monospace;fill:#ffb020}
-          .alert{fill:#ff453a}
-          .fl{stroke-dasharray:6 6;animation:dash 1.2s linear infinite}@keyframes dash{to{stroke-dashoffset:-12}}
-        </style>
-        <!-- STAGE 1 : VICTIMS -->
-        <text x="20" y="22" class="st">1 · VICTIMS — WHO WAS HIT</text>
-        <rect x="20" y="30" width="920" height="96" rx="8" fill="#160a0a" stroke="#ff453a" stroke-width="1.5"/>
-        <text x="44" y="76" class="big">41,500+ wallets drained</text>
-        <text x="44" y="104" class="sm">Google / Apple login Keplr accounts. Over $4.5M taken — and counting. The real total is higher: pool shares and small tokens are not counted yet.</text>
-        <line x1="480" y1="126" x2="480" y2="152" stroke="#ff453a" stroke-width="3" class="fl" marker-end="url(#marr)"/>
-        <!-- STAGE 2 : THE ATTACK -->
-        <text x="20" y="176" class="st">2 · THE ATTACK — HOW IT HAPPENED</text>
-        <rect x="20" y="184" width="920" height="96" rx="8" fill="#160a0a" stroke="#ff453a" stroke-width="1.5"/>
-        <text x="44" y="228" class="mid">The attacker signs REAL transactions with stolen keys</text>
-        <text x="44" y="256" class="sm">No phishing. No approval. No contract. The attacker logs in as the owner and empties the wallet.</text>
-        <line x1="480" y1="280" x2="480" y2="306" stroke="#ff453a" stroke-width="3" class="fl" marker-end="url(#marr)"/>
-        <!-- STAGE 3 : DRAIN WALLETS -->
-        <text x="20" y="330" class="st">3 · DRAIN WALLETS — WHERE THE MONEY LANDED</text>
-        <rect x="20" y="338" width="222" height="118" rx="8" fill="#160a0a" stroke="#ffb020" stroke-width="1.5"/>
-        <text x="36" y="366" class="wal">COSMOS HUB</text>
-        <text x="36" y="388" class="wsub">cosmos1atuap…qtnmwu</text>
-        <text x="36" y="424" id="liveAtom" class="wbal">— ATOM</text>
-        <text x="36" y="444" class="wsub">live from the chain</text>
-        <rect x="254" y="338" width="222" height="118" rx="8" fill="#160a0a" stroke="#ffb020" stroke-width="1.5"/>
-        <text x="270" y="366" class="wal">OSMOSIS</text>
-        <text x="270" y="388" class="wsub">osmo1atuap…gsqtcw</text>
-        <text x="270" y="424" class="wbal">1,239 denoms</text>
-        <text x="270" y="444" class="wsub">incl. pool shares</text>
-        <rect x="488" y="338" width="222" height="118" rx="8" fill="#160a0a" stroke="#ffb020" stroke-width="1.5"/>
-        <text x="504" y="366" class="wal">INJECTIVE</text>
-        <text x="504" y="388" class="wsub">inj1lqmd…vt7g</text>
-        <text x="504" y="424" class="wbal">533 denoms</text>
-        <text x="504" y="444" class="wsub">incl. INJ, USDT, USDC</text>
-        <rect x="722" y="338" width="222" height="118" rx="8" fill="#160a0a" stroke="#ffb020" stroke-width="1.5"/>
-        <text x="738" y="366" class="wal">BABYLON</text>
-        <text x="738" y="388" class="wsub">bbn1atuap…h4z239</text>
-        <text x="738" y="424" id="liveBbn" class="wbal">— BBN</text>
-        <text x="738" y="444" class="wsub">live from the chain</text>
-        <text x="20" y="478" class="sm">+ 7 more wallets: fee payer · control wallet · test wallets · funding sources — all 11 tracked below.</text>
-        <line x1="480" y1="486" x2="480" y2="512" stroke="#ff453a" stroke-width="3" class="fl" marker-end="url(#marr)"/>
-        <!-- STAGE 4 : THE MONEY NOW -->
-        <text x="20" y="536" class="st">4 · THE MONEY NOW — HAS IT MOVED?</text>
-        <rect x="20" y="544" width="920" height="104" rx="8" fill="#160a0a" stroke="#4ade80" stroke-width="1.5"/>
-        <text x="44" y="592" class="bigG">$0 MOVED</text>
-        <text x="44" y="624" id="liveSeq" class="smA">Checking the chains…</text>
-        <line x1="480" y1="648" x2="480" y2="674" stroke="#ff453a" stroke-width="3" class="fl" marker-end="url(#marr)"/>
-        <!-- STAGE 5 : WHAT HAPPENS NEXT -->
-        <text x="20" y="698" class="st">5 · WHAT HAPPENS NEXT</text>
-        <rect x="20" y="706" width="920" height="96" rx="8" fill="#160a0a" stroke="#ff453a" stroke-width="1.5"/>
-        <text x="44" y="740" class="sm">· Freeze requests sent to chains and exchanges — the funds are still sitting there, so freezes can still work.</text>
-        <text x="44" y="766" class="sm">· Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet.</text>
-        <text x="44" y="792" class="sm">· The drain was still active at the last scan — new victim sends keep arriving.</text>
-      </svg>
-    </div>
-    <div class="maplive">
-      <div><div class="livelabel">Cosmos drain wallet</div><div class="livesub" id="liveAtomSub">Checking chain…</div></div>
-      <div><div class="livelabel">Babylon drain wallet</div><div class="livesub" id="liveBbnSub">Checking chain…</div></div>
-      <div><div class="livelabel">Outgoing transactions</div><div class="livesub" id="liveSeqSub">Checking chain…</div></div>
-    </div>
-    <p class="mapnote">How to read this map: money flows top → bottom. Every live number on it comes straight from the chains and refreshes every 60 seconds. Incident running: <span id="liveAge" style="font-family:ui-monospace,Menlo,Consolas,monospace;color:#ffb020">—</span> since the first drain send, Nov 6 21:57 UTC.</p>
-    <p class="mapnote" id="liveNote">Live data comes straight from the chains in your browser — no server in between.</p>
-  </div>
+  <nav class="tabs" role="tablist" aria-label="Tracker maps">
+    <button class="tabbtn active" role="tab" data-tab="attack" aria-selected="true">The Attack<small>The whole hack, one map</small></button>
+    <button class="tabbtn" role="tab" data-tab="wallets" aria-selected="false">Wallets<small>12 wallets, live balances</small></button>
+    <button class="tabbtn" role="tab" data-tab="money" aria-selected="false">Money<small>Where every coin went</small></button>
+    <button class="tabbtn" role="tab" data-tab="chains" aria-selected="false">Chains<small>Impact + freezes</small></button>
+    <button class="tabbtn" role="tab" data-tab="safe" aria-selected="false">Stay Safe<small>Risk, help, timeline</small></button>
+    <button class="tabbtn" role="tab" data-tab="hit" aria-selected="false">Were You Hit?<small>Compromised? Start here</small></button>
+  </nav>
 
-  <h2>Who is <span>at risk</span></h2>
-  <div class="panel risk">
-    <div class="riskrow">
-      <div class="t">MNEMONIC — SEED PHRASE <span class="tag safe">SAFE</span></div>
-      <div class="d">Seed-phrase wallets were <b>not affected</b>, per Keplr's initial assessment.</div>
+  <!-- TAB 1 : THE ATTACK -->
+  <section class="tabpanel active" id="tab-attack" role="tabpanel">
+    <p class="tabdesc">The whole attack, top to bottom. Money flows down. Every live number comes straight from the chains and refreshes every 60 seconds.</p>
+    <div class="livehead"><span class="livedot"></span> LIVE MAP <span class="livetime" id="liveClock">—</span></div>
+    <div class="stage">
+      <div class="stagelabel">1 · VICTIMS — WHO WAS HIT</div>
+      <div class="big"><span class="amber">41,500+ wallets</span> drained</div>
+      <div class="sm">Google / Apple login Keplr accounts. <b style="color:#f2e9e4">Over $4.5M taken — and counting.</b> The real total is higher: pool shares and small tokens are not counted yet.</div>
     </div>
-    <div class="riskrow">
-      <div class="t">HARDWARE WALLET <span class="tag safe">SAFE</span></div>
-      <div class="d">Ledger / Trezor wallets were <b>not affected</b>, per Keplr's initial assessment.</div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">2 · THE ATTACK — HOW IT HAPPENED</div>
+      <div class="mid">The attacker signs REAL transactions with stolen keys</div>
+      <div class="sm">No phishing. No approval. No contract. The attacker logs in as the owner and empties the wallet.</div>
     </div>
-    <div class="riskrow">
-      <div class="t">GOOGLE / APPLE LOGIN <span class="tag danger">AFFECTED</span></div>
-      <div class="d">About <b>20% affected</b> (early estimate), only a fraction of those actually drained. Do not send new funds to these accounts.</div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">3 · DRAIN WALLETS — WHERE THE MONEY LANDED</div>
+      <div class="minigrid">
+        <div class="minicard"><div class="c">COSMOS HUB</div><div class="a">cosmos1atuap…qtnmwu</div><div class="v js-liveAtom">— ATOM</div><div class="s">live from the chain</div></div>
+        <div class="minicard"><div class="c">OSMOSIS</div><div class="a">osmo1atuap…gsqtcw</div><div class="v">1,239 denoms</div><div class="s">incl. pool shares</div></div>
+        <div class="minicard"><div class="c">INJECTIVE</div><div class="a">inj1lqmd…vt7g</div><div class="v">533 denoms</div><div class="s">incl. INJ, USDT, USDC</div></div>
+        <div class="minicard"><div class="c">BABYLON</div><div class="a">bbn1atuap…h4z239</div><div class="v js-liveBbn">— BBN</div><div class="s">live from the chain</div></div>
+      </div>
+      <div class="sm">+ 8 more wallets: fee payer · control wallet · test wallets · funding sources — all 12 tracked in the <b style="color:#f2e9e4">Wallets</b> tab.</div>
     </div>
-  </div>
+    <div class="arrow">▼</div>
+    <div class="stage good">
+      <div class="stagelabel">4 · THE MONEY NOW — HAS IT MOVED?</div>
+      <div class="big"><span class="green">$0 MOVED</span></div>
+      <div class="sm"><b class="js-liveSeq" style="color:#ffb020">Checking the chains…</b></div>
+      <div class="livesub js-liveSeqSub">Checking the chains…</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">5 · WHAT HAPPENS NEXT</div>
+      <div class="sm">· Freeze requests sent to chains and exchanges — the funds are still sitting there, so freezes can still work.<br>· Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet.<br>· The drain is OVER. Last activity Nov 7 10:34 UTC on Osmosis, Injective and Babylon; Cosmos Hub ran until 15:33:49 UTC. Full block scans confirm it.</div>
+    </div>
+    <p class="note" style="margin-top:14px">Incident running: <span id="liveAge" style="font-family:ui-monospace,Menlo,Consolas,monospace;color:#ffb020">—</span> since the first drain send, Nov 6 21:57 UTC. <span id="liveNote">Live data comes straight from the chains in your browser — no server in between.</span></p>
+    <p class="note"><span class="js-liveAtomSub">Checking chain…</span><br><span class="js-liveBbnSub">Checking chain…</span></p>
+  </section>
 
-  <h2>The 11 <span>wallets</span></h2>
-  <div class="panel" id="attackerPanel"></div>
+  <!-- TAB 2 : WALLETS -->
+  <section class="tabpanel" id="tab-wallets" role="tabpanel">
+    <p class="tabdesc">Every tracked wallet, live. <b>Every coin shows its real name</b> — ATOM, OSMO, INJ, BBN, stablecoins, IBC tokens, pool shares, staked ATOM and factory tokens. Balances refresh every 60 seconds. <button class="ghost" id="refreshBtn" type="button">Refresh now</button></p>
+    <div class="walletgrid" id="watchlist"></div>
+    <h2>Track <span>another wallet</span></h2>
+    <form class="add" id="addForm">
+      <input id="addAddr" type="text" placeholder="Paste a wallet address (cosmos1…, osmo1…, inj1…, bbn1…)" autocomplete="off" spellcheck="false">
+      <input id="addLabel" type="text" placeholder="Label (optional)" autocomplete="off" spellcheck="false">
+      <button type="submit">Track wallet</button>
+    </form>
+    <p class="note" id="addMsg"></p>
+    <p class="note">Coin names come from the Cosmos chain registry. A token the registry does not list shows as "IBC token" with its code — open its Mintscan link to see the full holding. Full balances for every wallet are on Mintscan.</p>
+  </section>
 
-  <h2>Suspicious <span>transactions</span></h2>
-  <div class="panel" id="suspTxPanel">
-    <p class="muted" style="font-size:14px">Tracing in progress. Outflows from the 4 flagged wallets are being followed now — drain transactions and destination wallets will appear here as they are found.</p>
-  </div>
-
-  <h2>More <span>tracking</span></h2>
-  <div class="moregrid">
+  <!-- TAB 3 : MONEY -->
+  <section class="tabpanel" id="tab-money" role="tabpanel">
+    <p class="tabdesc">The money trail, in numbers. What was taken, how it moved, and where it sits right now.</p>
+    <div class="stage good" style="margin-bottom:14px">
+      <div class="stagelabel">HAS THE MONEY MOVED?</div>
+      <div class="big"><span class="green">$0 MOVED</span> · <span class="amber js-liveAtom">— ATOM</span> still in the Cosmos drain wallet</div>
+      <div class="livesub js-liveSeqSub">Checking the chains…</div>
+    </div>
+    <h2>Drain in <span>numbers</span></h2>
     <div class="panel">
-      <h3>Drain in numbers</h3>
       <dl class="kv2">
         <div><dt>Victim sends</dt><dd>42,363</dd></div>
         <div><dt>Distinct senders</dt><dd>24,660</dd></div>
         <div><dt>Transactions</dt><dd>21,343</dd></div>
         <div><dt>ATOM swept (MsgSend)</dt><dd>349,966</dd></div>
-        <div><dt>ATOM now in drain wallet</dt><dd>532,933</dd></div>
+        <div><dt>ATOM now in drain wallet</dt><dd class="js-liveAtom">532,933</dd></div>
         <div><dt>Denoms received</dt><dd>23,917</dd></div>
         <div><dt>Largest single send</dt><dd>20,794 ATOM</dd></div>
-        <div><dt>First / latest send</dt><dd>Nov 6 21:57 UTC / Nov 7 15:33 UTC — still active</dd></div>
+        <div><dt>First / latest send</dt><dd>Nov 6 21:57 UTC / Nov 7 15:33 UTC — drain over</dd></div>
       </dl>
       <p class="note" style="margin:10px 0 0">Cosmos Hub block scan, Nov 7 15:35 UTC. Up to 6 victims bundled per transaction.</p>
     </div>
+    <h2>Verified by <span>chain</span></h2>
     <div class="panel">
-      <h3>Impact by chain</h3>
-      <div class="impact">
-        <div class="row"><div class="t">COSMOS HUB <b>~$2.93M</b></div><div class="d">18,600+ wallets. 466,000 ATOM + 1.65M ATOM of tokenised stake.</div></div>
-        <div class="row"><div class="t">OSMOSIS <b>~$1.01M</b></div><div class="d">29,100+ wallets. 1,239 different tokens.</div></div>
-        <div class="row"><div class="t">INJECTIVE <b>~$616K</b></div><div class="d">7,596 wallets. 67,931 INJ, 53,466 USDT, 2,031 USDC.</div></div>
-        <div class="row"><div class="t">EVMOS <b>—</b></div><div class="d">Drained Nov 6 15:57 UTC. No total published.</div></div>
-      </div>
-      <p class="note" style="margin:10px 0 0">Per-chain wallet counts overlap — one seed phrase appears on multiple chains. Prices at ATOM $1.39 / INJ $8.24.</p>
+      <dl class="kv2">
+        <div><dt>Osmosis — sends / senders</dt><dd>29,280 / 29,248</dd></div>
+        <div><dt>Osmosis — balance now</dt><dd>1,788,487.64 OSMO</dd></div>
+        <div><dt>Injective — successful sends / senders</dt><dd>7,606 / 7,603</dd></div>
+        <div><dt>Injective — balance now</dt><dd>67,987.05 INJ</dd></div>
+        <div><dt>Injective — failed sends</dt><dd>404 (out of gas)</dd></div>
+        <div><dt>Babylon — sends / senders</dt><dd>749 / 748</dd></div>
+        <div><dt>Babylon — balance now</dt><dd>1,407,799.79 BBN</dd></div>
+        <div><dt>IBC hops between drain wallets</dt><dd>None</dd></div>
+      </dl>
+      <p class="note" style="margin:10px 0 0">Full block scans of Osmosis, Injective and Babylon, Nov 7 ~17:00 UTC. Injective amounts verified against the balance to the unit. Only 4 senders kept everything (their sends all failed).</p>
     </div>
+    <h2>The operator's <span>rehearsal trail</span></h2>
     <div class="panel">
-      <h3>Drain waves</h3>
+      <p style="font-size:14px">The attacker rehearsed every step before going live — and left a trail on-chain.</p>
+      <ul class="checklist" style="font-size:14px">
+        <li><b>Fee payer:</b> funded by exactly 3 transfers totaling 228.61 ATOM; made 2,520 self-sends of 1 uatom, one per tokenize batch.</li>
+        <li><b>Control wallet:</b> seeded test accounts, ran cross-chain IBC tests, and rehearsed the LSM tokenisation — then the real attack copied the same script.</li>
+        <li><b>The first "drain send" was a rehearsal:</b> the two test wallets were seeded with 0.03 ATOM and forwarded 26,253 uatom each at Nov 6 21:57:39 UTC. They are not victims.</li>
+        <li><b>One key, 8 chains:</b> the control/test key spans Cosmos Hub, Osmosis, Babylon, Noble, dYdX, Axelar, Saga and Agoric.</li>
+        <li><b>Funding sources:</b> identities unverified — only their attack payments are established (237.07 ATOM total).</li>
+      </ul>
+    </div>
+    <h2>Drain <span>waves</span></h2>
+    <div class="panel">
       <div class="bar"><div class="bl"><span>Wave 1 — Nov 6 21:57–23:16 · 2,543 sends</span><b>98,822 ATOM</b></div><div class="track"><div class="fill" style="width:45%"></div></div></div>
       <div class="bar"><div class="bl"><span>Quiet — Nov 6 23:16 → Nov 7 07:19 · 2,147 sends</span><b>24,128 ATOM</b></div><div class="track"><div class="fill" style="width:11%"></div></div></div>
       <div class="bar"><div class="bl"><span>Wave 2 — Nov 7 07:19–09:00 · 13,181 sends</span><b>219,785 ATOM</b></div><div class="track"><div class="fill" style="width:100%"></div></div></div>
       <div class="bar"><div class="bl"><span>LSM flood — Nov 7 09:00–15:33 · 24,492 sends</span><b>7,232 ATOM + LSM</b></div><div class="track"><div class="fill" style="width:3%"></div></div></div>
       <p class="note" style="margin:10px 0 0">Observed on-chain, Cosmos Hub. After 09:00 the drain shifted to tokenising staked ATOM instead of sweeping liquid funds.</p>
     </div>
+    <h2>Staked ATOM — <span>tokenised live</span></h2>
     <div class="panel">
-      <h3>Staked ATOM — tokenised live</h3>
       <p style="font-size:14px">99.7% of the LSM tokens in the drain wallet were created <b>during</b> the incident — the attacker tokenised victims' staked ATOM in bulk instead of waiting 21 days to unbond.</p>
       <ul class="checklist" style="font-size:14px">
         <li>23,922 LSM sends; 23,747 distinct LSM denoms; ~1.956B share units.</li>
@@ -272,52 +292,110 @@
         <li>The drain wallet never delegated or tokenised anything itself — it only received.</li>
       </ul>
     </div>
+    <h2>Suspicious <span>transactions</span></h2>
+    <div class="panel" id="suspTxPanel">
+      <p class="muted" style="font-size:14px">Tracing in progress. Outflows from the 4 flagged wallets are being followed now — drain transactions and destination wallets will appear here as they are found.</p>
+    </div>
+  </section>
+
+  <!-- TAB 4 : CHAINS -->
+  <section class="tabpanel" id="tab-chains" role="tabpanel">
+    <p class="tabdesc">What each chain lost, and what is being done to freeze the money and get it back.</p>
+    <h2>Impact by <span>chain</span></h2>
     <div class="panel">
-      <h3>Freeze &amp; recovery</h3>
+      <div class="impact">
+        <div class="row"><div class="t">COSMOS HUB <b>~$2.93M</b></div><div class="d">18,600+ wallets (24,660 senders observed on-chain). 466,000 ATOM + 1.65M ATOM of tokenised stake.</div></div>
+        <div class="row"><div class="t">OSMOSIS <b>~$1.01M</b></div><div class="d">29,248 senders observed, 1,788,487.64 OSMO. 1,240 different tokens.</div></div>
+        <div class="row"><div class="t">INJECTIVE <b>~$616K</b></div><div class="d">7,603 senders, 67,987.05 INJ confirmed on-chain. USDT/USDC totals unverified.</div></div>
+        <div class="row"><div class="t">BABYLON <b>—</b></div><div class="d">748 senders, 1,407,799.79 BBN. Drain ended Nov 7 10:34 UTC.</div></div>
+        <div class="row"><div class="t">EVMOS <b>—</b></div><div class="d">Drained Nov 6 15:57 UTC. No total published.</div></div>
+      </div>
+      <p class="note" style="margin:10px 0 0">Per-chain wallet counts overlap — one seed phrase appears on multiple chains. Prices at ATOM $1.39 / INJ $8.24. Totals are community on-chain analysis (Nov 7); no official total exists.</p>
+    </div>
+    <h2>Freeze &amp; <span>recovery</span></h2>
+    <div class="panel">
       <ul class="checklist" style="font-size:14px">
         <li><b>$0 moved.</b> All 4 drain wallets have sequence 0 — none has ever signed a transaction.</li>
         <li>Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet.</li>
-        <li>Exchanges, bridges and liquid-staking providers asked to flag all 11 wallets.</li>
+        <li>Exchanges, bridges and liquid-staking providers asked to flag all 12 wallets.</li>
         <li>Chains asked to freeze the flagged wallets.</li>
-        <li>Babylon drain wallet holds 1,407,799.78 BBN.</li>
+        <li>Babylon drain wallet holds <span class="js-liveBbn">1,407,799.78 BBN</span>.</li>
         <li>Osmosis / Injective / Babylon inflows are being block-scanned now — results land here next.</li>
       </ul>
     </div>
-  </div>
+  </section>
 
-  <h2>Wallet <span>watch</span></h2>
-  <p class="sub">Live balances for the 11 tracked attacker wallets, refreshed every 60 seconds. Add any Cosmos, Osmosis, Injective or Babylon address to watch it. <button class="ghost" id="refreshBtn" type="button">Refresh now</button></p>
-  <div id="watchlist"></div>
-  <form class="add" id="addForm">
-    <input id="addAddr" type="text" placeholder="Paste a wallet address (cosmos1…, osmo1…, inj1…, bbn1…)" autocomplete="off" spellcheck="false">
-    <input id="addLabel" type="text" placeholder="Label (optional)" autocomplete="off" spellcheck="false">
-    <button type="submit">Track wallet</button>
-  </form>
-  <p class="note" id="addMsg"></p>
+  <!-- TAB 5 : STAY SAFE -->
+  <section class="tabpanel" id="tab-safe" role="tabpanel">
+    <p class="tabdesc">Are you at risk, what to do now, how to trace stolen funds, and the full timeline.</p>
+    <h2>Who is <span>at risk</span></h2>
+    <div class="panel risk">
+      <div class="riskrow">
+        <div class="t">MNEMONIC — SEED PHRASE <span class="tag safe">SAFE</span></div>
+        <div class="d">Seed-phrase wallets were <b>not affected</b>, per Keplr's initial assessment.</div>
+      </div>
+      <div class="riskrow">
+        <div class="t">HARDWARE WALLET <span class="tag safe">SAFE</span></div>
+        <div class="d">Ledger / Trezor wallets were <b>not affected</b>, per Keplr's initial assessment.</div>
+      </div>
+      <div class="riskrow">
+        <div class="t">GOOGLE / APPLE LOGIN <span class="tag danger">AFFECTED</span></div>
+        <div class="d">About <b>20% affected</b> (early estimate), only a fraction of those actually drained. Do not send new funds to these accounts.</div>
+      </div>
+    </div>
+    <h2>Stay <span>safe</span></h2>
+    <div class="panel"><ul class="checklist">
+      <li><b>Do NOT send new funds</b> to any wallet created with Google or Apple login until Keplr says it is safe.</li>
+      <li><b>Do NOT re-import or recreate</b> a Google/Apple-login Keplr account anywhere.</li>
+      <li><b>Seed-phrase and hardware wallets are safe</b> — move funds there if you can do it from a safe wallet.</li>
+      <li><b>Trust only official Keplr / Web3Auth channels.</b> Ignore every DM offering “recovery” — they are scams.</li>
+      <li><b>Check activity read-only</b> in an explorer (links below). Reading never needs a wallet connection or a signature.</li>
+    </ul></div>
+    <h2>Trace the <span>thief</span></h2>
+    <div class="panel"><ul class="checklist">
+      <li><b>Find your affected address.</b> Social login is paused, so you cannot open Keplr to copy it. Try these instead: check the Keplr extension's local storage / IndexedDB in your browser's Developer Tools for cosmos1 / osmo1 addresses; check the withdrawal history of any exchange you funded the wallet from — the destination address there is your wallet; or resolve your .cosmos / .stars name if you had one.</li>
+      <li><b>Find the thief's address.</b> Paste your address into Mintscan (links below) and look at recent outgoing transfers — MsgSend or IBC transfers around Nov 6–7 that you did not make. Open the transaction: the recipient address is where your funds went, and the 64-character transaction hash is the proof.</li>
+      <li><b>Follow the money.</b> Check the thief address's own outgoing transactions for IBC hops (e.g. ATOM moved to Osmosis and swapped). If funds land in an address tagged as an exchange deposit wallet, report the transaction hash and attacker address to that exchange's security desk to request a freeze.</li>
+      <li><b>Report it.</b> Send victim address + attacker address + transaction hash + timestamps to Keplr/Web3Auth incident response and to chain-analysis reporting services.</li>
+      <li><b>Never enter a seed phrase or private key</b> on any “wallet checker” or “recovery” site. Checking an address on Mintscan is read-only and safe — it never asks you to connect a wallet or sign anything.</li>
+    </ul></div>
+    <h2>Timeline</h2>
+    <div class="panel"><ul class="timeline" id="timeline"></ul></div>
+    <h2>Official <span>links</span></h2>
+    <div class="panel"><ul class="links" id="linkList"></ul></div>
+  </section>
 
-  <h2>Stay <span>safe</span></h2>
-  <div class="panel"><ul class="checklist">
-    <li><b>Do NOT send new funds</b> to any wallet created with Google or Apple login until Keplr says it is safe.</li>
-    <li><b>Do NOT re-import or recreate</b> a Google/Apple-login Keplr account anywhere.</li>
-    <li><b>Seed-phrase and hardware wallets are safe</b> — move funds there if you can do it from a safe wallet.</li>
-    <li><b>Trust only official Keplr / Web3Auth channels.</b> Ignore every DM offering “recovery” — they are scams.</li>
-    <li><b>Check activity read-only</b> in an explorer (links below). Reading never needs a wallet connection or a signature.</li>
-  </ul></div>
-
-  <h2>Trace the <span>thief</span></h2>
-  <div class="panel"><ul class="checklist">
-    <li><b>Find your affected address.</b> Social login is paused, so you cannot open Keplr to copy it. Try these instead: check the Keplr extension's local storage / IndexedDB in your browser's Developer Tools for cosmos1 / osmo1 addresses; check the withdrawal history of any exchange you funded the wallet from — the destination address there is your wallet; or resolve your .cosmos / .stars name if you had one.</li>
-    <li><b>Find the thief's address.</b> Paste your address into Mintscan (links below) and look at recent outgoing transfers — MsgSend or IBC transfers around Nov 6–7 that you did not make. Open the transaction: the recipient address is where your funds went, and the 64-character transaction hash is the proof.</li>
-    <li><b>Follow the money.</b> Check the thief address's own outgoing transactions for IBC hops (e.g. ATOM moved to Osmosis and swapped). If funds land in an address tagged as an exchange deposit wallet, report the transaction hash and attacker address to that exchange's security desk to request a freeze.</li>
-    <li><b>Report it.</b> Send victim address + attacker address + transaction hash + timestamps to Keplr/Web3Auth incident response and to chain-analysis reporting services.</li>
-    <li><b>Never enter a seed phrase or private key</b> on any “wallet checker” or “recovery” site. Checking an address on Mintscan is read-only and safe — it never asks you to connect a wallet or sign anything.</li>
-  </ul></div>
-
-  <h2>Timeline</h2>
-  <div class="panel"><ul class="timeline" id="timeline"></ul></div>
-
-  <h2>Official <span>links</span></h2>
-  <div class="panel"><ul class="links" id="linkList"></ul></div>
+  <!-- TAB 6 : WERE YOU HIT? -->
+  <section class="tabpanel" id="tab-hit" role="tabpanel">
+    <p class="tabdesc">If you think you were hit — start here. <b>First: breathe.</b> The money has not moved, help exists, and there is real hope. Follow this map, one step at a time.</p>
+    <div class="stage good">
+      <div class="stagelabel">1 · BREATHE — THE MOST IMPORTANT FACT</div>
+      <div class="big"><span class="green">$0 has been cashed out.</span></div>
+      <div class="sm">Not a single coin has left the drain wallets — they have never signed a transaction, and this tracker checks that live every 60 seconds. The money is still sitting there. Every hour it stays still is another hour for a freeze to land. You are not alone: <b style="color:#f2e9e4">41,500+ people</b> are in this with you, and the whole Cosmos community, the chains, the exchanges and the tracers are working on it right now.</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">2 · CHECK — WERE YOU HIT?</div>
+      <div class="mid">If your Keplr wallet was created with Google or Apple login, check it now</div>
+      <div class="sm">1. Find your address: check the withdrawal history of any exchange you funded the wallet from — the destination address there is your wallet. Or check the Keplr extension's local storage in your browser's Developer Tools.<br>2. Paste the address into Mintscan (links in the Stay Safe tab) and look at Nov 6–7. Any outgoing transfer you did not make means you were hit.<br>3. If nothing moved, you may be one of the lucky ones — <b style="color:#f2e9e4">only a fraction of affected accounts were actually drained</b>, and Keplr says the remaining accounts may be recoverable. Still: do not send new funds there until Keplr says it is safe.</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">3 · DO THIS NOW — FIVE STEPS</div>
+      <div class="sm">1. <b style="color:#f2e9e4">Stop.</b> Do not send new funds to the affected wallet.<br>2. <b style="color:#f2e9e4">Do not re-import or recreate</b> the Google/Apple-login account anywhere.<br>3. <b style="color:#f2e9e4">Save evidence:</b> your address, every transaction hash, timestamps, and screenshots of your balances before the drain.<br>4. <b style="color:#f2e9e4">Ignore every DM offering recovery.</b> They are all scams. No one legitimate will DM you first.<br>5. <b style="color:#f2e9e4">Never enter your seed phrase or private key</b> on any "wallet checker" or "recovery" site. Checking an address on Mintscan is read-only and safe.</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">4 · TRACE &amp; REPORT — HELP CATCH THEM</div>
+      <div class="sm">1. On Mintscan, open the outgoing transfer you did not make — the <b style="color:#f2e9e4">recipient address is the thief's wallet</b>, and the 64-character transaction hash is the proof.<br>2. Follow that wallet's outgoing transactions for IBC hops or swaps. If funds land in an exchange deposit wallet, report the hash and the thief's address to that exchange's security desk and ask for a freeze.<br>3. Report everything — your address, the thief's address, the hashes, the timestamps — to Keplr/Web3Auth incident response and to chain-analysis reporting services.<br>4. Watch this tracker: the thief's wallets are on the <b style="color:#f2e9e4">Wallets</b> tab with live balances. The moment anything moves, it shows up here.</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage good">
+      <div class="stagelabel">5 · HOPE — WHY THIS CAN STILL END WELL</div>
+      <div class="sm">· <b style="color:#f2e9e4">$0 moved.</b> The thief has not cashed out anything — the money is still there to be frozen and recovered.<br>· <b style="color:#f2e9e4">The drain is over.</b> No new victims since Nov 7 15:33 UTC. The attack has stopped; now it is about freezing and recovering what is still there.<br>· <b style="color:#f2e9e4">Freezes are already in motion.</b> Circle can freeze ~$188K of USDC. Exchanges, bridges and staking providers have been asked to flag all 12 wallets.<br>· <b style="color:#f2e9e4">The trail is public and permanent.</b> Every move the thief makes is on-chain, visible to everyone, forever. There is nowhere to hide the money once it moves.<br>· <b style="color:#f2e9e4">Not everyone was drained.</b> Only a fraction of affected accounts lost funds — if yours did not move, recovery is likely.<br>· <b style="color:#f2e9e4">You are being watched over.</b> This tracker checks the thief's wallets every 60 seconds, searches the whole web for new information every 10 minutes, and updates itself the moment anything changes. You do not have to watch alone.</div>
+    </div>
+    <p class="note" style="margin-top:14px">If you are feeling overwhelmed, step away from the screen for a bit. The tracker keeps watching while you rest — nothing here needs you to act in the next five minutes. When you are ready, start at step 2.</p>
+  </section>
 
   <footer id="footerNote"></footer>
 </div>

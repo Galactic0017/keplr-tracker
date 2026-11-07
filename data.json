@@ -23,37 +23,42 @@
     {
       "chain": "cosmos",
       "address": "cosmos1pa0n22gcyyjnv6vqe9qgphrfhyhhf52t6kqud0",
-      "note": "Staked ATOM batch fee payer — signs and pays for every batch that tokenises victims’ stake."
+      "note": "Batch fee payer — funded by exactly 3 transfers totaling 228.61 ATOM; made 2,520 self-sends of 1 uatom, one per tokenize batch (Nov 7 09:57–15:33 UTC)."
     },
     {
       "chain": "cosmos",
       "address": "cosmos1wtdg9v0q95kvyyk2wz7n60vzq4gms3mc7fewv8",
-      "note": "Control wallet — tested each step before the live attack."
+      "note": "Control wallet — rehearsed every step of the attack before going live (seeded test accounts, cross-chain IBC tests, LSM rehearsal). Its key spans 8 chains."
     },
     {
       "chain": "osmo",
       "address": "osmo1wtdg9v0q95kvyyk2wz7n60vzq4gms3mckj2764",
-      "note": "Test wallet, Osmosis — made the first drain transfer."
+      "note": "Test wallet, Osmosis — the operator’s cross-chain rehearsal hub. Its first-ever Osmosis drain send (Nov 6 21:08:30 UTC) was a test."
     },
     {
       "chain": "cosmos",
       "address": "cosmos18asm0m6m4f7havhdp59knxjxhsur9ukkmy9zm9",
-      "note": "Test wallet, Cosmos Hub — collected test stake tokens."
+      "note": "Test wallet, Cosmos Hub — operator-seeded (0.03 ATOM from the control wallet), then forwarded 26,253 uatom to the drain wallet Nov 6 21:57:39 UTC. Not a victim."
     },
     {
       "chain": "cosmos",
       "address": "cosmos1cldur22h6ey3dh9ak2spzlwqwkwwswr90qau2x",
-      "note": "Test wallet, Cosmos Hub — used in the batch rehearsal."
+      "note": "Test wallet, Cosmos Hub — operator-seeded, then forwarded 26,253 uatom to the drain wallet Nov 6 21:57:39 UTC. Not a victim."
     },
     {
       "chain": "cosmos",
       "address": "cosmos1jr9vwrjtv2z4nkngzu0yrmw9gfxj0n97uy9hkt",
-      "note": "Funding source (likely exchange) — sent 8.46 ATOM to the control wallet, 20:43 UTC Nov 6."
+      "note": "Funding source — identity UNVERIFIED (exchange label unconfirmed). Attack-linked transfers: 8.46 ATOM to the control wallet, 45.70 + 109.62 ATOM to the fee payer (163.78 ATOM total)."
     },
     {
       "chain": "cosmos",
       "address": "cosmos1t5u0jfg3ljsjrh2m9e47d4ny2hea7eehxrzdgd",
-      "note": "Funding source (likely exchange) — sent 73.29 ATOM to the batch fee payer, 09:36 UTC Nov 7."
+      "note": "Funding source — identity UNVERIFIED (exchange label unconfirmed). In 225,297.75 ATOM, out 234,474.75 ATOM; its only attack-linked transfer is 73.29 ATOM to the fee payer."
+    },
+    {
+      "chain": "babylon",
+      "address": "bbn1wtdg9v0q95kvyyk2wz7n60vzq4gms3mcfhgln7",
+      "note": "Test wallet, Babylon — same wtdg key as the control wallet; sent the BBN seed (9,773,023 ubbn) to the Babylon drain wallet Nov 7 02:38:08 UTC."
     }
   ],
   "chains": [
@@ -90,8 +95,12 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth security issue. Official line: key-share reconstruction path (unconfirmed). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T11:00:00-05:00",
+    "lastUpdated": "2026-11-07T12:20:00-05:00",
     "links": [
+      {
+        "label": "X — @GalacticTools (by GalacticBuilder)",
+        "url": "https://x.com/GalacticTools"
+      },
       {
         "label": "Keplr on X (official updates)",
         "url": "https://x.com/keplr_wallet"
@@ -199,31 +208,47 @@
       },
       {
         "time": "2026-11-07 ~15:35 UTC",
-        "event": "On-chain scan confirms 42,363 victim sends from 24,660 distinct senders into the Cosmos drain wallet; drain still active; $0 moved out of any of the 4 wallets. Cosmos drain wallet holds 532,933 ATOM."
+        "event": "On-chain scan confirms 42,363 victim sends from 24,660 distinct senders into the Cosmos drain wallet; drain active at that time (later scans confirm it ended 15:33:49 UTC); $0 moved out of any of the 4 wallets. Cosmos drain wallet holds 532,933 ATOM."
       },
       {
         "time": "2026-11-07 ~15:35 UTC",
         "event": "LSM finding: 99.7% of the LSM tokens in the drain wallet were created during the incident (record IDs 120,000+) — victims’ staked ATOM tokenised in bulk instead of waiting 21 days to unbond."
+      },
+      {
+        "time": "2026-11-07 10:34 UTC",
+        "event": "Final drain burst: 1 BBN + 9 OSMO + 7 INJ sends in the same minute on three chains. Last activity on Osmosis, Injective and Babylon."
+      },
+      {
+        "time": "2026-11-07 15:33:49 UTC",
+        "event": "Last Cosmos Hub activity (LSM batch). Full block scans confirm the drain is OVER on all four chains; $0 has moved out of any drain wallet. (On-chain block scan, part 2)"
+      },
+      {
+        "time": "2026-11-07 ~17:00 UTC",
+        "event": "Verified totals: Osmosis 29,280 sends / 29,248 senders / 1,788,487.64 OSMO; Injective 7,606 successful sends / 7,603 senders / 67,987.05 INJ (404 failed, out of gas); Babylon 749 sends / 748 senders / 1,407,799.79 BBN. No IBC hops between drain wallets. (On-chain block scan, part 2)"
+      },
+      {
+        "time": "2026-11-07 ~17:00 UTC",
+        "event": "Supporting wallets traced: fee payer funded by 3 transfers totaling 228.61 ATOM with 2,520 batch self-sends; control wallet rehearsed every step; the wtdg key spans 8 chains (Cosmos, Osmosis, Babylon, Noble, dYdX, Axelar, Saga, Agoric). Funding-source identities remain unverified. (On-chain block scan, part 2)"
       }
     ],
     "title": "Keplr / Web3Auth Incident",
     "totals": {
       "takenUsd": "$4.5M+",
-      "takenNote": "Per-chain (community on-chain analysis, Nov 7, at ATOM $1.39 / INJ $8.24): Cosmos Hub ~$2.93M (466,000 ATOM + 1.65M ATOM tokenised stake); Osmosis ~$1.01M (1,239 different tokens); Injective ~$616K (67,931 INJ, 53,466 USDT, 2,031 USDC). LP shares and small tokens not counted, so the real total is higher.",
+      "takenNote": "Per-chain (community on-chain analysis, Nov 7, at ATOM $1.39 / INJ $8.24): Cosmos Hub ~$2.93M (466,000 ATOM + 1.65M ATOM tokenised stake); Osmosis ~$1.01M (1,239 different tokens); Injective ~$616K. Verified on-chain (part-2 scan): Osmosis 1,788,487.64 OSMO, Injective 67,987.05 INJ, Babylon 1,407,799.79 BBN. Injective USDT/USDC totals (53,466 USDT / 2,031 USDC) were NOT independently verified. LP shares and small tokens not counted, so the real total is higher.",
       "walletsDrained": "41,500+",
-      "walletsNote": "Per-chain: Cosmos Hub 18,600+; Osmosis 29,100+; Injective 7,596. Per-chain counts sum higher than 41,500+ because one seed phrase appears on multiple chains.",
+      "walletsNote": "Per-chain: Cosmos Hub 18,600+; Osmosis 29,100+; Injective 7,596. Per-chain counts sum higher than 41,500+ because one seed phrase appears on multiple chains. On-chain scans observed 62,259 distinct senders across the 4 chains (Cosmos 24,660 + Osmosis 29,248 + Injective 7,603 + Babylon 748), but the same seed appears on multiple chains so the true victim count is lower.",
       "chains": [
         "Cosmos Hub",
         "Osmosis",
         "Injective"
       ],
       "cashedOutUsd": "$0",
-      "cashedOutNote": "Nothing has left any of the 4 drain wallets — all have sequence 0 (never signed a transaction), confirmed by a full Cosmos Hub block scan Nov 7 15:35 UTC. Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet."
+      "cashedOutNote": "Nothing has left any of the 4 drain wallets — all have sequence 0 (never signed a transaction), confirmed by full block scans of all four chains Nov 7 ~17:00 UTC. The drain is OVER: last activity Nov 7 10:34 UTC on Osmosis, Injective and Babylon, and 15:33:49 UTC on Cosmos Hub. Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet."
     },
     "suspiciousTxs": [
       {
         "hash": "3D5A59C0D61D0B4700200A283D689FA8C0451B0A239F8433B80FAEFD080A9B0C",
-        "label": "First observed drain send — victim → Cosmos drain wallet, 26,253 uatom",
+        "label": "First observed drain send — operator test wallets (seeded by the control wallet), 26,253 uatom each — NOT a victim send (corrected by part-2 scan)",
         "time": "2026-11-06 21:57:39 UTC",
         "height": 33759099
       },
@@ -247,7 +272,7 @@
       },
       {
         "hash": "A32A5E7D142E8AA49D716F827A8A79B0CB8DCC16BDA5A598E438CDDB6192F36E",
-        "label": "Latest observed send — LSM records 145074/145075/145076 (drain still active)",
+        "label": "Latest observed send — LSM records 145074/145075/145076 (last Cosmos Hub activity — drain over)",
         "time": "2026-11-07 15:33:49 UTC",
         "height": 33770175
       }
@@ -297,6 +322,10 @@
     {
       "address": "cosmos1t5u0jfg3ljsjrh2m9e47d4ny2hea7eehxrzdgd",
       "label": "Attacker wallet — Cosmos"
+    },
+    {
+      "address": "bbn1wtdg9v0q95kvyyk2wz7n60vzq4gms3mcfhgln7",
+      "label": "Test wallet — Babylon"
     }
   ]
 }

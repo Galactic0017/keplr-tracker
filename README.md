@@ -1,6 +1,10 @@
-# Keplr / Web3Auth Incident Tracker
+# Galactic Tracker
 
-Live tracker for the Nov 6–7, 2026 Keplr / Web3Auth incident.
+Live tracker for the Nov 6–7, 2026 Keplr / Web3Auth incident. By GalacticBuilder — X @GalacticTools.
+
+Six tabs, each a different live map: **The Attack** (whole hack, one map), **Wallets** (11 wallets, live balances, every coin named), **Money** (drain numbers, waves, LSM, suspicious txs), **Chains** (impact + freezes), **Stay Safe** (risk, help, timeline, links), **Were You Hit?** (compromised guide — what to do, and hope).
+
+Auto-updates: the tracker searches the whole web every 10 minutes for new verified info (cron `keplr-attacker-watch`) and adds it automatically. Live balances refresh every 60 seconds from the chains.
 
 ## What it tracks
 
