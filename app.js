@@ -96,7 +96,7 @@
   function initTabs() {
     var saved = null;
     try { saved = localStorage.getItem(TAB_KEY); } catch (e) {}
-    var valid = ['attack', 'wallets', 'money', 'chains', 'safe', 'hit', 'sith'];
+    var valid = ['attack', 'wallets', 'money', 'chains', 'safe', 'hit', 'sith', 'origin'];
     if (saved && valid.indexOf(saved) !== -1) setTab(saved);
     document.querySelectorAll('.tabbtn').forEach(function (b) {
       b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); });

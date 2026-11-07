@@ -170,6 +170,7 @@
     <button class="tabbtn" role="tab" data-tab="safe" aria-selected="false">Stay Safe<small>Risk, help, timeline</small></button>
     <button class="tabbtn" role="tab" data-tab="hit" aria-selected="false">Were You Hit?<small>Compromised? Start here</small></button>
     <button class="tabbtn" role="tab" data-tab="sith" aria-selected="false">Sith Lord's Wallet<small>Traced live · Nov 1 theft · 40,066 AKT</small></button>
+    <button class="tabbtn" role="tab" data-tab="origin" aria-selected="false">Where It Started<small>The origin chain, A to Z</small></button>
   </nav>
 
   <!-- TAB 1 : THE ATTACK -->
@@ -210,7 +211,7 @@
       <div class="stagelabel">5 · WHAT HAPPENS NEXT</div>
       <div class="sm">· Freeze requests sent to chains and exchanges — the funds are still sitting there, so freezes can still work.<br>· Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet.<br>· The drain is OVER. Last activity Nov 7 10:34 UTC on Osmosis, Injective and Babylon; Cosmos Hub ran until 15:33:49 UTC. Full block scans confirm it.</div>
     </div>
-    <p class="note" style="margin-top:14px">Incident running: <span id="liveAge" style="font-family:ui-monospace,Menlo,Consolas,monospace;color:#ffb020">—</span> since the first drain send, Nov 6 21:57 UTC. <span id="liveNote">Live data comes straight from the chains in your browser — no server in between.</span></p>
+    <p class="note" style="margin-top:14px">Incident running: <span id="liveAge" style="font-family:ui-monospace,Menlo,Consolas,monospace;color:#ffb020">—</span> since the first drain send, Nov 6 20:52 UTC. <span id="liveNote">Live data comes straight from the chains in your browser — no server in between.</span></p>
     <p class="note"><span class="js-liveAtomSub">Checking chain…</span><br><span class="js-liveBbnSub">Checking chain…</span></p>
   </section>
 
@@ -246,7 +247,7 @@
         <div><dt>ATOM now in drain wallet</dt><dd class="js-liveAtom">532,933</dd></div>
         <div><dt>Denoms received</dt><dd>23,917</dd></div>
         <div><dt>Largest single send</dt><dd>20,794 ATOM</dd></div>
-        <div><dt>First / latest send</dt><dd>Nov 6 21:57 UTC / Nov 7 15:33 UTC — drain over</dd></div>
+        <div><dt>First / latest send</dt><dd>Nov 6 20:52 UTC / Nov 7 15:33 UTC — drain over</dd></div>
       </dl>
       <p class="note" style="margin:10px 0 0">Cosmos Hub block scan, Nov 7 15:35 UTC. Up to 6 victims bundled per transaction.</p>
     </div>
@@ -270,7 +271,7 @@
       <ul class="checklist" style="font-size:14px">
         <li><b>Fee payer:</b> funded by exactly 3 transfers totaling 228.61 ATOM; made 2,520 self-sends of 1 uatom, one per tokenize batch.</li>
         <li><b>Control wallet:</b> seeded test accounts, ran cross-chain IBC tests, and rehearsed the LSM tokenisation — then the real attack copied the same script.</li>
-        <li><b>The first "drain send" was a rehearsal:</b> the two test wallets were seeded with 0.03 ATOM and forwarded 26,253 uatom each at Nov 6 21:57:39 UTC. They are not victims.</li>
+        <li><b>The first "drain sends" were rehearsals:</b> 10 × 13,242 uatom at Nov 6 20:52:37 UTC from the 10 addresses seeded at 20:48:47, then the two test wallets forwarded 26,253 uatom each at 21:57:39 UTC. They are not victims.</li>
         <li><b>One key, 8 chains:</b> the control/test key spans Cosmos Hub, Osmosis, Babylon, Noble, dYdX, Axelar, Saga and Agoric.</li>
         <li><b>Funding sources:</b> identities unverified — only their attack payments are established (237.07 ATOM total).</li>
       </ul>
@@ -502,6 +503,40 @@
       <li><b>Ignore every DM offering recovery.</b> They are all scams.</li>
     </ul></div>
     <p class="note">His theft is now traced on-chain from his AKT wallet to Osmosis — see the map above. The final hop to this case wallet is still being traced, and both wallets here are tracked live (refreshing every 60 seconds) and by the auto-watch, which searches the web every 5 minutes for new information. If either wallet moves, this tab updates.</p>
+  </section>
+
+
+  <!-- TAB 8 : WHERE IT STARTED -->
+  <section class="tabpanel" id="tab-origin" role="tabpanel">
+    <p class="tabdesc">Wandering Cosmonaut&rsquo;s idea: walk the oldest transaction backwards from the drain wallets, link by link, until you find where it started. This tab is the result &mdash; the whole chain, beginning to end.</p>
+    <div class="stage">
+      <div class="stagelabel">THE IDEA &mdash; AND THE HONEST TEST</div>
+      <div class="mid">Tracing back from the drain wallets hits victims, not the attacker</div>
+      <div class="sm">Wandering was right, twice over. The drain wallets were filled by hijacked victims&rsquo; wallets, so walking back from their incoming transfers just finds victims. And there was no small funding transfer + malicious contract to find &mdash; the keys were compromised (Web3Auth), so there is no contract deploy on the trail. The real origin trail runs through the <b style="color:#f2e9e4">operator wallets</b> &mdash; the fee payer and control wallet were funded by the attacker&rsquo;s own operation, so this tab traces <i>them</i> back instead.</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">1 &middot; WHEN THE DRAIN STARTED &mdash; VICTIM SENDS, NOT THE ORIGIN</div>
+      <div class="mid">Cosmos: Nov 6 20:52:37 UTC &mdash; earlier than first reported</div>
+      <div class="sm">The Cosmos drain wallet&rsquo;s first incoming was a batch of <b style="color:#f2e9e4">10 identical 13,242-uatom sends in one block</b> (height 33758416, first tx 12B7CF31&hellip;). The 10 senders are exactly the 10 addresses the control wallet seeded with 0.02 ATOM each 4 minutes earlier (tx D7FB61D5&hellip;). An operator rehearsal &mdash; 65 minutes before the previously known &ldquo;first&rdquo; at 21:57:39, when the same script ran again with 26,253 uatom each. The first <i>real victim</i> send on Cosmos is later still. The other chains: <b style="color:#f2e9e4">Osmosis Nov 6 21:08:30 UTC</b> (operator test, 99,781 uatom IBC ATOM, tx 4A781693&hellip;); <b style="color:#f2e9e4">Injective Nov 7 00:29:50 UTC</b> (0.166 INJ seed, tx B6076D79&hellip;); <b style="color:#f2e9e4">Babylon Nov 7 02:38:08 UTC</b> (9,773,023 ubbn seed, tx 220AF9C2&hellip;). First real victim send on Osmosis: Nov 6 22:35:16 UTC.</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">2 &middot; THE OPERATOR FUNDING CHAIN &mdash; THE REAL ORIGIN TRAIL</div>
+      <div class="mid">Back to Aug 17, 2026 &mdash; then the public nodes run out</div>
+      <div class="sm">Chain A &mdash; <b style="color:#f2e9e4">into the control wallet:</b> cosmos1s5ztce8&hellip; &rarr; cosmos1s8yrxe00&hellip; 70.92 ATOM (Aug 17 ~17:43) &rarr; <b style="color:#f2e9e4">jr9v</b> 70.90 ATOM (Aug 17 17:45:04, tx 5B571A04&hellip;) &rarr; control wallet 8.46 ATOM (Nov 6 20:43:38, tx 31308C22&hellip;). The s8yrxe00 wallet is a pass-through: it kept 0.02 ATOM and forwarded the rest 82 seconds later.<br>Chain B &mdash; <b style="color:#f2e9e4">into the fee payer:</b> cosmos1c0r4z2&hellip; &rarr; <b style="color:#f2e9e4">t5u0</b> 44,025.02 ATOM (Aug 17 17:29:59, tx 0E7BE718&hellip;) &rarr; fee payer 73.29 ATOM (Nov 7 09:36:11, tx 919D1C61&hellip;). The fee payer also got 45.70 + 109.62 ATOM from jr9v (Nov 7 11:00:32 + 13:49:24). Total attack budget: <b style="color:#f2e9e4">237.07 ATOM</b>.<br>Everything converges on <b style="color:#f2e9e4">Aug 17, 2026, afternoon UTC</b> &mdash; and stops there, because the public Cosmos nodes are pruned to Aug 17 13:47 UTC (earliest block 32,543,001). Whether the trail continues before that cannot be seen from public nodes; it would take an archive node.</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">3 &middot; WHAT THE CHAIN PROVES &mdash; AND WHAT IT DOES NOT</div>
+      <div class="sm">&middot; <b style="color:#f2e9e4">The operator wallets are provably fresh.</b> Drain, control, fee payer, test wallets and one pass-through have account numbers clustered 3,729,953&ndash;3,730,213 &mdash; created within ~260 accounts of each other on Nov 6&ndash;7, for the attack.<br>&middot; <b style="color:#f2e9e4">There is no single &ldquo;attacker origin&rdquo; wallet in the observable trail.</b> The 237.07 ATOM came out of the general balances of jr9v (account #2,572,447, 59,903 txs) and t5u0 (account #25,780, 1,216,310 txs) &mdash; old, hyperactive wallets. The money is fungible inside them: no on-chain method can say whose ATOM paid for the attack.<br>&middot; <b style="color:#f2e9e4">Exchange hot wallet? Unverified.</b> t5u0 fits the profile, but that is a leading hypothesis only &mdash; no confirmation. They could be exchange wallets the attacker used as a customer, or wallets the attacker controls. Indistinguishable on-chain.<br>&middot; <b style="color:#f2e9e4">Two dead ends resolved:</b> cosmos1jv65s3g&hellip; is the chain&rsquo;s distribution module account (its &ldquo;sends&rdquo; are staking reward payouts), and cosmos17xpfv&hellip; is the fee_collector module account &mdash; the &ldquo;marker key&rdquo; was gas fees, not an operator tag.<br>&middot; <b style="color:#f2e9e4">The duster:</b> cosmos16te3v5h&hellip; sent exactly 1 uatom to five wallets &mdash; the classic account-creation pattern. Identity unverified.</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage good">
+      <div class="stagelabel">VERDICT &mdash; WHERE IT STARTED</div>
+      <div class="sm">The drain started <b style="color:#f2e9e4">Nov 6 20:52:37 UTC</b> with an operator rehearsal, and the operator funding chain runs back to <b style="color:#f2e9e4">Aug 17, 2026</b> &mdash; then the public record ends. The trail does not end at one wallet: it dissolves into two old, hyperactive wallets whose depositors cannot be separated on-chain. The next step is an archive node.</div>
+    </div>
+    <p class="note" style="margin-top:14px">The funding wallets above (jr9v, t5u0 and the wallets that funded them) are <b>not</b> listed as attacker wallets &mdash; their identities are unverified and they may be exchanges or pass-throughs. Only the 13 wallets on the Wallets tab are tracked as attacker wallets.</p>
   </section>
 
   <footer id="footerNote"></footer>

@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T14:36:17-05:00",
+    "lastUpdated": "2026-11-07T14:44:58-05:00",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -265,6 +265,10 @@
       {
         "time": "2026-11-07 ~14:29 EST",
         "event": "Hunt part 3 complete — Sith Lord theft fully traced and proven on-chain. 13th wallet now tracked: the attacker's Celestia address celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z (same key as the Osmosis swapper; received the 33,096.36 TIA Nov 2; now holds only ~8.28 TIA — most moved on, onward destination not yet traced). Note: the hunt report first labeled the IBC'd funds 'stablecoins'; the denom trace + hash check prove ibc/D79E… is TIA. Case wallet unchanged at 3,853,217.84 OSMO, seq 13007 (re-verified 14:14 EST); funder unchanged at 4,615.43 OSMO + 579.19 AKT. Overlap found: two wallets that funded the funder were later swept by the Keplr drain (osmo1n3yyv… / osmo1xadzkk…) — the clusters share victims, but the thefts are separate."
+      },
+      {
+        "time": "2026-11-07 ~14:43 EST",
+        "event": "Hunt part 4 complete — the origin chain, from Wandering Cosmonaut's idea. The drain started Nov 6 20:52:37 UTC (10 × 13,242 uatom rehearsal batch), 65 minutes earlier than first reported. The operator funding chain runs back to Aug 17, 2026 — then the public nodes run out (pruned to Aug 17 13:47 UTC); no single origin wallet exists in the observable trail. New 'Where It Started' tab with the full A–Z chain."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
