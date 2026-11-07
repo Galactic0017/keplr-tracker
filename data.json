@@ -3,7 +3,7 @@
     {
       "address": "cosmos1atuap9kfnt6y8ykvn3437e7j3z8qffh3qtnmwu",
       "chain": "cosmos",
-      "note": "Drain wallet, Cosmos Hub — holds the stolen ATOM and tokenised staked ATOM. (HooTang Clan)"
+      "note": "Drain wallet, Cosmos Hub — holds the stolen ATOM and tokenised staked ATOM. Holds 532,933 ATOM (Nov 7 15:30 UTC); 42,363 victim sends observed on-chain. (HooTang Clan + on-chain scan)"
     },
     {
       "address": "osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw",
@@ -90,7 +90,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth security issue. Official line: key-share reconstruction path (unconfirmed). Community on-chain analysis (HooTang Clan, Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T10:44:00-05:00",
+    "lastUpdated": "2026-11-07T10:48:00-05:00",
     "links": [
       {
         "label": "Keplr on X (official updates)",
@@ -192,6 +192,22 @@
       {
         "time": "2026-11-07 12:30 UK",
         "event": "HooTang Clan publishes totals: $4.56M, 41,500+ wallets, 3 chains, $0 cashed out."
+      },
+      {
+        "time": "2026-11-06 21:57 UTC",
+        "event": "First drain send observed on-chain: a victim sends 26,253 uatom to the Cosmos drain wallet. (On-chain block scan)"
+      },
+      {
+        "time": "2026-11-07 07:19–09:00 UTC",
+        "event": "Biggest wave: 13,181 victim sends, 219,785 ATOM swept in under 2 hours. (On-chain block scan)"
+      },
+      {
+        "time": "2026-11-07 ~15:35 UTC",
+        "event": "On-chain scan confirms 42,363 victim sends from 24,660 distinct senders into the Cosmos drain wallet; drain still active; $0 moved out of any of the 4 wallets. Cosmos drain wallet holds 532,933 ATOM."
+      },
+      {
+        "time": "2026-11-07 ~15:35 UTC",
+        "event": "LSM finding: 99.7% of the LSM tokens in the drain wallet were created during the incident (record IDs 120,000+) — victims’ staked ATOM tokenised in bulk instead of waiting 21 days to unbond."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
@@ -206,8 +222,40 @@
         "Injective"
       ],
       "cashedOutUsd": "$0",
-      "cashedOutNote": "None of it has moved yet, per HooTang Clan. Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet."
-    }
+      "cashedOutNote": "Nothing has left any of the 4 drain wallets — all have sequence 0 (never signed a transaction), confirmed by a full Cosmos Hub block scan Nov 7 15:35 UTC. Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet."
+    },
+    "suspiciousTxs": [
+      {
+        "hash": "3D5A59C0D61D0B4700200A283D689FA8C0451B0A239F8433B80FAEFD080A9B0C",
+        "label": "First observed drain send — victim → Cosmos drain wallet, 26,253 uatom",
+        "time": "2026-11-06 21:57:39 UTC",
+        "height": 33759099
+      },
+      {
+        "hash": "27F5208153BF9DDE7131F5674CD5AF1112590243A4686679C58510B6AD605BA9",
+        "label": "Wave 2 sample — 196,247 uatom",
+        "time": "2026-11-07 07:19:04 UTC",
+        "height": 33765000
+      },
+      {
+        "hash": "4895E3E1B5037BF4CB0B0EED0C1C28C9652BDB6FEFC0E77471589F1FECA1BCDF",
+        "label": "First LSM send — record cosmosvaloper1gf3dm2mvqhymts6ksrstlyuu2m8pw6dhfp9md2/114786",
+        "time": "2026-11-06 22:55:45 UTC",
+        "height": 33759710
+      },
+      {
+        "hash": "913973EFF1BBE10C8443C792776C3F7E633A965219DFACE33909E7264570FF3D",
+        "label": "Largest single victim send — 20,794.16 ATOM + full IBC basket",
+        "time": "2026-11-07 08:33:18 UTC",
+        "height": 33765776
+      },
+      {
+        "hash": "A32A5E7D142E8AA49D716F827A8A79B0CB8DCC16BDA5A598E438CDDB6192F36E",
+        "label": "Latest observed send — LSM records 145074/145075/145076 (drain still active)",
+        "time": "2026-11-07 15:33:49 UTC",
+        "height": 33770175
+      }
+    ]
   },
   "watchlist": [
     {

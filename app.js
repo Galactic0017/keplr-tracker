@@ -63,12 +63,26 @@
     }).join('');
     el('footerNote').textContent = 'Sources: Keplr and Web3Auth official notices (Nov 6–7, 2026), Keplr co-founder Josh Lee, MBTrace, and HooTang Clan on-chain analysis (Nov 7). Totals and wallet counts are HooTang Clan’s figures. Live balances come from public chain APIs; if one fails, use the explorer link on each wallet card.';
     renderAttackers();
+    renderSuspiciousTxs();
     renderFlowMap();
   }
   function statCard(num, lbl) {
     return '<div class="card"><div class="num">' + esc(num) + '</div><div class="lbl">' + esc(lbl) + '</div></div>';
   }
   function kv(k, v) { return '<dt>' + esc(k) + '</dt><dd>' + v + '</dd>'; }
+
+  function renderSuspiciousTxs() {
+    var list = (data.incident && data.incident.suspiciousTxs) || [];
+    var panel = el('suspTxPanel');
+    if (!panel || !list.length) return;
+    panel.innerHTML = '<p style="font-size:14px;margin-bottom:12px">Drain transactions observed on-chain (Cosmos Hub block scan, Nov 7 15:35 UTC). The drain was still active at the last check.</p>' +
+      list.map(function (t) {
+        return '<div class="threat" style="border-color:rgba(56,189,248,.3);background:rgba(8,16,30,.6)">' +
+          '<div class="meta"><span class="chain">' + esc(t.time || '') + '</span><span class="tag warn">HEIGHT ' + esc(String(t.height || '')) + '</span></div>' +
+          '<div class="addr" style="color:#7dd3fc">' + esc(t.hash) + '</div>' +
+          '<div class="note2">' + esc(t.label || '') + ' — <a href="https://www.mintscan.io/cosmos/tx/' + esc(t.hash) + '" target="_blank" rel="noopener">Mintscan</a></div></div>';
+      }).join('');
+  }
 
   function renderAttackers() {
     var list = data.attackerWallets || [];
