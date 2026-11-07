@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T15:51:00-05:00",
+    "lastUpdated": "2026-11-07T16:27:00-05:00",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -281,6 +281,10 @@
       {
         "time": "2026-11-07 ~15:51 EST",
         "event": "Sith Lord second cluster wallet osmo1ctpu5… moved again: sequence 3752 → 3753 (1 send), balance fell ~30,977 OSMO (3,879,800.09 → 3,848,823.55 OSMO) since the 15:36 EST check — continued distribution. STRD balance unchanged at 1,809,440.59. Destination of the send not yet identified (Osmosis tx index unavailable). Case wallet unchanged at 3,794,898.98 OSMO, seq 13009. All 4 drain wallets still sequence 0 — $0 out."
+      },
+      {
+        "time": "2026-11-07 ~16:26 EST",
+        "event": "Sith Lord freeze ask — outcome from Osmosis (Jason Banfield): a freeze is only possible with a chain upgrade, and any freeze/seize would be done in bulk (all accounts together, not individual accounts); he shared the case with the team and validators. The user sent Jason the full flag package (case wallet, funder, ctpu + the 3 theft tx hashes + tracker link). Jason: Osmosis can't flag on exchanges, and exchanges usually only act after a police/cybercrime report is filed — so the police report is now the key step that unlocks exchange action."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
