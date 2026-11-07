@@ -97,6 +97,15 @@
   <h2>TIMELINE</h2>
   <div class="panel"><ul class="timeline" id="timeline"></ul></div>
 
+  <h2>TRACE THE <span>THIEF</span></h2>
+  <div class="panel"><ul class="checklist">
+    <li><b>Find your affected address.</b> Social login is paused, so you cannot open Keplr to copy it. Try these instead: check the Keplr extension's local storage / IndexedDB in your browser's Developer Tools for cosmos1 / osmo1 addresses; check the withdrawal history of any exchange you funded the wallet from — the destination address there is your wallet; or resolve your .cosmos / .stars name if you had one.</li>
+    <li><b>Find the thief's address.</b> Paste your address into Mintscan (links below) and look at recent outgoing transfers — MsgSend or IBC transfers around Nov 6–7 that you did not make. Open the transaction: the recipient address is where your funds went, and the 64-character transaction hash is the proof.</li>
+    <li><b>Follow the money.</b> Check the thief address's own outgoing transactions for IBC hops (e.g. ATOM moved to Osmosis and swapped). If funds land in an address tagged as an exchange deposit wallet, report the transaction hash and attacker address to that exchange's security desk to request a freeze.</li>
+    <li><b>Report it.</b> Send victim address + attacker address + transaction hash + timestamps to Keplr/Web3Auth incident response and to chain-analysis reporting services.</li>
+    <li><b>Never enter a seed phrase or private key</b> on any “wallet checker” or “recovery” site. Checking an address on Mintscan is read-only and safe — it never asks you to connect a wallet or sign anything.</li>
+  </ul></div>
+
   <h2>STAY <span>SAFE</span></h2>
   <div class="panel"><ul class="checklist">
     <li><b>Do NOT send new funds</b> to any wallet created with Google or Apple login until Keplr says it is safe.</li>
