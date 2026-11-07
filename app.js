@@ -33,6 +33,7 @@
     if (/^osmo1/i.test(addr)) return chains.osmosis || chains.cosmos;
     if (/^inj1/i.test(addr)) return chains.injective || chains.cosmos;
     if (/^bbn1/i.test(addr)) return chains.babylon || chains.cosmos;
+    if (/^celestia1/i.test(addr)) return chains.celestia || chains.cosmos;
     return chains.cosmos;
   }
   function mintscanAddr(chain, addr) { return chain.explorer + '/address/' + addr; }
@@ -172,7 +173,7 @@
     var parts = [
       '● LIVE — Cosmos drain wallet: ' + (atomTxt || '…'),
       '$0 moved out of any drain wallet',
-      '12 wallets tracked',
+      '13 wallets tracked',
       '42,363 victim sends observed',
       'Drain over — last activity Nov 7 15:33 UTC'
     ];

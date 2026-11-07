@@ -164,7 +164,7 @@
 
   <nav class="tabs" role="tablist" aria-label="Tracker maps">
     <button class="tabbtn active" role="tab" data-tab="attack" aria-selected="true">The Attack<small>The whole hack, one map</small></button>
-    <button class="tabbtn" role="tab" data-tab="wallets" aria-selected="false">Wallets<small>12 wallets, live balances</small></button>
+    <button class="tabbtn" role="tab" data-tab="wallets" aria-selected="false">Wallets<small>13 wallets, live balances</small></button>
     <button class="tabbtn" role="tab" data-tab="money" aria-selected="false">Money<small>Where every coin went</small></button>
     <button class="tabbtn" role="tab" data-tab="chains" aria-selected="false">Chains<small>Impact + freezes</small></button>
     <button class="tabbtn" role="tab" data-tab="safe" aria-selected="false">Stay Safe<small>Risk, help, timeline</small></button>
@@ -318,7 +318,7 @@
       <ul class="checklist" style="font-size:14px">
         <li><b>$0 moved.</b> All 4 drain wallets have sequence 0 — none has ever signed a transaction.</li>
         <li>Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet.</li>
-        <li>Exchanges, bridges and liquid-staking providers asked to flag all 12 wallets.</li>
+        <li>Exchanges, bridges and liquid-staking providers asked to flag all 13 wallets.</li>
         <li>Chains asked to freeze the flagged wallets.</li>
         <li>Babylon drain wallet holds <span class="js-liveBbn">1,407,799.78 BBN</span>.</li>
         <li>Osmosis / Injective / Babylon inflows are being block-scanned now — results land here next.</li>
@@ -395,7 +395,7 @@
     <div class="arrow">▼</div>
     <div class="stage good">
       <div class="stagelabel">5 · HOPE — WHY THIS CAN STILL END WELL</div>
-      <div class="sm">· <b style="color:#f2e9e4">$0 moved.</b> The thief has not cashed out anything — the money is still there to be frozen and recovered.<br>· <b style="color:#f2e9e4">The drain is over.</b> No new victims since Nov 7 15:33 UTC. The attack has stopped; now it is about freezing and recovering what is still there.<br>· <b style="color:#f2e9e4">Keplr + Web3Auth are working on it right now.</b> They are actively securing and protecting assets from affected users, and building an official checker so you can find out if your account was affected. Staked and locked assets take longer — that is expected, not a bad sign.<br>· <b style="color:#f2e9e4">Freezes are already in motion.</b> Circle can freeze ~$188K of USDC. Exchanges, bridges and staking providers have been asked to flag all 12 wallets.<br>· <b style="color:#f2e9e4">The trail is public and permanent.</b> Every move the thief makes is on-chain, visible to everyone, forever. There is nowhere to hide the money once it moves.<br>· <b style="color:#f2e9e4">Not everyone was drained.</b> Only a fraction of affected accounts lost funds — if yours did not move, recovery is likely.<br>· <b style="color:#f2e9e4">You are being watched over.</b> This tracker checks the thief's wallets every 60 seconds, searches the whole web for new information every 10 minutes, and updates itself the moment anything changes. You do not have to watch alone.</div>
+      <div class="sm">· <b style="color:#f2e9e4">$0 moved.</b> The thief has not cashed out anything — the money is still there to be frozen and recovered.<br>· <b style="color:#f2e9e4">The drain is over.</b> No new victims since Nov 7 15:33 UTC. The attack has stopped; now it is about freezing and recovering what is still there.<br>· <b style="color:#f2e9e4">Keplr + Web3Auth are working on it right now.</b> They are actively securing and protecting assets from affected users, and building an official checker so you can find out if your account was affected. Staked and locked assets take longer — that is expected, not a bad sign.<br>· <b style="color:#f2e9e4">Freezes are already in motion.</b> Circle can freeze ~$188K of USDC. Exchanges, bridges and staking providers have been asked to flag all 13 wallets.<br>· <b style="color:#f2e9e4">The trail is public and permanent.</b> Every move the thief makes is on-chain, visible to everyone, forever. There is nowhere to hide the money once it moves.<br>· <b style="color:#f2e9e4">Not everyone was drained.</b> Only a fraction of affected accounts lost funds — if yours did not move, recovery is likely.<br>· <b style="color:#f2e9e4">You are being watched over.</b> This tracker checks the thief's wallets every 60 seconds, searches the whole web for new information every 10 minutes, and updates itself the moment anything changes. You do not have to watch alone.</div>
     </div>
     <p class="note" style="margin-top:14px">If you are feeling overwhelmed, step away from the screen for a bit. The tracker keeps watching while you rest — nothing here needs you to act in the next five minutes. When you are ready, start at step 2.</p>
   </section>
@@ -429,14 +429,14 @@
         <li><b>His AKT account is verified and drained:</b> akash1vk6mqt3jaxu4ys9a2849qu2u0k0kt8kuajg5dv (account 92291, seq 470) holds just 0.003 AKT now. He posted it Nov 7 13:56 EST.</li>
         <li><b>The theft happened Nov 1, 21:19–21:20 UTC — five days BEFORE the Keplr hack:</b> two sends totaling 40,066.86 AKT to akash1w05lm0ng2y6wfthhwtqsmuc7xx83j7r49406f4. Hashes 5A82C4FC73BE688B… and 5DCDA1DCF643A311…. This is likely a SEPARATE theft, not the Keplr/Web3Auth drain.</li>
         <li><b>The AKT went to Osmosis by IBC 2 minutes later:</b> Nov 1 21:21:49 UTC, tx CEA57DBAE1A47C21…, 40,066.85 AKT via channel-9 → channel-1 (packet 485820) to osmo1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4q43dxa. That wallet (seq 47) has since swapped the AKT away and now holds ~0.006 OSMO.</li>
-        <li><b>One marker key links the theft to this case wallet:</b> akash17xpfv… / osmo17xpfv… (same key, both chains) received 5,000 uakt in all three theft txs AND 30,000 uosmo in every funding tx into the case wallet. The OSMO path from osmo1w05l… to the funder is still being traced — that hop is NOT proven yet.</li>
+        <li><b>The link from his swapped AKT to this case wallet is now PROVEN:</b> 9 lockstep tx pairs — each funder→case send is exactly 0.13 OSMO less than the matching osmo1w05l…→funder send. The funder sent 7,890,851.15 OSMO to this wallet in 51 transfers. CORRECTION: the 7xpfv “marker key” is the chains’ <b>fee_collector</b> module account (those small amounts are gas fees), not an operator tag.</li>
         <li><b>Holds 3,853,217.84 OSMO</b> + small IBC holdings (COOK, P2P, DEC, HUAHUA, ODIN). Verified Nov 7 13:28 EST. No AKT left in it — consistent with the AKT already being swapped.</li>
         <li><b>Sequence 13007, account 2941961</b> — an old, active account that has signed 13,007 transactions. The main drain wallets are all sequence 0 (never signed). This one is different: it is active and CAN move money.</li>
         <li><b>Every incoming transfer we found came from ONE sender</b> — osmo13pet0...neaad94 (osmo13pet0rwjjzgz7f3058xklc2y05eg5cjneaad94). Not from thousands of victims. That sender is the wallet's only funder.</li>
         <li><b>It DID receive money during the drain</b> — including 2,499,999.87 OSMO on Nov 7 ~09:30 UTC, right in the middle of the attack, from that same sender.</li>
         <li><b>The sender still holds 579.19 AKT on Osmosis</b> — a remainder, consistent with swapping AKT for OSMO in batches and leaving a little behind.</li>
         <li><b>It never sent anything to the main Osmosis drain wallet</b> (osmo1atuap…). It does not appear in our full block scans of the drain.</li>
-        <li><b>Verdict:</b> his 40,066.86 AKT theft is PROVEN on-chain — but it happened Nov 1, before the Keplr hack, so it is likely a separate theft. The case wallet is still not confirmed as a main drain wallet, and the final hop from his swapped AKT to this wallet is not proven yet. The 7xpfv marker is the live lead, and the trace is running.</li>
+        <li><b>Verdict:</b> his 40,066.86 AKT theft is PROVEN on-chain — but it happened Nov 1, before the Keplr hack, so it is likely a separate theft. The case wallet is still not confirmed as a main drain wallet. The full trail is proven: 12,888 AKT → 159,744 OSMO into this wallet, and 27,178.85 AKT → 33,096.36 TIA, IBC’d to the attacker’s Celestia address celestia1w05l… (tx 6AB14050…).</li>
       </ul>
     </div>
     <h2>Live <span>map</span> — the money trail, traced on-chain</h2>
@@ -465,9 +465,9 @@
     </div>
     <div class="arrow">▼</div>
     <div class="stage">
-      <div class="stagelabel">5 · THE LINK — STILL BEING TRACED</div>
-      <div class="mid">Marker key 7xpfv… — in the theft AND in this case</div>
-      <div class="sm">akash17xpfv… / osmo17xpfv… (same key, both chains) got 5,000 uakt in all three theft txs AND 30,000 uosmo in every funding tx into the case wallet. The OSMO path from stage 4 to the funder is under active trace — that hop is <b style="color:#f2e9e4">not proven yet</b>.</div>
+      <div class="stagelabel">5 · THE LINK — PROVEN ON-CHAIN</div>
+      <div class="mid">osmo1w05l… → funder → case wallet</div>
+      <div class="sm">9 lockstep tx pairs prove the hop: each funder→case send is exactly 0.13 OSMO less than the matching swapper→funder send. The funder sent <b style="color:#f2e9e4">7,890,851.15 OSMO</b> to the case wallet in 51 transfers. The 7xpfv “marker” is the chains’ fee_collector module account (gas fees) — not an operator tag.</div>
     </div>
     <div class="arrow">▼</div>
     <div class="stage">
@@ -479,17 +479,23 @@
         <div class="minicard"><div class="c">LIVE BALANCE — AKT (FUNDER)</div><div class="v js-caseFundAkt">579.19 AKT</div><div class="s"><span class="js-caseFundSeq">seq 29475</span> — swap remainder</div></div>
       </div>
     </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">7 · WHERE THE REST WENT — CELESTIA</div>
+      <div class="mid" style="word-break:break-all">celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z</div>
+      <div class="sm">The other 27,178.85 AKT was swapped to <b style="color:#f2e9e4">33,096.36 TIA</b> and IBC’d here Nov 2 00:20:58 UTC (tx 6AB14050…, height 73820352). Same key as the Osmosis swapper. Now holds only ~8.28 TIA (seq 16) — most has moved on; the onward destination is the open lead. Tracked live on the Wallets tab. <a href="https://www.mintscan.io/celestia/address/celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z" target="_blank" rel="noopener">Open in Mintscan</a></div>
+    </div>
     <h2>What he needs <span>to know</span></h2>
     <div class="panel"><ul class="checklist" style="font-size:14px">
       <li>His theft is <b>proven and traced to Osmosis</b> — but it happened Nov 1, five days before the Keplr hack. It is likely a separate theft, and his funds did <b>not</b> go to the main drain wallets (the 4 on the Wallets tab).</li>
-      <li>The final hop — from his swapped AKT to this case wallet — is <b>not proven yet</b>. The lead is the 7xpfv marker key, which appears in both his theft txs and this wallet's funding txs. The trace is running now.</li>
-      <li>His 40,066 AKT is only a small part of the 3.85M OSMO in this wallet — if his funds are in there at all.</li>
+      <li>The final hop — from his swapped AKT to this case wallet — is now <b>proven</b>: 9 lockstep tx pairs tie osmo1w05l… → the funder → this wallet, and the full 40,066.85 AKT is accounted for (159,744 OSMO here + 33,096.36 TIA on Celestia). The 7xpfv “marker” turned out to be the chains’ fee_collector module account, not an operator tag.</li>
+      <li>His 40,066 AKT accounts for 159,744 OSMO of the 3.85M OSMO in this wallet — proven on-chain. The rest came from other sources: the funder has forwarded OSMO here since ~Sep 19.</li>
       <li>Unlike the main drain wallets (sequence 0, frozen in place), this wallet is <b>active and can move money</b> — that is why it is tracked live here.</li>
       <li>$0 has moved out of the main drain wallets. The drain is over. Freezes are in motion.</li>
     </ul></div>
     <h2>What he needs <span>to do</span></h2>
     <div class="panel"><ul class="checklist" style="font-size:14px">
-      <li><b>He posted his address — done.</b> The theft is traced and the hashes are on this tab. The remaining proof is the OSMO path from osmo1w05l… to the funder — the trace is running.</li>
+      <li><b>He posted his address — done.</b> The theft chain is now fully proven and the hashes are on this tab. The open lead is where the 33,096 TIA went after the attacker’s Celestia address.</li>
       <li><b>Report it now:</b> send his AKT address + the thief's addresses + the three hashes (5A82C4FC…, 5DCDA1DC…, CEA57DBA…) + Nov 1 timestamps to Akash and Osmosis security, Keplr/Web3Auth incident response, and the exchanges' security desks to ask for a freeze on osmo10p7dg… and osmo13pet0….</li>
       <li><b>Move what is left</b> to a recovery-phrase or hardware-wallet account. Do not send new funds to the affected account. Do not re-import it anywhere.</li>
       <li><b>Ignore every DM offering recovery.</b> They are all scams.</li>

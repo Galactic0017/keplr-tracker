@@ -59,6 +59,11 @@
       "chain": "babylon",
       "address": "bbn1wtdg9v0q95kvyyk2wz7n60vzq4gms3mcfhgln7",
       "note": "Test wallet, Babylon — same wtdg key as the control wallet; sent the BBN seed (9,773,023 ubbn) to the Babylon drain wallet Nov 7 02:38:08 UTC."
+    },
+    {
+      "address": "celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z",
+      "chain": "celestia",
+      "note": "Attacker's own Celestia address (same key as the Osmosis swapper osmo1w05l… — payload 73e9fdbe…). Received 33,096.36 TIA via IBC from Osmosis Nov 2 00:20:58 UTC (tx 6AB14050…, height 73820352). Final destination of the stolen AKT's phase-2 proceeds — Sith Lord case (Nov 1 theft, separate from the Keplr drain). Now holds only ~8.28 TIA (seq 16); most has moved on."
     }
   ],
   "chains": [
@@ -89,13 +94,20 @@
       "lcd": "https://lcd-babylon.keplr.app",
       "name": "Babylon",
       "prefix": "bbn"
+    },
+    {
+      "explorer": "https://www.mintscan.io/celestia",
+      "id": "celestia",
+      "lcd": "https://lcd-celestia.keplr.app",
+      "name": "Celestia",
+      "prefix": "celestia"
     }
   ],
   "incident": {
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T14:01:30-05:00",
+    "lastUpdated": "2026-11-07T14:30:58-05:00",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -244,7 +256,11 @@
       },
       {
         "time": "2026-11-07 ~14:01 EST",
-        "event": "Sith Lord posted his AKT account (akash1vk6mqt3jaxu4ys9a2849qu2u0k0kt8kuajg5dv) — his 40,066.86 AKT theft (Nov 1, 21:19-21:20 UTC) is traced on-chain: akash1vk6m… → akash1w05lm0ng2y6wfthhwtqsmuc7xx83j7r49406f4 (txs 5A82C4FC73BE688B… / 5DCDA1DCF643A311…) → IBC to Osmosis (tx CEA57DBAE1A47C21…, channel-9 → channel-1, packet 485820) → osmo1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4q43dxa, which swapped the AKT away. The theft predates the Keplr hack by 5 days — likely a separate theft. Marker key akash17xpfv…/osmo17xpfv… appears in both the theft txs and the case wallet's funding txs; the final hop to the case wallet is still being traced. His AKT account now holds 0.003 AKT."
+        "event": "Sith Lord posted his AKT account (akash1vk6mqt3jaxu4ys9a2849qu2u0k0kt8kuajg5dv) — his 40,066.86 AKT theft (Nov 1, 21:19-21:20 UTC) is traced on-chain: akash1vk6m… → akash1w05lm0ng2y6wfthhwtqsmuc7xx83j7r49406f4 (txs 5A82C4FC73BE688B… / 5DCDA1DCF643A311…) → IBC to Osmosis (tx CEA57DBAE1A47C21…, channel-9 → channel-1, packet 485820) → osmo1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4q43dxa, which swapped the AKT away. The theft predates the Keplr hack by 5 days — likely a separate theft. CORRECTION (hunt part 3): the final hop is now PROVEN — 9 lockstep tx pairs (each funder→case send exactly 0.13 OSMO less than the matching w05→funder send); the funder sent 7,890,851.15 OSMO to the case wallet in 51 transfers. Full AKT reconciliation: 12,888 AKT → 159,744 OSMO + 27,178.85 AKT → 33,096.36 TIA, IBC'd to the attacker's Celestia address celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z (tx 6AB14050…). The 7xpfv 'marker key' is the chains' fee_collector module account (gas fees), NOT an operator tag. His AKT account now holds 0.003 AKT."
+      },
+      {
+        "time": "2026-11-07 ~14:29 EST",
+        "event": "Hunt part 3 complete — Sith Lord theft fully traced and proven on-chain. 13th wallet now tracked: the attacker's Celestia address celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z (same key as the Osmosis swapper; received the 33,096.36 TIA Nov 2; now holds only ~8.28 TIA — most moved on, onward destination not yet traced). Note: the hunt report first labeled the IBC'd funds 'stablecoins'; the denom trace + hash check prove ibc/D79E… is TIA. Case wallet unchanged at 3,853,217.84 OSMO, seq 13007 (re-verified 14:14 EST); funder unchanged at 4,615.43 OSMO + 579.19 AKT. Overlap found: two wallets that funded the funder were later swept by the Keplr drain (osmo1n3yyv… / osmo1xadzkk…) — the clusters share victims, but the thefts are separate."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
@@ -342,6 +358,10 @@
     {
       "address": "bbn1wtdg9v0q95kvyyk2wz7n60vzq4gms3mcfhgln7",
       "label": "Test wallet — Babylon"
+    },
+    {
+      "address": "celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z",
+      "label": "Attacker wallet — Celestia"
     }
   ]
 }
