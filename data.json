@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T17:06:00-05:00",
+    "lastUpdated": "2026-11-07T17:25:00-05:00",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -304,7 +304,7 @@
       },
       {
         "time": "2026-11-07 ~17:05 EST",
-        "event": "Sith Lord case wallet moved again: sequence 13009 → 13010 (1 send), balance fell ~47,156 OSMO (3,794,898.98 → 3,747,743.42 OSMO) since the 15:22 EST check — continued distribution. The second cluster wallet osmo1ctpu5… received ~50,455 OSMO (3,848,823.55 → 3,899,278.91 OSMO) with sequence unchanged at 3753 — an inflow, source not yet identified. All 4 drain wallets still sequence 0 — $0 out. (LCD-verified)"
+        "event": "Sith Lord cluster moved — traced end to end (block scan, 2,205 blocks): 21:50:17 UTC osmo1a8wn23… → funder 3,300 OSMO; 21:51:22 UTC funder → case wallet 3,299.87 OSMO (minus exactly 0.13); 22:01:52 UTC case wallet → relay osmo180qdt2… 50,455.40 OSMO; 22:02:10 UTC relay → ctpu 50,455.36 OSMO (minus exactly 0.04, 18s later). The money is in ctpu now (3,899,278.91 OSMO) — one pipeline: funder → case wallet → relay → ctpu. All balances reconcile exactly. All 4 drain wallets still sequence 0 — $0 out."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
