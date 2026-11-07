@@ -26,8 +26,8 @@
   "incident": {
     "affected": "Keplr wallets created with Google or Apple login. Early estimate: about 20% of social-login accounts affected, only a fraction of those actually drained.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
-    "cause": "Security issue at Web3Auth, the social-login provider Keplr uses. Keplr co-founder Josh Lee says the incident originated at Web3Auth, not in Keplr's own code. The full technical root cause has not been published yet.",
-    "lastUpdated": "2026-11-07T10:15:00-05:00",
+    "cause": "Security issue at Web3Auth, the social-login provider Keplr uses. Keplr co-founder Josh Lee says the incident originated at Web3Auth, not in Keplr's own code. How it works: Web3Auth splits a social-login wallet's private key into shares (one on Web3Auth network nodes, one on the user's device, one backup factor) and reconstructs it when 2 of 3 combine at login — so a flaw in the key-share reconstruction path can expose the key. The exact flaw has NOT been officially published yet; the suspected area is OAuth token validation, node-side share generation, or the relayer API. Neither Google nor Apple accounts were breached.",
+    "lastUpdated": "2026-11-07T10:18:00-05:00",
     "links": [
       {
         "label": "Keplr on X (official updates)",
@@ -42,6 +42,18 @@
         "url": "https://mbtrace.app"
       },
       {
+        "label": "Web3Auth status page",
+        "url": "https://status.web3auth.io"
+      },
+      {
+        "label": "Keplr official updates (keplr.app)",
+        "url": "https://www.keplr.app"
+      },
+      {
+        "label": "Cosmos forum incident updates",
+        "url": "https://forum.cosmos.network"
+      },
+      {
         "label": "Mintscan — Cosmos Hub explorer",
         "url": "https://www.mintscan.io/cosmos"
       },
@@ -54,7 +66,7 @@
         "url": "https://www.mintscan.io/injective"
       }
     ],
-    "safe": "Wallets created with a recovery (seed) phrase or a hardware wallet (Ledger / Trezor) are NOT affected, per Keplr's initial assessment. MetaMask users are not affected.",
+    "safe": "Wallets created with a recovery (seed) phrase or a hardware wallet (Ledger / Trezor) are NOT affected, per Keplr's initial assessment. MetaMask users are not affected. Do not export keys or move a social-login account into another wallet (Leap, Cosmostation, MetaMask) until Web3Auth publishes a post-mortem — the key-reconstruction path itself may be exposed.",
     "started": "2026-11-06",
     "status": "ACTIVE — INVESTIGATING",
     "timeline": [
