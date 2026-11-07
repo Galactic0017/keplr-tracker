@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T16:37:00-05:00",
+    "lastUpdated": "2026-11-07T17:06:00-05:00",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -301,6 +301,10 @@
       {
         "time": "2026-11-07 ~16:35 EST",
         "event": "Jason Banfield: Osmosis cannot do anything themselves — it is up to the validators. He suggested the user start a forum debate and tag validators on X to join in. The user asked whether the chain upgrade will happen and whether validators were contacted — awaiting Jason's reply."
+      },
+      {
+        "time": "2026-11-07 ~17:05 EST",
+        "event": "Sith Lord case wallet moved again: sequence 13009 → 13010 (1 send), balance fell ~47,156 OSMO (3,794,898.98 → 3,747,743.42 OSMO) since the 15:22 EST check — continued distribution. The second cluster wallet osmo1ctpu5… received ~50,455 OSMO (3,848,823.55 → 3,899,278.91 OSMO) with sequence unchanged at 3753 — an inflow, source not yet identified. All 4 drain wallets still sequence 0 — $0 out. (LCD-verified)"
       }
     ],
     "title": "Keplr / Web3Auth Incident",
