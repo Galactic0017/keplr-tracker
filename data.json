@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T18:34:39-05:00",
+    "lastUpdated": "2026-11-07T18:46:50-05:00",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -309,6 +309,10 @@
       {
         "time": "2026-11-07 ~18:24-18:34 EST",
         "event": "DRAIN RESUMED ON OSMOSIS — the Osmosis drain wallet is receiving fresh victim sends again: ~1 MsgSend per block from distinct wallets (verified in blocks 74441057-74441359; sample tx 7DF4078DDE1C1676ED9F14378879D5BAFFFAE395D8F34BAB307D0380F30F862D at height 74441359, victim osmo1gz347f4cklnzqnmgwpjtlp35c5fjzs7spr3ec0 sending gamm/IBC tokens to the drain wallet). uOSMO balance rose 2,094,511 → 2,183,819 OSMO in ~15 min (+89,308 OSMO). Cosmos Hub scan of the last 15 blocks: 0 sends to its drain wallet, balance unchanged at 532,933.18 ATOM; Injective (67,987.05 INJ) and Babylon (1,407,799.79 BBN) drain balances unchanged. All 4 drain wallets still sequence 0 — $0 out. The earlier 'drain over' finding no longer holds for Osmosis."
+      },
+      {
+        "time": "2026-11-07 ~19:00 EST",
+        "event": "Exchange check (Sith case): every wallet the cluster ever sent to (case wallet 119 recipients, ctpu 138, funder, swapper) checked against every verifiable exchange address — no confirmed exchange send found. Two recipients look exchange-like but are UNVERIFIED (osmo15x7y2z… got 2,480,603.71 OSMO from the case wallet; osmo129uhlq… got 390,888.82 + 663,789.36 OSMO) — if either is confirmed as an exchange, a freeze request can be filed retroactively. Two fresh mega-holders now watched: osmo1zzq607… (10.7M OSMO) and osmo16desyyz… (6.8M OSMO). No public list of Osmosis exchange hot wallets exists, so the check is limited to verifiable addresses. Sith Lord now says he WILL file a police report the moment it hits an exchange."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
