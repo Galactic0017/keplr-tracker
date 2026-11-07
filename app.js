@@ -44,9 +44,9 @@
     el('statusBadge').textContent = inc.status;
     el('updatedLine').textContent = 'Last data update: ' + shortTime(inc.lastUpdated) + ' • live balances refresh every 60s';
     el('statCards').innerHTML =
-      statCard(t.takenUsd, 'total taken') +
+      statCard(t.takenUsd, 'total taken — per HooTang Clan, Nov 7') +
       statCard(t.walletsDrained, 'wallets drained') +
-      statCard(t.chains.length ? String(t.chains.length) : '?', t.chains.length ? 'chains: ' + esc(t.chains.join(', ')) : 'chains affected: not confirmed') +
+      statCard(String(t.chains.length), 'chains: ' + esc(t.chains.join(', '))) +
       statCard(t.cashedOutUsd, 'cashed out yet');
     el('takenNote').textContent = t.takenNote + ' ' + t.walletsNote + ' ' + t.cashedOutNote;
     el('controlList').innerHTML =
@@ -54,15 +54,14 @@
       kv('Attacker', '<span class="unknown">' + esc(inc.attacker) + '</span>') +
       kv('Affected', esc(inc.affected)) +
       kv('Safe', '<span class="safe">' + esc(inc.safe) + '</span>');
-    el('flowNote').textContent = 'Flow as reported so far: victims (Google/Apple-login Keplr accounts) → attacker wallets (still unidentified) → cash-out: unknown. When verified attacker addresses are published, they appear on this map with live balances.';
+    el('flowNote').textContent = 'Flow as reported so far: victims (Google/Apple-login Keplr accounts) → 11 tracked attacker wallets → cash-out: $0 moved yet. When new attacker addresses are published, they appear on this map with live balances.';
     el('timeline').innerHTML = inc.timeline.map(function (ev) {
       return '<li><time>' + esc(ev.time) + '</time>' + esc(ev.event) + '</li>';
     }).join('');
     el('linkList').innerHTML = inc.links.map(function (l) {
       return '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + '</a></li>';
     }).join('');
-    el('footerNote').textContent = 'Sources: Keplr and Web3Auth official notices (Nov 6–7, 2026), Keplr co-founder Josh Lee, and MBTrace. ' +
-      'No loss total, wallet count, or cashed-out figure has been officially confirmed. Live balances come from public chain APIs; if one fails, use the explorer link on each wallet card.';
+    el('footerNote').textContent = 'Sources: Keplr and Web3Auth official notices (Nov 6–7, 2026), Keplr co-founder Josh Lee, MBTrace, and HooTang Clan on-chain analysis (Nov 7). Totals and wallet counts are HooTang Clan’s figures. Live balances come from public chain APIs; if one fails, use the explorer link on each wallet card.';
     renderAttackers();
     renderFlowMap();
   }
@@ -82,10 +81,10 @@
     }
     el('attackerPanel').innerHTML = list.map(function (w) {
       var chain = (w.chain || '').toUpperCase();
-      return '<div class="threat"><div class="meta"><span class="chain">' + esc(chain) + '</span><span class="tag live">● LIVE — FLAGGED (REPORTED)</span></div>' +
+      return '<div class="threat"><div class="meta"><span class="chain">' + esc(chain) + '</span><span class="tag live">● LIVE — TRACKED</span></div>' +
         '<div class="addr">' + esc(w.address) + '</div>' +
         (w.note ? '<div class="note2">' + esc(w.note) + '</div>' : '') + '</div>';
-    }).join('') + '<p class="muted" style="font-size:12px">Reported on X, not yet confirmed by Keplr/Web3Auth. Do not trust attacker addresses from random posts or DMs — only ones confirmed by Keplr, Web3Auth, or a reputable tracer.</p>';
+    }).join('') + '<p class="muted" style="font-size:12px">Reported on X. Treat any other address claiming to be the attacker as unverified until Keplr, Web3Auth, or a reputable tracer confirms it.</p>';
   }
 
   function renderFlowMap() {
@@ -97,17 +96,17 @@
       '<style>.fl { stroke-dasharray: 6 6; animation: dash 1.2s linear infinite; } @keyframes dash { to { stroke-dashoffset: -12; } } ' +
       '.n { font: 700 15px sans-serif; fill: #e8e8e8; } .s { font: 12px sans-serif; fill: #9a9a9a; } .big { font: 800 22px sans-serif; fill: #b8f135; } .bad { font: 800 22px sans-serif; fill: #ff8a8a; }</style>' +
       node(20, 30, 190, 96, t.walletsDrained, 'wallets drained', '#b8f135') +
-      node(265, 30, 190, 96, 'ATTACKER', 'wallets unknown', '#ff8a8a') +
-      node(510, 30, 190, 96, 'Unknown', 'cashed out: unconfirmed', '#8a8a8a') +
+      node(265, 30, 190, 96, 'ATTACKER', '11 wallets tracked', '#ff8a8a') +
+      node(510, 30, 190, 96, t.cashedOutUsd, 'cashed out yet', '#8a8a8a') +
       '<line x1="210" y1="78" x2="258" y2="78" stroke="#b8f135" stroke-width="3" class="fl" marker-end="url(#arr)"/>' +
       '<line x1="455" y1="78" x2="503" y2="78" stroke="#555" stroke-width="3" stroke-dasharray="3 6" marker-end="url(#arrR)"/>' +
       '<text x="235" y="66" class="s">Total lost: ' + esc(t.takenUsd) + '</text>' +
-      '<text x="478" y="66" class="s">destination unknown</text>' +
-      '<text x="20" y="190" class="s">Chains affected: not officially confirmed.</text>' +
-      '<text x="20" y="220" class="s">Money in: victims lost funds to attacker wallets (not yet identified).</text>' +
-      '<text x="20" y="242" class="s">Money out: unconfirmed — no official word on whether funds moved or were cashed out.</text>' +
+      '<text x="478" y="66" class="s">destination: drain wallets</text>' +
+      '<text x="20" y="190" class="s">Chains: Cosmos Hub · Osmosis · Injective. Evmos also drained Nov 6.</text>' +
+      '<text x="20" y="220" class="s">Money in: victims lost funds to the drain wallets.</text>' +
+      '<text x="20" y="242" class="s">Money out: $0 moved — Circle can freeze ~$188K Noble USDC in the Osmosis drain wallet.</text>' +
       '<text x="20" y="264" class="s">Cause: Web3Auth security issue (social-login keys). Seed-phrase &amp; hardware wallets not affected.</text>' +
-      '<text x="20" y="286" class="s">Attacker identity: unknown. No verified attacker addresses published yet.</text>' +
+      '<text x="20" y="286" class="s">Attacker identity: under investigation. 11 wallets tracked live.</text>' +
       '</svg>';
     function node(x, y, w, h, big, small, color) {
       return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="14" fill="#111" stroke="' + color + '" stroke-width="1.5"/>' +

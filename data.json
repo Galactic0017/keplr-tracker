@@ -3,22 +3,57 @@
     {
       "address": "cosmos1atuap9kfnt6y8ykvn3437e7j3z8qffh3qtnmwu",
       "chain": "cosmos",
-      "note": "Reported attacker wallet. Published on X by Katie V Holmes (@lady_in_c...) Nov 7 2026, chains asked to freeze. NOT yet confirmed by Keplr/Web3Auth."
+      "note": "Drain wallet, Cosmos Hub — holds the stolen ATOM and tokenised staked ATOM. (HooTang Clan)"
     },
     {
       "address": "osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw",
       "chain": "osmosis",
-      "note": "Reported attacker wallet (same key as the Cosmos address). Published on X by Katie V Holmes Nov 7 2026. NOT yet confirmed by Keplr/Web3Auth."
+      "note": "Drain wallet, Osmosis — same key as the Cosmos Hub drain. (HooTang Clan)"
     },
     {
       "address": "inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g",
       "chain": "injective",
-      "note": "Reported attacker wallet. Published on X by Katie V Holmes Nov 7 2026. NOT yet confirmed by Keplr/Web3Auth."
+      "note": "Drain wallet, Injective — holds the stolen INJ, USDT and USDC. (HooTang Clan)"
     },
     {
       "address": "bbn1atuap9kfnt6y8ykvn3437e7j3z8qffh3h4z239",
       "chain": "babylon",
-      "note": "Reported attacker wallet (same key as the Cosmos address). Published on X by Katie V Holmes Nov 7 2026. NOT yet confirmed by Keplr/Web3Auth."
+      "note": "Reported on X by Katie V Holmes Nov 7 2026 (same key as the Cosmos address); chains asked to freeze."
+    },
+    {
+      "chain": "cosmos",
+      "address": "cosmos1pa0n22gcyyjnv6vqe9qgphrfhyhhf52t6kqud0",
+      "note": "Staked ATOM batch fee payer — signs and pays for every batch that tokenises victims’ stake. (HooTang Clan)"
+    },
+    {
+      "chain": "cosmos",
+      "address": "cosmos1wtdg9v0q95kvyyk2wz7n60vzq4gms3mc7fewv8",
+      "note": "Control wallet — tested each step before the live attack. (HooTang Clan)"
+    },
+    {
+      "chain": "osmo",
+      "address": "osmo1wtdg9v0q95kvyyk2wz7n60vzq4gms3mckj2764",
+      "note": "Test wallet, Osmosis — made the first drain transfer. (HooTang Clan)"
+    },
+    {
+      "chain": "cosmos",
+      "address": "cosmos18asm0m6m4f7havhdp59knxjxhsur9ukkmy9zm9",
+      "note": "Test wallet, Cosmos Hub — collected test stake tokens. (HooTang Clan)"
+    },
+    {
+      "chain": "cosmos",
+      "address": "cosmos1cldur22h6ey3dh9ak2spzlwqwkwwswr90qau2x",
+      "note": "Test wallet, Cosmos Hub — used in the batch rehearsal. (HooTang Clan)"
+    },
+    {
+      "chain": "cosmos",
+      "address": "cosmos1jr9vwrjtv2z4nkngzu0yrmw9gfxj0n97uy9hkt",
+      "note": "Funding source (likely exchange) — sent 8.46 ATOM to the control wallet, 20:43 UTC Nov 6. (HooTang Clan)"
+    },
+    {
+      "chain": "cosmos",
+      "address": "cosmos1t5u0jfg3ljsjrh2m9e47d4ny2hea7eehxrzdgd",
+      "note": "Funding source (likely exchange) — sent 73.29 ATOM to the batch fee payer, 09:36 UTC Nov 7. (HooTang Clan)"
     }
   ],
   "chains": [
@@ -52,10 +87,10 @@
     }
   ],
   "incident": {
-    "affected": "Keplr wallets created with Google or Apple login. Early estimate: about 20% of social-login accounts affected, only a fraction of those actually drained.",
+    "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
-    "cause": "Security issue at Web3Auth, the social-login provider Keplr uses. Keplr co-founder Josh Lee says the incident originated at Web3Auth, not in Keplr's own code. How it works: Web3Auth splits a social-login wallet's private key into shares (one on Web3Auth network nodes, one on the user's device, one backup factor) and reconstructs it when 2 of 3 combine at login — so a flaw in the key-share reconstruction path can expose the key. The exact flaw has NOT been officially published yet; the suspected area is OAuth token validation, node-side share generation, or the relayer API. Neither Google nor Apple accounts were breached.",
-    "lastUpdated": "2026-11-07T10:27:00-05:00",
+    "cause": "Web3Auth security issue. Official line: key-share reconstruction path (unconfirmed). Community on-chain analysis (HooTang Clan, Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
+    "lastUpdated": "2026-11-07T10:44:00-05:00",
     "links": [
       {
         "label": "Keplr on X (official updates)",
@@ -96,6 +131,10 @@
       {
         "label": "Mintscan — Babylon explorer",
         "url": "https://www.mintscan.io/babylon"
+      },
+      {
+        "label": "HooTang Clan — Cosmos wallet drain: what happened and how to stay safe (totals, 10 attacker wallets, timeline)",
+        "url": "https://hootangclan.com/cosmos-wallet-drain.html"
       }
     ],
     "safe": "Wallets created with a recovery (seed) phrase or a hardware wallet (Ledger / Trezor) are NOT affected, per Keplr's initial assessment. MetaMask users are not affected. Do not export keys or move a social-login account into another wallet (Leap, Cosmostation, MetaMask) until Web3Auth publishes a post-mortem — the key-reconstruction path itself may be exposed.",
@@ -123,41 +162,97 @@
         "time": "2026-11-07"
       },
       {
-        "event": "Attacker wallet addresses reported on X by Katie V Holmes (@lady_in_c...): cosmos1atuap9kfnt6y8ykvn3437e7j3z8qffh3qtnmwu, osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw, inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g, bbn1atuap9kfnt6y8ykvn3437e7j3z8qffh3h4z239. Chains asked to freeze them. NOT yet confirmed by Keplr/Web3Auth. All four are now watched live on this tracker.",
+        "event": "Attacker wallet addresses reported on X by Katie V Holmes (@lady_in_c...): cosmos1atuap9kfnt6y8ykvn3437e7j3z8qffh3qtnmwu, osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw, inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g, bbn1atuap9kfnt6y8ykvn3437e7j3z8qffh3h4z239. Chains asked to freeze them. All four are now watched live on this tracker.",
         "time": "2026-11-07 ~08:25 EST"
+      },
+      {
+        "time": "2026-11-05 04:00 UTC",
+        "event": "Web3Auth disclosed the vulnerability to its customers (“revoke this key”). The alert was closed as “already solved”. (HooTang Clan)"
+      },
+      {
+        "time": "2026-11-06 15:00 UTC",
+        "event": "First known drain — a single Cosmos address empties 397 wallets. (HooTang Clan)"
+      },
+      {
+        "time": "2026-11-06 15:57 UTC",
+        "event": "Evmos, the Cosmos EVM chain, was drained too. (HooTang Clan)"
+      },
+      {
+        "time": "2026-11-07 01:22 UTC",
+        "event": "First drain attack begins on Osmosis; the attack takes off on Cosmos Hub. (HooTang Clan)"
+      },
+      {
+        "time": "2026-11-07 06:10 UTC",
+        "event": "First Cosmos Hub drain confirmed — $18,000 in STRD and ATOM. (HooTang Clan)"
+      },
+      {
+        "time": "2026-11-07 10:58–11:17 UTC",
+        "event": "Attacker drained $21k and $39k in 90 minutes. (HooTang Clan)"
+      },
+      {
+        "time": "2026-11-07 12:30 UK",
+        "event": "HooTang Clan publishes totals: $4.56M, 41,500+ wallets, 3 chains, $0 cashed out."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
     "totals": {
-      "cashedOutNote": "Unknown — no official statement on whether any stolen funds have moved or been cashed out. The $0 figure from the circulating image is wrong and has been removed.",
-      "cashedOutUsd": "Unknown",
-      "chains": [],
-      "takenNote": "No loss total has been confirmed. An image circulating earlier reported $4.5M+ — that figure is wrong and has been removed. Keplr/Web3Auth have not published a final total.",
-      "takenUsd": "Not confirmed",
-      "walletsDrained": "Not confirmed",
-      "walletsNote": "No drained-wallet count has been confirmed. The 41,500+ figure from the circulating image is wrong and has been removed."
+      "takenUsd": "$4.5M+",
+      "takenNote": "Per-chain (HooTang Clan, Nov 7 12:30 UK, at ATOM $1.39 / INJ $8.24): Cosmos Hub ~$2.93M (466,000 ATOM + 1.65M ATOM tokenised stake); Osmosis ~$1.01M (1,239 different tokens); Injective ~$616K (67,931 INJ, 53,466 USDT, 2,031 USDC). LP shares and small tokens not counted, so the real total is higher.",
+      "walletsDrained": "41,500+",
+      "walletsNote": "Per-chain: Cosmos Hub 18,600+; Osmosis 29,100+; Injective 7,596. Per-chain counts sum higher than 41,500+ because one seed phrase appears on multiple chains.",
+      "chains": [
+        "Cosmos Hub",
+        "Osmosis",
+        "Injective"
+      ],
+      "cashedOutUsd": "$0",
+      "cashedOutNote": "None of it has moved yet, per HooTang Clan. Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet."
     }
   },
   "watchlist": [
     {
       "address": "cosmos1atuap9kfnt6y8ykvn3437e7j3z8qffh3qtnmwu",
-      "chain": "cosmos",
-      "label": "Attacker wallet — Cosmos Hub"
+      "label": "Attacker wallet — Cosmos"
     },
     {
       "address": "osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw",
-      "chain": "osmosis",
       "label": "Attacker wallet — Osmosis"
     },
     {
       "address": "inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g",
-      "chain": "injective",
       "label": "Attacker wallet — Injective"
     },
     {
       "address": "bbn1atuap9kfnt6y8ykvn3437e7j3z8qffh3h4z239",
-      "chain": "babylon",
       "label": "Attacker wallet — Babylon"
+    },
+    {
+      "address": "cosmos1pa0n22gcyyjnv6vqe9qgphrfhyhhf52t6kqud0",
+      "label": "Attacker wallet — Cosmos"
+    },
+    {
+      "address": "cosmos1wtdg9v0q95kvyyk2wz7n60vzq4gms3mc7fewv8",
+      "label": "Attacker wallet — Cosmos"
+    },
+    {
+      "address": "osmo1wtdg9v0q95kvyyk2wz7n60vzq4gms3mckj2764",
+      "label": "Attacker wallet — Osmo"
+    },
+    {
+      "address": "cosmos18asm0m6m4f7havhdp59knxjxhsur9ukkmy9zm9",
+      "label": "Attacker wallet — Cosmos"
+    },
+    {
+      "address": "cosmos1cldur22h6ey3dh9ak2spzlwqwkwwswr90qau2x",
+      "label": "Attacker wallet — Cosmos"
+    },
+    {
+      "address": "cosmos1jr9vwrjtv2z4nkngzu0yrmw9gfxj0n97uy9hkt",
+      "label": "Attacker wallet — Cosmos"
+    },
+    {
+      "address": "cosmos1t5u0jfg3ljsjrh2m9e47d4ny2hea7eehxrzdgd",
+      "label": "Attacker wallet — Cosmos"
     }
   ]
 }
