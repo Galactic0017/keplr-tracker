@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T16:32:00-05:00",
+    "lastUpdated": "2026-11-07T16:37:00-05:00",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -297,6 +297,10 @@
       {
         "time": "2026-11-07 ~16:30 EST",
         "event": "Sith Lord will NOT file a police report — so the exchange-flagging route that needs a report is closed unless he changes his mind. Remaining levers: continued tracking of the three wallets, Keplr (the one party who could flag), and a possible bulk Osmosis freeze via chain upgrade."
+      },
+      {
+        "time": "2026-11-07 ~16:35 EST",
+        "event": "Jason Banfield: Osmosis cannot do anything themselves — it is up to the validators. He suggested the user start a forum debate and tag validators on X to join in. The user asked whether the chain upgrade will happen and whether validators were contacted — awaiting Jason's reply."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
