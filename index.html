@@ -169,7 +169,7 @@
     <button class="tabbtn" role="tab" data-tab="chains" aria-selected="false">Chains<small>Impact + freezes</small></button>
     <button class="tabbtn" role="tab" data-tab="safe" aria-selected="false">Stay Safe<small>Risk, help, timeline</small></button>
     <button class="tabbtn" role="tab" data-tab="hit" aria-selected="false">Were You Hit?<small>Compromised? Start here</small></button>
-    <button class="tabbtn" role="tab" data-tab="sith" aria-selected="false">Sith Lord's Wallet<small>Reported case · 40,000+ AKT</small></button>
+    <button class="tabbtn" role="tab" data-tab="sith" aria-selected="false">Sith Lord's Wallet<small>Traced live · Nov 1 theft · 40,066 AKT</small></button>
   </nav>
 
   <!-- TAB 1 : THE ATTACK -->
@@ -403,8 +403,8 @@
 
   <!-- TAB 7 : SITH LORD'S WALLET -->
   <section class="tabpanel" id="tab-sith" role="tabpanel">
-    <p class="tabdesc">A community member's case, tracked live. <b>Sith Lord</b> reported this wallet in the $ATOM OG Community Chat — here is the wallet, the live tracker, the money map, and what he needs to know and to do.</p>
-    <div class="livehead"><span class="livedot"></span> REPORTED CASE — UNDER INVESTIGATION <span class="livetime">reported Nov 7 13:17 EST</span></div>
+    <p class="tabdesc">A community member's case, tracked live. <b>Sith Lord</b> reported this wallet in the $ATOM OG Community Chat — his 40,066.86 AKT theft (Nov 1) is now traced on-chain to Osmosis. Here is the wallet, the live tracker, the money map, and what he needs to know and to do.</p>
+    <div class="livehead"><span class="livedot"></span> REPORTED CASE — THEFT TRACED <span class="livetime">theft traced Nov 7 14:01 EST</span></div>
     <div class="stage">
       <div class="stagelabel">THE WALLET — REPORTED BY SITH LORD</div>
       <div class="mid" style="word-break:break-all">osmo10p7dg5nh8kwjhfucq0uxjppg6wkevzmg67c4hx</div>
@@ -418,68 +418,83 @@
     <h2>What Sith Lord <span>reported</span></h2>
     <div class="panel">
       <ul class="checklist" style="font-size:14px">
-        <li><b>Over 40,000 AKT taken</b> from his wallet ("You'll see, over 40,000 Akt bro lol" — Nov 7 13:27 EST).</li>
-        <li><b>"They sent to another AKT address then swapped for Osmo like 1,000 AKT at a time."</b> The AKT was moved, then swapped for OSMO in ~1,000 AKT batches.</li>
-        <li>He has <b>not yet posted</b> his own wallet address, the "another AKT address", or a transaction hash. Those three things are the missing link — see "What he needs to do" below.</li>
+        <li><b>Over 40,000 AKT taken</b> from his wallet ("You'll see, over 40,000 Akt bro lol" — Nov 7 13:27 EST). The on-chain total is <b>40,066.86 AKT</b>.</li>
+        <li><b>"They sent to another AKT address then swapped for Osmo like 1,000 AKT at a time."</b> Verified: the AKT went to akash1w05l… on Nov 1, then by IBC to Osmosis, where it was swapped away.</li>
+        <li><b>He posted his AKT account Nov 7 13:56 EST:</b> akash1vk6mqt3jaxu4ys9a2849qu2u0k0kt8kuajg5dv — and confirmed the trail: Nov 1 to another AKT account, then to Osmosis, swapped to OSMO, then sent to other Osmo addresses.</li>
       </ul>
     </div>
     <h2>What we verified <span>on-chain</span></h2>
     <div class="panel">
       <ul class="checklist" style="font-size:14px">
+        <li><b>His AKT account is verified and drained:</b> akash1vk6mqt3jaxu4ys9a2849qu2u0k0kt8kuajg5dv (account 92291, seq 470) holds just 0.003 AKT now. He posted it Nov 7 13:56 EST.</li>
+        <li><b>The theft happened Nov 1, 21:19–21:20 UTC — five days BEFORE the Keplr hack:</b> two sends totaling 40,066.86 AKT to akash1w05lm0ng2y6wfthhwtqsmuc7xx83j7r49406f4. Hashes 5A82C4FC73BE688B… and 5DCDA1DCF643A311…. This is likely a SEPARATE theft, not the Keplr/Web3Auth drain.</li>
+        <li><b>The AKT went to Osmosis by IBC 2 minutes later:</b> Nov 1 21:21:49 UTC, tx CEA57DBAE1A47C21…, 40,066.85 AKT via channel-9 → channel-1 (packet 485820) to osmo1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4q43dxa. That wallet (seq 47) has since swapped the AKT away and now holds ~0.006 OSMO.</li>
+        <li><b>One marker key links the theft to this case wallet:</b> akash17xpfv… / osmo17xpfv… (same key, both chains) received 5,000 uakt in all three theft txs AND 30,000 uosmo in every funding tx into the case wallet. The OSMO path from osmo1w05l… to the funder is still being traced — that hop is NOT proven yet.</li>
         <li><b>Holds 3,853,217.84 OSMO</b> + small IBC holdings (COOK, P2P, DEC, HUAHUA, ODIN). Verified Nov 7 13:28 EST. No AKT left in it — consistent with the AKT already being swapped.</li>
         <li><b>Sequence 13007, account 2941961</b> — an old, active account that has signed 13,007 transactions. The main drain wallets are all sequence 0 (never signed). This one is different: it is active and CAN move money.</li>
         <li><b>Every incoming transfer we found came from ONE sender</b> — osmo13pet0...neaad94 (osmo13pet0rwjjzgz7f3058xklc2y05eg5cjneaad94). Not from thousands of victims. That sender is the wallet's only funder.</li>
         <li><b>It DID receive money during the drain</b> — including 2,499,999.87 OSMO on Nov 7 ~09:30 UTC, right in the middle of the attack, from that same sender.</li>
         <li><b>The sender still holds 579.19 AKT on Osmosis</b> — a remainder, consistent with swapping AKT for OSMO in batches and leaving a little behind.</li>
         <li><b>It never sent anything to the main Osmosis drain wallet</b> (osmo1atuap…). It does not appear in our full block scans of the drain.</li>
-        <li><b>Verdict:</b> not confirmed as a main drain wallet. The pattern fits a consolidation wallet funded by one source. The AKT remainder + Sith Lord's report make it a live lead — the proof is his own wallet address, the AKT address, and a transaction hash.</li>
+        <li><b>Verdict:</b> his 40,066.86 AKT theft is PROVEN on-chain — but it happened Nov 1, before the Keplr hack, so it is likely a separate theft. The case wallet is still not confirmed as a main drain wallet, and the final hop from his swapped AKT to this wallet is not proven yet. The 7xpfv marker is the live lead, and the trace is running.</li>
       </ul>
     </div>
-    <h2>Live <span>map</span> — the money trail as reported + verified</h2>
+    <h2>Live <span>map</span> — the money trail, traced on-chain</h2>
     <div class="stage">
-      <div class="stagelabel">1 · SITH LORD'S WALLET — REPORTED</div>
-      <div class="mid">40,000+ AKT taken</div>
-      <div class="sm">Reported by Sith Lord, Nov 7 13:27 EST. His wallet address is not posted yet — that is the missing link.</div>
+      <div class="stagelabel">1 · SITH LORD'S AKT WALLET — VERIFIED DRAINED</div>
+      <div class="mid" style="word-break:break-all">akash1vk6mqt3jaxu4ys9a2849qu2u0k0kt8kuajg5dv</div>
+      <div class="sm">Account 92291, seq 470. Holds just <b style="color:#f2e9e4">0.003 AKT</b> now — drained Nov 1 21:19 UTC. <a href="https://www.mintscan.io/akash/address/akash1vk6mqt3jaxu4ys9a2849qu2u0k0kt8kuajg5dv" target="_blank" rel="noopener">Open in Mintscan</a></div>
     </div>
     <div class="arrow">▼</div>
     <div class="stage">
-      <div class="stagelabel">2 · ANOTHER AKT ADDRESS — REPORTED</div>
-      <div class="mid">AKT moved here, then swapped for OSMO ~1,000 AKT at a time</div>
-      <div class="sm">Reported by Sith Lord. This address is not posted yet — once it is, we trace it here.</div>
+      <div class="stagelabel">2 · ANOTHER AKT ADDRESS — VERIFIED</div>
+      <div class="mid" style="word-break:break-all">akash1w05lm0ng2y6wfthhwtqsmuc7xx83j7r49406f4</div>
+      <div class="sm">Received <b style="color:#f2e9e4">40,066.86 AKT</b> in two sends, Nov 1 21:19:26 + 21:20:01 UTC. Fresh pass-through (account 1160759, seq 1). Hashes 5A82C4FC73BE688B… and 5DCDA1DCF643A311…</div>
     </div>
     <div class="arrow">▼</div>
     <div class="stage">
-      <div class="stagelabel">3 · THE FUNDER — VERIFIED ON-CHAIN</div>
-      <div class="mid">osmo13pet0...neaad94</div>
-      <div class="sm">The only sender into the case wallet. Still holds <b style="color:#f2e9e4">579.19 AKT</b> on Osmosis — the swap remainder. Sequence 29475, an old active account.</div>
+      <div class="stagelabel">3 · IBC TO OSMOSIS — VERIFIED</div>
+      <div class="mid">40,066.85 AKT · Nov 1 21:21:49 UTC</div>
+      <div class="sm">Tx CEA57DBAE1A47C21… — IBC channel-9 → channel-1, packet 485820. The AKT arrived on Osmosis at osmo1w05l…</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">4 · OSMOSIS SWAP WALLET — VERIFIED</div>
+      <div class="mid" style="word-break:break-all">osmo1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4q43dxa</div>
+      <div class="sm">Same key as stage 2. Received the 40,066.85 AKT, swapped it ~1,000 AKT at a time, now holds ~0.006 OSMO (seq 47). <a href="https://www.mintscan.io/osmosis/address/osmo1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4q43dxa" target="_blank" rel="noopener">Open in Mintscan</a></div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">5 · THE LINK — STILL BEING TRACED</div>
+      <div class="mid">Marker key 7xpfv… — in the theft AND in this case</div>
+      <div class="sm">akash17xpfv… / osmo17xpfv… (same key, both chains) got 5,000 uakt in all three theft txs AND 30,000 uosmo in every funding tx into the case wallet. The OSMO path from stage 4 to the funder is under active trace — that hop is <b style="color:#f2e9e4">not proven yet</b>.</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="stage">
+      <div class="stagelabel">6 · THE FUNDER → THE CASE WALLET — VERIFIED ON-CHAIN, TRACKED LIVE</div>
+      <div class="mid">osmo13pet0...neaad94 → osmo10p7dg...g67c4hx</div>
+      <div class="sm">The funder still holds <b style="color:#f2e9e4">579.19 AKT</b> on Osmosis — the swap remainder. The case wallet holds <span class="amber js-caseOsmo">3,853,217.84 OSMO</span> (<span class="js-caseSeq">seq 13007</span> — active, watched live every 60 seconds). If it moves, it shows up here.</div>
       <div class="minigrid" style="grid-template-columns:1fr 1fr">
-        <div class="minicard"><div class="c">LIVE BALANCE — OSMO</div><div class="v js-caseFundOsmo">— OSMO</div><div class="s js-caseFundSub">Refreshing live every 60s</div></div>
-        <div class="minicard"><div class="c">LIVE BALANCE — AKT</div><div class="v js-caseFundAkt">579.19 AKT</div><div class="s"><span class="js-caseFundSeq">seq 29475</span> — swap remainder</div></div>
+        <div class="minicard"><div class="c">LIVE BALANCE — OSMO (FUNDER)</div><div class="v js-caseFundOsmo">— OSMO</div><div class="s js-caseFundSub">Refreshing live every 60s</div></div>
+        <div class="minicard"><div class="c">LIVE BALANCE — AKT (FUNDER)</div><div class="v js-caseFundAkt">579.19 AKT</div><div class="s"><span class="js-caseFundSeq">seq 29475</span> — swap remainder</div></div>
       </div>
-
-    </div>
-    <div class="arrow">▼</div>
-    <div class="stage">
-      <div class="stagelabel">4 · THE CASE WALLET — VERIFIED ON-CHAIN, TRACKED LIVE</div>
-      <div class="big"><span class="amber js-caseOsmo">3,853,217.84 OSMO</span></div>
-      <div class="sm">osmo10p7dg...g67c4hx. Received 2,499,999.87 OSMO during the drain (Nov 7 ~09:30 UTC). <span class="js-caseSeq">seq 13007</span> — active, watched live every 60 seconds. If it moves, it shows up here.</div>
     </div>
     <h2>What he needs <span>to know</span></h2>
     <div class="panel"><ul class="checklist" style="font-size:14px">
-      <li>His 40,000 AKT is only a small part of the 3.85M OSMO in this wallet — if his funds are in there at all. This wallet may hold funds from many people, or be something else entirely. The proof is his transaction hash.</li>
-      <li>His funds did <b>not</b> go to the main drain wallets (the 4 on the Wallets tab) — unless his own transaction history says otherwise. Check it first.</li>
+      <li>His theft is <b>proven and traced to Osmosis</b> — but it happened Nov 1, five days before the Keplr hack. It is likely a separate theft, and his funds did <b>not</b> go to the main drain wallets (the 4 on the Wallets tab).</li>
+      <li>The final hop — from his swapped AKT to this case wallet — is <b>not proven yet</b>. The lead is the 7xpfv marker key, which appears in both his theft txs and this wallet's funding txs. The trace is running now.</li>
+      <li>His 40,066 AKT is only a small part of the 3.85M OSMO in this wallet — if his funds are in there at all.</li>
       <li>Unlike the main drain wallets (sequence 0, frozen in place), this wallet is <b>active and can move money</b> — that is why it is tracked live here.</li>
       <li>$0 has moved out of the main drain wallets. The drain is over. Freezes are in motion.</li>
     </ul></div>
     <h2>What he needs <span>to do</span></h2>
     <div class="panel"><ul class="checklist" style="font-size:14px">
-      <li><b>Post 3 things:</b> (1) his own wallet address, (2) the "another AKT address", (3) one transaction hash of the theft. With those, the connection is proven in minutes and the wallet gets flagged everywhere.</li>
-      <li><b>Find the theft transaction:</b> paste his address into Mintscan, look at Nov 6–7, open the outgoing transfer he did not make — the recipient is where his money went, the 64-character hash is the proof.</li>
-      <li><b>Report it:</b> send his address + the thief's address + the hash + timestamps to Keplr/Web3Auth incident response, to Osmosis and Akash, and to the exchanges' security desks to ask for a freeze.</li>
+      <li><b>He posted his address — done.</b> The theft is traced and the hashes are on this tab. The remaining proof is the OSMO path from osmo1w05l… to the funder — the trace is running.</li>
+      <li><b>Report it now:</b> send his AKT address + the thief's addresses + the three hashes (5A82C4FC…, 5DCDA1DC…, CEA57DBA…) + Nov 1 timestamps to Akash and Osmosis security, Keplr/Web3Auth incident response, and the exchanges' security desks to ask for a freeze on osmo10p7dg… and osmo13pet0….</li>
       <li><b>Move what is left</b> to a recovery-phrase or hardware-wallet account. Do not send new funds to the affected account. Do not re-import it anywhere.</li>
       <li><b>Ignore every DM offering recovery.</b> They are all scams.</li>
     </ul></div>
-    <p class="note">Both wallets in this case — the case wallet and its funder — are tracked live on this page (refreshing every 60 seconds) and by the auto-watch, which searches the web every 5 minutes for new information. The moment Sith Lord posts the missing addresses or hash, or either wallet moves, this tab updates.</p>
+    <p class="note">His theft is now traced on-chain from his AKT wallet to Osmosis — see the map above. The final hop to this case wallet is still being traced, and both wallets here are tracked live (refreshing every 60 seconds) and by the auto-watch, which searches the web every 5 minutes for new information. If either wallet moves, this tab updates.</p>
   </section>
 
   <footer id="footerNote"></footer>
