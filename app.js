@@ -379,6 +379,8 @@
   /* ---------- Sith Lord case wallet — live OSMO balance + sequence ---------- */
   var CASE_ADDR = 'osmo10p7dg5nh8kwjhfucq0uxjppg6wkevzm' + 'g67c4hx';
   var CASE_LCD = 'https://lcd-osmosis.keplr.app';
+  var CASE_FUNDER = 'osmo13pet0rwjjzgz7f3058xklc2y05eg5cjneaad94';
+  var CASE_AKT_HASH = '1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4';
   function fetchCase() {
     fetchJson(CASE_LCD + '/cosmos/bank/v1beta1/balances/' + CASE_ADDR + '/by_denom?denom=uosmo')
       .then(function (d) {
@@ -390,6 +392,25 @@
       .catch(function () { setAll('js-caseSub', 'Chain API did not answer — retrying in 60s.'); });
     fetchJson(CASE_LCD + '/cosmos/auth/v1beta1/accounts/' + CASE_ADDR)
       .then(function (d) { var s = findSeq(d); if (s != null) setAll('js-caseSeq', 'seq ' + s); })
+      .catch(function () {});
+    /* the funder — sole sender into the case wallet, holds the AKT remainder */
+    fetchJson(CASE_LCD + '/cosmos/bank/v1beta1/balances/' + CASE_FUNDER + '/by_denom?denom=uosmo')
+      .then(function (d) {
+        var row = d.balance;
+        if (!row || row.denom !== 'uosmo') return;
+        setAll('js-caseFundOsmo', trimNum(Number(row.amount) / 1e6) + ' OSMO');
+        setAll('js-caseFundSub', 'Updated just now from the Osmosis chain.');
+      })
+      .catch(function () { setAll('js-caseFundSub', 'Chain API did not answer — retrying in 60s.'); });
+    fetchJson(CASE_LCD + '/cosmos/bank/v1beta1/balances/' + CASE_FUNDER + '/by_denom?denom=ibc/' + CASE_AKT_HASH)
+      .then(function (d) {
+        var row = d.balance;
+        if (!row) return;
+        setAll('js-caseFundAkt', trimNum(Number(row.amount) / 1e6) + ' AKT');
+      })
+      .catch(function () {});
+    fetchJson(CASE_LCD + '/cosmos/auth/v1beta1/accounts/' + CASE_FUNDER)
+      .then(function (d) { var s = findSeq(d); if (s != null) setAll('js-caseFundSeq', 'seq ' + s); })
       .catch(function () {});
   }
 
