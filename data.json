@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T15:22:00-05:00",
+    "lastUpdated": "2026-11-07T15:36:06-05:00",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -273,6 +273,10 @@
       {
         "time": "2026-11-07 ~14:43 EST",
         "event": "Hunt part 4 complete — the origin chain, from Wandering Cosmonaut's idea. The drain started Nov 6 20:52:37 UTC (10 × 13,242 uatom rehearsal batch), 65 minutes earlier than first reported. The operator funding chain runs back to Aug 17, 2026 — then the public nodes run out (pruned to Aug 17 13:47 UTC); no single origin wallet exists in the observable trail. New 'Where It Started' tab with the full A–Z chain."
+      },
+      {
+        "time": "2026-11-07 ~15:36 EST",
+        "event": "Hunt part 5 complete — Sith Lord's second wallet traced and proven: osmo1ctpu5… holds 3,879,800 OSMO, active since Aug 11, ~39.9M OSMO sent to 138 wallets. Relay osmo180qdt2… carried 222,611 OSMO from the case wallet to it in 4 lockstep forwards (Nov 5–7); it fed the funder 1,228,994 OSMO in Aug–Oct, before the theft — the senior hub of the same operation. Different key, never sent to the Keplr drain wallets. New lead: osmo1re9zkt… sent it 2,222,173.88 OSMO. Added to the Sith Lord tab."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
