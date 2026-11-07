@@ -53,15 +53,14 @@
       kv('Attacker', '<span class="unknown">' + esc(inc.attacker) + '</span>') +
       kv('Affected', esc(inc.affected)) +
       kv('Safe', '<span class="safe">' + esc(inc.safe) + '</span>');
-    el('flowNote').textContent = 'Flow as reported so far: victims on ' + t.chains.join(', ') +
-      ' → attacker wallets (still unidentified) → cash-out: $0 moved. When verified attacker addresses are published, they appear on this map with live balances.';
+    el('flowNote').textContent = 'Flow as reported so far: victims (Google/Apple-login Keplr accounts) → attacker wallets (still unidentified) → cash-out: unknown. When verified attacker addresses are published, they appear on this map with live balances.';
     el('timeline').innerHTML = inc.timeline.map(function (ev) {
       return '<li><time>' + esc(ev.time) + '</time>' + esc(ev.event) + '</li>';
     }).join('');
     el('linkList').innerHTML = inc.links.map(function (l) {
       return '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + '</a></li>';
     }).join('');
-    el('footerNote').textContent = 'Sources: Keplr and Web3Auth official notices (Nov 6–7, 2026), Keplr co-founder Josh Lee, MBTrace, and community tracker figures. ' +
+    el('footerNote').textContent = 'Sources: Keplr and Web3Auth official notices (Nov 6–7, 2026), Keplr co-founder Josh Lee, and MBTrace. ' +
       'No loss total, wallet count, or cashed-out figure has been officially confirmed. Live balances come from public chain APIs; if one fails, use the explorer link on each wallet card.';
     renderAttackers();
     renderFlowMap();
