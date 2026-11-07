@@ -102,11 +102,25 @@
   .timeline li { padding: 10px 0 10px 18px; border-left: 2px solid #ffb020; margin-left: 6px; position: relative; }
   .timeline li::before { content: ""; position: absolute; left: -7px; top: 16px; width: 12px; height: 12px; background: #ffb020; border-radius: 50%; }
   .timeline time { color: #b8a49c; font-size: 13px; display: block; }
+  .ticker { overflow: hidden; background: #100707; border: 1px solid rgba(255,176,32,.35); border-radius: 6px; margin: 0 0 14px; }
+  .ticker-inner { display: inline-block; white-space: nowrap; padding: 8px 0; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; color: #ffb020; animation: tick 30s linear infinite; }
+  @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .livepanel { border-left: 4px solid #ffb020; }
+  .livehead { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: 2px; color: #ffb020; margin-bottom: 14px; }
+  .livedot { width: 10px; height: 10px; border-radius: 50%; background: #ff453a; animation: pulse 1.2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,69,58,.6); } 50% { box-shadow: 0 0 0 7px rgba(255,69,58,0); } }
+  .livetime { margin-left: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #b8a49c; letter-spacing: 0; }
+  .livegrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .livelabel { font-size: 11px; letter-spacing: 1px; color: #b8a49c; text-transform: uppercase; }
+  .livenum { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 26px; font-weight: 800; color: #ffb020; margin: 4px 0 2px; word-break: break-word; }
+  .livenum.alert { color: #ff453a; }
+  .livesub { font-size: 12px; color: #b8a49c; }
+  .livenote { font-size: 12px; color: #9c8a83; margin-top: 14px; border-top: 1px solid rgba(255,69,58,.15); padding-top: 10px; }
   .checklist li { margin: 0 0 8px 20px; }
   .links li { margin: 0 0 8px 20px; }
   .refresh { font-size: 13px; color: #9c8a83; }
   footer { margin-top: 36px; color: #6b5750; font-size: 13px; }
-  @media (max-width: 1020px) { .grid { grid-template-columns: 1fr; } .moregrid { grid-template-columns: 1fr; } }
+  @media (max-width: 1020px) { .grid { grid-template-columns: 1fr; } .moregrid { grid-template-columns: 1fr; } .livegrid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 640px) { .kv { grid-template-columns: 1fr; } .kv2 { grid-template-columns: 1fr; } .card .num { font-size: 30px; } h1 { font-size: 22px; } }
 </style>
 </head>
@@ -119,6 +133,18 @@
   </header>
   <p class="sub">Live watch on the Nov 6–7, 2026 hack: what happened, which wallets are flagged, where the money is going, and who is behind it. <span class="refresh" id="updatedLine"></span></p>
   <div class="strip">INCIDENT STATUS: <b>WEB3AUTH EXPLOIT</b> — SOCIAL LOGINS PAUSED, INVESTIGATION ACTIVE</div>
+  <div class="ticker"><div class="ticker-inner" id="tickerText">● LIVE — loading chain data…</div></div>
+
+  <div class="panel livepanel" id="livePanel">
+    <div class="livehead"><span class="livedot"></span> LIVE NOW <span class="livetime" id="liveClock">—</span></div>
+    <div class="livegrid">
+      <div><div class="livelabel">ATOM in Cosmos drain wallet</div><div class="livenum" id="liveAtom">—</div><div class="livesub" id="liveAtomSub">Checking chain…</div></div>
+      <div><div class="livelabel">BBN in Babylon drain wallet</div><div class="livenum" id="liveBbn">—</div><div class="livesub" id="liveBbnSub">Checking chain…</div></div>
+      <div><div class="livelabel">Outgoing tx from drain wallets</div><div class="livenum" id="liveSeq">—</div><div class="livesub" id="liveSeqSub">Checking chain…</div></div>
+      <div><div class="livelabel">Incident running</div><div class="livenum" id="liveAge">—</div><div class="livesub">Since first drain send, Nov 6 21:57 UTC</div></div>
+    </div>
+    <div class="livenote" id="liveNote">Live data comes straight from the chains in your browser — no server in between. Refreshes every 60 seconds.</div>
+  </div>
 
   <div class="cards" id="statCards"></div>
   <p class="note" id="takenNote"></p>

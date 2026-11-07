@@ -77,9 +77,9 @@
     if (!panel || !list.length) return;
     panel.innerHTML = '<p style="font-size:14px;margin-bottom:12px">Drain transactions observed on-chain (Cosmos Hub block scan, Nov 7 15:35 UTC). The drain was still active at the last check.</p>' +
       list.map(function (t) {
-        return '<div class="threat" style="border-color:rgba(56,189,248,.3);background:rgba(8,16,30,.6)">' +
+        return '<div class="threat" style="border-color:rgba(255,176,32,.35);background:rgba(16,10,10,.6)">' +
           '<div class="meta"><span class="chain">' + esc(t.time || '') + '</span><span class="tag warn">HEIGHT ' + esc(String(t.height || '')) + '</span></div>' +
-          '<div class="addr" style="color:#7dd3fc">' + esc(t.hash) + '</div>' +
+          '<div class="addr" style="color:#ffb020">' + esc(t.hash) + '</div>' +
           '<div class="note2">' + esc(t.label || '') + ' — <a href="https://www.mintscan.io/cosmos/tx/' + esc(t.hash) + '" target="_blank" rel="noopener">Mintscan</a></div></div>';
       }).join('');
   }
@@ -105,14 +105,14 @@
     var t = data.incident.totals;
     el('flowmap').innerHTML =
       '<svg viewBox="0 0 720 300" role="img" aria-label="Money flow map">' +
-      '<defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#b8f135"/></marker>' +
-      '<marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#ff8a8a"/></marker></defs>' +
+      '<defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#ffb020"/></marker>' +
+      '<marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#ff8a80"/></marker></defs>' +
       '<style>.fl { stroke-dasharray: 6 6; animation: dash 1.2s linear infinite; } @keyframes dash { to { stroke-dashoffset: -12; } } ' +
-      '.n { font: 700 15px sans-serif; fill: #e8e8e8; } .s { font: 12px sans-serif; fill: #9a9a9a; } .big { font: 800 22px sans-serif; fill: #b8f135; } .bad { font: 800 22px sans-serif; fill: #ff8a8a; }</style>' +
-      node(20, 30, 190, 96, t.walletsDrained, 'wallets drained', '#b8f135') +
-      node(265, 30, 190, 96, 'ATTACKER', '11 wallets tracked', '#ff8a8a') +
-      node(510, 30, 190, 96, t.cashedOutUsd, 'cashed out yet', '#8a8a8a') +
-      '<line x1="210" y1="78" x2="258" y2="78" stroke="#b8f135" stroke-width="3" class="fl" marker-end="url(#arr)"/>' +
+      '.n { font: 700 15px sans-serif; fill: #f2e9e4; } .s { font: 12px sans-serif; fill: #b8a49c; } .big { font: 800 22px sans-serif; fill: #ffb020; } .bad { font: 800 22px sans-serif; fill: #ff8a80; }</style>' +
+      node(20, 30, 190, 96, t.walletsDrained, 'wallets drained', '#ffb020') +
+      node(265, 30, 190, 96, 'ATTACKER', '11 wallets tracked', '#ff8a80') +
+      node(510, 30, 190, 96, t.cashedOutUsd, 'cashed out yet', '#9c8a83') +
+      '<line x1="210" y1="78" x2="258" y2="78" stroke="#ffb020" stroke-width="3" class="fl" marker-end="url(#arr)"/>' +
       '<line x1="455" y1="78" x2="503" y2="78" stroke="#555" stroke-width="3" stroke-dasharray="3 6" marker-end="url(#arrR)"/>' +
       '<text x="235" y="66" class="s">Total lost: ' + esc(t.takenUsd) + '</text>' +
       '<text x="478" y="66" class="s">destination: drain wallets</text>' +
@@ -123,14 +123,124 @@
       '<text x="20" y="286" class="s">Attacker identity: under investigation. 11 wallets tracked live.</text>' +
       '</svg>';
     function node(x, y, w, h, big, small, color) {
-      return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="14" fill="#111" stroke="' + color + '" stroke-width="1.5"/>' +
-        '<text x="' + (x + 16) + '" y="' + (y + 42) + '" class="' + (color === '#ff8a8a' ? 'bad' : 'big') + '">' + esc(big) + '</text>' +
+      return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="8" fill="#160a0a" stroke="' + color + '" stroke-width="1.5"/>' +
+        '<text x="' + (x + 16) + '" y="' + (y + 42) + '" class="' + (color === '#ff8a80' ? 'bad' : 'big') + '">' + esc(big) + '</text>' +
         '<text x="' + (x + 16) + '" y="' + (y + 68) + '" class="s">' + esc(small) + '</text>';
     }
     function chainChip(x, y, name) {
       return '<g><rect x="' + x + '" y="' + y + '" width="150" height="34" rx="17" fill="#111" stroke="#2a2a2a"/>' +
         '<text x="' + (x + 75) + '" y="' + (y + 22) + '" text-anchor="middle" class="n">' + esc(name) + '</text></g>';
     }
+  }
+
+  /* ---------- LIVE NOW — direct from the chains, every 60s ---------- */
+  var DRAIN = [
+    { chain: 'cosmos', addr: 'cosmos1atuap9kfnt6y8ykvn3437e7j3z8qffh3qtnmwu', lcd: 'https://lcd-cosmoshub.keplr.app' },
+    { chain: 'osmosis', addr: 'osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw', lcd: 'https://lcd-osmosis.keplr.app' },
+    { chain: 'injective', addr: 'inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g', lcd: 'https://lcd-injective.keplr.app' },
+    { chain: 'babylon', addr: 'bbn1atuap9kfnt6y8ykvn3437e7j3z8qffh3h4z239', lcd: 'https://lcd-babylon.keplr.app' }
+  ];
+  var INCIDENT_START = Date.UTC(2026, 10, 6, 21, 57, 39);
+  var liveState = { atom: null, bbn: null, seqs: {}, lastMove: null, lastCheck: null };
+  try {
+    var saved = JSON.parse(localStorage.getItem('kt-live-v1') || '{}');
+    if (saved.atom) liveState.atom = saved.atom;
+    if (saved.lastMove) liveState.lastMove = saved.lastMove;
+  } catch (e) {}
+
+  function findSeq(d) {
+    if (!d || !d.account) return null;
+    var a = d.account;
+    if (a.sequence != null) return String(a.sequence);
+    if (a.value && a.value.sequence != null) return String(a.value.sequence);
+    if (a.value && a.value.base_account && a.value.base_account.sequence != null) return String(a.value.base_account.sequence);
+    if (a.base_account && a.base_account.sequence != null) return String(a.base_account.sequence);
+    return null;
+  }
+  function fmtClock(ms) {
+    var s = Math.floor(ms / 1000);
+    var d = Math.floor(s / 86400); s -= d * 86400;
+    var h = Math.floor(s / 3600); s -= h * 3600;
+    var m = Math.floor(s / 60); s -= m * 60;
+    return (d ? d + 'd ' : '') + h + 'h ' + (m < 10 ? '0' : '') + m + 'm ' + (s < 10 ? '0' : '') + s + 's';
+  }
+  function tickClock() {
+    var age = el('liveAge'), clk = el('liveClock');
+    if (age) age.textContent = fmtClock(Date.now() - INCIDENT_START);
+    if (clk) clk.textContent = 'CHECKED ' + new Date().toLocaleTimeString();
+  }
+  function updateTicker(atomTxt) {
+    var t = el('tickerText');
+    if (!t) return;
+    var parts = [
+      '● LIVE — Cosmos drain wallet: ' + (atomTxt || '…'),
+      '$0 moved out of any drain wallet',
+      '11 wallets tracked',
+      '42,363 victim sends observed',
+      'Drain still active at last scan (Nov 7 15:33 UTC)'
+    ];
+    var line = parts.join(' &nbsp;&nbsp;·&nbsp;&nbsp; ') + ' &nbsp;&nbsp;·&nbsp;&nbsp; ';
+    t.innerHTML = line + line;
+  }
+  function fetchLive() {
+    tickClock();
+    var cosmos = DRAIN[0], bbn = DRAIN[3];
+    fetchJson(cosmos.lcd + '/cosmos/bank/v1beta1/balances/' + cosmos.addr + '/by_denom?denom=uatom')
+      .then(function (d) {
+        var row = d.balance;
+        if (!row || row.denom !== 'uatom') return;
+        var atom = Number(row.amount) / 1e6;
+        var now = Date.now();
+        if (liveState.atom != null && atom > liveState.atom + 0.000001) {
+          liveState.lastMove = now;
+          el('liveAtomSub').textContent = '+' + trimNum(atom - liveState.atom) + ' ATOM arrived since the last check — the drain is still running.';
+        } else if (liveState.lastMove) {
+          el('liveAtomSub').textContent = 'No new funds since ' + new Date(liveState.lastMove).toLocaleTimeString() + ' — still watching.';
+        } else {
+          el('liveAtomSub').textContent = 'Updated just now from the Cosmos Hub chain — watching for new arrivals.';
+        }
+        liveState.atom = atom;
+        liveState.lastCheck = now;
+        try { localStorage.setItem('kt-live-v1', JSON.stringify({ atom: atom, lastMove: liveState.lastMove })); } catch (e) {}
+        el('liveAtom').textContent = trimNum(atom) + ' ATOM';
+        updateTicker(trimNum(atom) + ' ATOM');
+      })
+      .catch(function () {
+        if (liveState.atom != null) {
+          el('liveAtom').textContent = trimNum(liveState.atom) + ' ATOM';
+          el('liveAtomSub').textContent = 'Chain API did not answer this time — showing the last live reading.';
+        } else {
+          el('liveAtomSub').textContent = 'Chain API did not answer — retrying in 60s.';
+        }
+      });
+    fetchJson(bbn.lcd + '/cosmos/bank/v1beta1/balances/' + bbn.addr + '/by_denom?denom=ubbn')
+      .then(function (d) {
+        var row = d.balance;
+        if (!row || row.denom !== 'ubbn') return;
+        el('liveBbn').textContent = trimNum(Number(row.amount) / 1e6) + ' BBN';
+        el('liveBbnSub').textContent = 'Updated just now from the Babylon chain.';
+      })
+      .catch(function () { el('liveBbnSub').textContent = 'Chain API did not answer — retrying in 60s.'; });
+    Promise.all(DRAIN.map(function (w) {
+      return fetchJson(w.lcd + '/cosmos/auth/v1beta1/accounts/' + w.addr)
+        .then(function (d) { return { chain: w.chain, seq: findSeq(d) }; })
+        .catch(function () { return { chain: w.chain, seq: null }; });
+    })).then(function (res) {
+      var moved = res.filter(function (r) { return r.seq != null && r.seq !== '0'; });
+      var known = res.filter(function (r) { return r.seq != null; });
+      var box = el('liveSeq'), sub = el('liveSeqSub');
+      if (!known.length) { box.textContent = '—'; sub.textContent = 'Chain APIs did not answer — retrying in 60s.'; return; }
+      if (moved.length) {
+        box.textContent = '⚠ MOVING';
+        box.classList.add('alert');
+        sub.textContent = 'ALERT: ' + moved.map(function (r) { return r.chain + ' seq ' + r.seq; }).join(', ') + ' — a drain wallet has signed a transaction. Funds are moving.';
+        el('liveNote').textContent = '⚠ ALERT — a drain wallet has signed an outgoing transaction. Check the wallet watch below and the explorers immediately.';
+      } else {
+        box.textContent = 'NONE — SEQ 0';
+        box.classList.remove('alert');
+        sub.textContent = 'All ' + known.length + ' drain wallets checked have never signed a transaction. $0 has moved.';
+      }
+    });
   }
 
   /* ---------- live wallet watch ---------- */
@@ -226,7 +336,7 @@
     });
   }
 
-  function refreshAll() { renderWatchlist(); }
+  function refreshAll() { renderWatchlist(); fetchLive(); }
 
   /* ---------- boot ---------- */
   fetch('data.json').then(function (r) { return r.json(); }).then(function (d) {
@@ -234,6 +344,8 @@
     (data.chains || []).forEach(function (c) { chains[c.id] = c; });
     renderStatic();
     renderWatchlist();
+    fetchLive();
+    setInterval(tickClock, 1000);
     setInterval(refreshAll, REFRESH_MS);
     el('refreshBtn').addEventListener('click', refreshAll);
     el('addForm').addEventListener('submit', function (ev) {
