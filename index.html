@@ -18,59 +18,85 @@
 <meta name="twitter:image" content="https://keplr-tracker.vercel.app/og-image.png">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #050505; color: #e8e8e8; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.5; }
+  body { background: radial-gradient(1200px 600px at 50% -10%, #0a1a2e 0%, #04070f 55%, #02040a 100%); color: #e8eef5; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.5; min-height: 100vh; }
   a { color: #b8f135; }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 20px 16px 60px; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 20px 16px 60px; }
   header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 18px 0 6px; }
-  h1 { font-size: 26px; letter-spacing: .3px; }
+  h1 { font-size: 28px; letter-spacing: .5px; }
   h1 span { color: #b8f135; }
-  .status { background: #2a0a0a; border: 1px solid #ff5252; color: #ff8a8a; font-weight: 700; font-size: 13px; padding: 6px 12px; border-radius: 999px; }
-  .sub { color: #9a9a9a; font-size: 14px; margin-bottom: 20px; }
+  .status { background: #2a0a0a; border: 1px solid #ff5252; color: #ff8a8a; font-weight: 700; font-size: 13px; padding: 6px 12px; border-radius: 999px; box-shadow: 0 0 18px rgba(255,82,82,.25); }
+  .sub { color: #9ab0c4; font-size: 14px; margin-bottom: 20px; }
   .sub b { color: #e8e8e8; }
+  .strip { background: rgba(255,82,82,.08); border: 1px solid rgba(255,82,82,.4); color: #ff9a9a; border-radius: 12px; padding: 10px 14px; font-size: 13px; font-weight: 700; letter-spacing: .4px; margin: 0 0 18px; text-align: center; }
+  .strip b { color: #ff5252; }
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 18px 0 8px; }
-  .card { background: #111; border: 1px solid #2a2a2a; border-radius: 18px; padding: 20px; }
-  .card .num { color: #b8f135; font-size: 38px; font-weight: 800; line-height: 1.1; }
+  .card { background: linear-gradient(180deg, rgba(16,32,54,.85), rgba(8,16,30,.85)); border: 1px solid rgba(56,189,248,.25); border-radius: 18px; padding: 20px; box-shadow: 0 0 24px rgba(34,211,238,.06); }
+  .card .num { color: #b8f135; font-size: 34px; font-weight: 800; line-height: 1.1; }
   .card .lbl { color: #bdbdbd; font-size: 15px; margin-top: 6px; }
-  .note { color: #8a8a8a; font-size: 13px; margin: 4px 0 18px; }
-  h2 { font-size: 20px; margin: 30px 0 10px; }
+  .note { color: #8a9bb0; font-size: 13px; margin: 4px 0 18px; }
+  h2 { font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase; color: #7dd3fc; margin: 26px 0 10px; }
   h2 span { color: #b8f135; }
-  .panel { background: #111; border: 1px solid #2a2a2a; border-radius: 18px; padding: 20px; margin-bottom: 14px; }
+  .panel { background: linear-gradient(180deg, rgba(13,27,48,.85), rgba(7,14,26,.85)); border: 1px solid rgba(56,189,248,.22); border-radius: 18px; padding: 20px; margin-bottom: 14px; box-shadow: 0 0 24px rgba(34,211,238,.05); }
   .panel p { margin-bottom: 10px; }
   .panel p:last-child { margin-bottom: 0; }
+  .grid { display: grid; grid-template-columns: 300px 1fr 340px; gap: 14px; align-items: start; }
+  .grid .panel { margin-bottom: 0; }
+  .risk { display: flex; flex-direction: column; gap: 10px; }
+  .riskrow { border: 1px solid rgba(56,189,248,.22); border-radius: 14px; padding: 14px; background: rgba(8,16,30,.6); }
+  .riskrow .t { font-weight: 800; font-size: 14px; letter-spacing: .5px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .riskrow .d { color: #9ab0c4; font-size: 13px; margin-top: 4px; }
+  .tag { font-size: 11px; font-weight: 800; letter-spacing: .6px; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+  .tag.safe { background: rgba(184,241,53,.15); color: #b8f135; border: 1px solid rgba(184,241,53,.4); }
+  .tag.danger { background: rgba(255,82,82,.15); color: #ff8a8a; border: 1px solid rgba(255,82,82,.45); }
+  .tag.warn { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.4); }
+  .tag.live { background: rgba(255,82,82,.15); color: #ff8a8a; border: 1px solid rgba(255,82,82,.45); }
+  .threat { border: 1px solid rgba(255,82,82,.3); border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; background: rgba(42,10,10,.35); }
+  .threat .addr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #ffb4b4; word-break: break-all; }
+  .threat .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .threat .chain { font-size: 12px; font-weight: 800; letter-spacing: .5px; color: #7dd3fc; }
+  .threat .note2 { font-size: 12px; color: #9ab0c4; margin-top: 6px; }
+  .mitig { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .mit { border-radius: 16px; padding: 16px 18px; border: 1px solid rgba(56,189,248,.22); background: linear-gradient(180deg, rgba(13,27,48,.85), rgba(7,14,26,.85)); }
+  .mit .t { font-weight: 800; font-size: 14px; letter-spacing: .5px; }
+  .mit .s { font-size: 13px; color: #9ab0c4; margin-top: 6px; }
+  .mit .state { margin-top: 10px; font-size: 12px; font-weight: 800; letter-spacing: .6px; }
+  .mit .state.on { color: #b8f135; }
+  .mit .state.off { color: #ff8a8a; }
   .kv { display: grid; grid-template-columns: 150px 1fr; gap: 6px 12px; font-size: 15px; }
-  .kv dt { color: #9a9a9a; }
+  .kv dt { color: #9ab0c4; }
   .kv dd { word-break: break-word; }
   .unknown { color: #ff8a8a; font-weight: 700; }
   .safe { color: #b8f135; font-weight: 700; }
-  #flowmap { width: 100%; overflow-x: auto; }
-  #flowmap svg { min-width: 680px; width: 100%; height: auto; display: block; }
-  .wallet { background: #111; border: 1px solid #2a2a2a; border-radius: 18px; padding: 18px 20px; margin-bottom: 14px; }
+  #flowmap, #attackpath { width: 100%; overflow-x: auto; }
+  #flowmap svg, #attackpath svg { min-width: 620px; width: 100%; height: auto; display: block; }
+  .wallet { background: linear-gradient(180deg, rgba(13,27,48,.85), rgba(7,14,26,.85)); border: 1px solid rgba(56,189,248,.22); border-radius: 18px; padding: 18px 20px; margin-bottom: 14px; }
   .wallet h3 { font-size: 16px; margin-bottom: 4px; }
   .wallet .addr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; color: #b8f135; word-break: break-all; }
   .bal { font-size: 22px; font-weight: 800; margin: 10px 0 2px; }
-  .bal small { font-size: 13px; color: #9a9a9a; font-weight: 400; }
+  .bal small { font-size: 13px; color: #9ab0c4; font-weight: 400; }
   .txs { margin-top: 12px; font-size: 14px; }
   .txs table { width: 100%; border-collapse: collapse; }
-  .txs th, .txs td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #222; vertical-align: top; }
-  .txs th { color: #9a9a9a; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
+  .txs th, .txs td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #1e3a5f; vertical-align: top; }
+  .txs th { color: #9ab0c4; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
   .in { color: #b8f135; font-weight: 700; }
   .out { color: #ff8a8a; font-weight: 700; }
   .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
-  .muted { color: #8a8a8a; }
+  .muted { color: #8a9bb0; }
   form.add { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
-  form.add input { flex: 1 1 260px; background: #0a0a0a; border: 1px solid #333; color: #e8e8e8; border-radius: 10px; padding: 10px 12px; font-size: 14px; }
-  form.add input::placeholder { color: #666; }
+  form.add input { flex: 1 1 260px; background: #0a1424; border: 1px solid #1e3a5f; color: #e8eef5; border-radius: 10px; padding: 10px 12px; font-size: 14px; }
+  form.add input::placeholder { color: #5b7288; }
   button { background: #b8f135; color: #111; border: 0; border-radius: 10px; padding: 10px 16px; font-size: 14px; font-weight: 700; cursor: pointer; }
   button.ghost { background: transparent; color: #b8f135; border: 1px solid #b8f135; padding: 6px 10px; font-size: 12px; }
   .timeline { list-style: none; }
   .timeline li { padding: 10px 0 10px 18px; border-left: 2px solid #b8f135; margin-left: 6px; position: relative; }
   .timeline li::before { content: ""; position: absolute; left: -7px; top: 16px; width: 12px; height: 12px; background: #b8f135; border-radius: 50%; }
-  .timeline time { color: #9a9a9a; font-size: 13px; display: block; }
+  .timeline time { color: #9ab0c4; font-size: 13px; display: block; }
   .checklist li { margin: 0 0 8px 20px; }
   .links li { margin: 0 0 8px 20px; }
-  .refresh { font-size: 13px; color: #8a8a8a; }
-  footer { margin-top: 36px; color: #666; font-size: 13px; }
-  @media (max-width: 640px) { .kv { grid-template-columns: 1fr; } .card .num { font-size: 30px; } }
+  .refresh { font-size: 13px; color: #8a9bb0; }
+  footer { margin-top: 36px; color: #5b7288; font-size: 13px; }
+  @media (max-width: 1020px) { .grid { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .kv { grid-template-columns: 1fr; } .card .num { font-size: 30px; } h1 { font-size: 22px; } }
 </style>
 </head>
 <body>
@@ -79,36 +105,133 @@
     <h1>KEPLR / WEB3AUTH <span>INCIDENT TRACKER</span></h1>
     <span class="status" id="statusBadge">LOADING…</span>
   </header>
-  <p class="sub">Live watch on the Nov 6–7, 2026 hack: how much was taken, which wallets were drained, where the money is going, and who is behind it. <span class="refresh" id="updatedLine"></span></p>
+  <p class="sub">Live watch on the Nov 6–7, 2026 hack: what happened, which wallets are flagged, where the money is going, and who is behind it. <span class="refresh" id="updatedLine"></span></p>
+  <div class="strip">INCIDENT STATUS: <b>WEB3AUTH EXPLOIT</b> — SOCIAL LOGINS PAUSED, INVESTIGATION ACTIVE</div>
 
   <div class="cards" id="statCards"></div>
   <p class="note" id="takenNote"></p>
 
-  <h2>WHO CONTROLS <span>WHAT</span></h2>
-  <div class="panel"><dl class="kv" id="controlList"></dl></div>
+  <div class="grid">
+    <div>
+      <h2>Account <span>Risk</span></h2>
+      <div class="panel risk">
+        <div class="riskrow">
+          <div class="t">MNEMONIC <span class="tag safe">LOW RISK</span></div>
+          <div class="d">Seed-phrase wallets were <b>not affected</b>, per Keplr's initial assessment.</div>
+        </div>
+        <div class="riskrow">
+          <div class="t">HARDWARE <span class="tag safe">SECURE</span></div>
+          <div class="d">Ledger / Trezor wallets were <b>not affected</b>, per Keplr's initial assessment.</div>
+        </div>
+        <div class="riskrow">
+          <div class="t">WEB3AUTH SSO <span class="tag danger">AFFECTED</span></div>
+          <div class="d">Google / Apple login accounts. Early estimate: about <b>20% affected</b>, only a fraction of those actually drained. No confirmed wallet count yet.</div>
+        </div>
+      </div>
 
-  <h2>MONEY FLOW <span>MAP</span></h2>
-  <div class="panel"><div id="flowmap"></div>
-    <p class="note" id="flowNote" style="margin:12px 0 0"></p>
+      <h2>Mitigation &amp; <span>Compliance</span></h2>
+      <div class="panel">
+        <div class="risk">
+          <div class="riskrow">
+            <div class="t">SUSPEND SOCIAL LOGINS</div>
+            <div class="d">Keplr paused Google / Apple login on Nov 7.</div>
+            <div class="state on" style="margin-top:8px;font-size:12px;font-weight:800;letter-spacing:.6px;color:#b8f135">● ACTIVE</div>
+          </div>
+          <div class="riskrow">
+            <div class="t">NO NEW DEPOSITS</div>
+            <div class="d">Keplr: do not send new funds to Google / Apple-login accounts.</div>
+            <div class="state on" style="margin-top:8px;font-size:12px;font-weight:800;letter-spacing:.6px;color:#b8f135">● ADVISORY ACTIVE</div>
+          </div>
+          <div class="riskrow">
+            <div class="t">RECOVERY-SCAM WARNING</div>
+            <div class="d">Ignore every DM offering “recovery” — they are scams.</div>
+            <div class="state on" style="margin-top:8px;font-size:12px;font-weight:800;letter-spacing:.6px;color:#b8f135">● ACTIVE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2>Attack Path — <span>Live Map</span></h2>
+      <div class="panel">
+        <div id="attackpath">
+          <svg viewBox="0 0 640 470" role="img" aria-label="Attack path diagram">
+            <defs>
+              <marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#ff5252"/></marker>
+              <marker id="arrC" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#38bdf8"/></marker>
+            </defs>
+            <style>.t1{font:700 13px sans-serif;fill:#e8eef5;letter-spacing:1px}.t2{font:12px sans-serif;fill:#9ab0c4}.big{font:800 15px sans-serif;fill:#e8eef5}.bad{font:800 13px sans-serif;fill:#ff8a8a}.cy{font:700 13px sans-serif;fill:#7dd3fc}.lm{font:700 12px sans-serif;fill:#b8f135}.fl{stroke-dasharray:5 5;animation:dash 1.2s linear infinite}@keyframes dash{to{stroke-dashoffset:-10}}</style>
+            <text x="10" y="20" class="t2">OAUTH PROVIDERS</text>
+            <rect x="10" y="28" width="300" height="46" rx="10" fill="#0d1b30" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="30" y="57" class="big">G&nbsp;&nbsp;Google</text>
+            <text x="190" y="57" class="big">Apple</text>
+            <line x1="160" y1="74" x2="160" y2="104" stroke="#ff5252" stroke-width="2" class="fl" marker-end="url(#arrR)"/>
+            <line x1="80" y1="74" x2="130" y2="104" stroke="#ff5252" stroke-width="1.5" class="fl" marker-end="url(#arrR)"/>
+            <line x1="240" y1="74" x2="190" y2="104" stroke="#ff5252" stroke-width="1.5" class="fl" marker-end="url(#arrR)"/>
+            <text x="10" y="96" class="t2">WEB3AUTH MPC NODES</text>
+            <rect x="10" y="104" width="300" height="46" rx="10" fill="#2a0a0a" stroke="#ff5252" stroke-width="1.5"/>
+            <text x="30" y="133" class="bad">⚠ KEY-SHARE PATH COMPROMISED</text>
+            <line x1="160" y1="150" x2="160" y2="180" stroke="#ff5252" stroke-width="2" class="fl" marker-end="url(#arrR)"/>
+            <text x="10" y="172" class="t2">KEPLR EXTENSION CLIENTS</text>
+            <rect x="10" y="180" width="300" height="46" rx="10" fill="#0d1b30" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="30" y="209" class="big">K&nbsp;&nbsp;Keplr — social-login accounts</text>
+            <line x1="160" y1="226" x2="160" y2="256" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrC)"/>
+            <text x="10" y="248" class="t2">CHAINS — STOLEN FUNDS LAND HERE</text>
+            <rect x="10" y="256" width="142" height="38" rx="10" fill="#0d1b30" stroke="#38bdf8"/>
+            <text x="26" y="280" class="cy">COSMOS HUB</text>
+            <rect x="168" y="256" width="142" height="38" rx="10" fill="#0d1b30" stroke="#38bdf8"/>
+            <text x="188" y="280" class="cy">OSMOSIS</text>
+            <rect x="10" y="302" width="142" height="38" rx="10" fill="#0d1b30" stroke="#38bdf8"/>
+            <text x="26" y="326" class="cy">INJECTIVE</text>
+            <rect x="168" y="302" width="142" height="38" rx="10" fill="#0d1b30" stroke="#38bdf8"/>
+            <text x="188" y="326" class="cy">BABYLON</text>
+            <line x1="310" y1="275" x2="360" y2="275" stroke="#ff5252" stroke-width="2" class="fl" marker-end="url(#arrR)"/>
+            <line x1="310" y1="321" x2="360" y2="321" stroke="#ff5252" stroke-width="2" class="fl" marker-end="url(#arrR)"/>
+            <text x="370" y="248" class="t2">ATTACKER WALLETS</text>
+            <rect x="370" y="256" width="260" height="84" rx="10" fill="#2a0a0a" stroke="#ff5252" stroke-width="1.5"/>
+            <text x="386" y="282" class="lm">4 wallets flagged — reported</text>
+            <text x="386" y="302" class="t2">cosmos1atuap…qtnmwu</text>
+            <text x="386" y="320" class="t2">osmo1atuap…gsqtcw · inj1lqmd…vt7g</text>
+            <text x="386" y="336" class="t2">bbn1atuap…h4z239</text>
+            <text x="10" y="380" class="t2">Root cause: security issue at Web3Auth (social-login key shares). Neither Google nor Apple was breached.</text>
+            <text x="10" y="400" class="t2">Seed-phrase &amp; hardware wallets were not affected.</text>
+            <text x="10" y="430" class="t2" style="font-weight:700;fill:#ff8a8a">Attacker identity: unknown. Addresses reported on X, not yet confirmed by Keplr/Web3Auth.</text>
+          </svg>
+        </div>
+      </div>
+
+      <h2>Money Flow <span>Map</span></h2>
+      <div class="panel"><div id="flowmap"></div>
+        <p class="note" id="flowNote" style="margin:12px 0 0"></p>
+      </div>
+
+      <h2>Who Controls <span>What</span></h2>
+      <div class="panel"><dl class="kv" id="controlList"></dl></div>
+    </div>
+
+    <div>
+      <h2>Threat <span>Intel</span></h2>
+      <div class="panel" id="attackerPanel"></div>
+      <h2>Suspicious <span>Transactions</span></h2>
+      <div class="panel">
+        <p class="muted" style="font-size:14px">Tracing in progress. Outflows from the 4 flagged wallets are being followed now — confirmed drain transactions and destination wallets will appear here as they are verified. No confirmed drain transaction hash has been published yet.</p>
+      </div>
+      <h2>Timeline</h2>
+      <div class="panel"><ul class="timeline" id="timeline"></ul></div>
+    </div>
   </div>
 
-  <h2>WALLET <span>WATCH</span></h2>
-  <p class="sub">Live balances + recent transactions, refreshed every 60 seconds. Add any Cosmos, Osmosis or Injective address to watch it. <button class="ghost" id="refreshBtn" type="button">Refresh now</button></p>
+  <h2>Wallet <span>Watch</span></h2>
+  <p class="sub">Live balances + recent transactions for the 4 flagged attacker wallets, refreshed every 60 seconds. Add any Cosmos, Osmosis, Injective or Babylon address to watch it. <button class="ghost" id="refreshBtn" type="button">Refresh now</button></p>
   <div id="watchlist"></div>
   <form class="add" id="addForm">
-    <input id="addAddr" type="text" placeholder="Paste a wallet address (cosmos1…, osmo1…, inj1…)" autocomplete="off" spellcheck="false">
+    <input id="addAddr" type="text" placeholder="Paste a wallet address (cosmos1…, osmo1…, inj1…, bbn1…)" autocomplete="off" spellcheck="false">
     <input id="addLabel" type="text" placeholder="Label (optional)" autocomplete="off" spellcheck="false">
     <button type="submit">Track wallet</button>
   </form>
   <p class="note" id="addMsg"></p>
 
-  <h2>ATTACKER <span>WALLETS</span></h2>
-  <div class="panel" id="attackerPanel"></div>
-
-  <h2>TIMELINE</h2>
-  <div class="panel"><ul class="timeline" id="timeline"></ul></div>
-
-  <h2>TRACE THE <span>THIEF</span></h2>
+  <h2>Trace The <span>Thief</span></h2>
   <div class="panel"><ul class="checklist">
     <li><b>Find your affected address.</b> Social login is paused, so you cannot open Keplr to copy it. Try these instead: check the Keplr extension's local storage / IndexedDB in your browser's Developer Tools for cosmos1 / osmo1 addresses; check the withdrawal history of any exchange you funded the wallet from — the destination address there is your wallet; or resolve your .cosmos / .stars name if you had one.</li>
     <li><b>Find the thief's address.</b> Paste your address into Mintscan (links below) and look at recent outgoing transfers — MsgSend or IBC transfers around Nov 6–7 that you did not make. Open the transaction: the recipient address is where your funds went, and the 64-character transaction hash is the proof.</li>
@@ -117,7 +240,7 @@
     <li><b>Never enter a seed phrase or private key</b> on any “wallet checker” or “recovery” site. Checking an address on Mintscan is read-only and safe — it never asks you to connect a wallet or sign anything.</li>
   </ul></div>
 
-  <h2>STAY <span>SAFE</span></h2>
+  <h2>Stay <span>Safe</span></h2>
   <div class="panel"><ul class="checklist">
     <li><b>Do NOT send new funds</b> to any wallet created with Google or Apple login until Keplr says it is safe.</li>
     <li><b>Do NOT re-import or recreate</b> a Google/Apple-login Keplr account anywhere.</li>
@@ -126,7 +249,7 @@
     <li><b>Check activity read-only</b> in an explorer (links below). Reading never needs a wallet connection or a signature.</li>
   </ul></div>
 
-  <h2>OFFICIAL <span>LINKS</span></h2>
+  <h2>Official <span>Links</span></h2>
   <div class="panel"><ul class="links" id="linkList"></ul></div>
 
   <footer id="footerNote"></footer>

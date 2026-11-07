@@ -81,8 +81,11 @@
       return;
     }
     el('attackerPanel').innerHTML = list.map(function (w) {
-      return '<p><span class="mono">' + esc(w.address) + '</span> — ' + esc(w.note || '') + '</p>';
-    }).join('');
+      var chain = (w.chain || '').toUpperCase();
+      return '<div class="threat"><div class="meta"><span class="chain">' + esc(chain) + '</span><span class="tag live">● LIVE — FLAGGED (REPORTED)</span></div>' +
+        '<div class="addr">' + esc(w.address) + '</div>' +
+        (w.note ? '<div class="note2">' + esc(w.note) + '</div>' : '') + '</div>';
+    }).join('') + '<p class="muted" style="font-size:12px">Reported on X, not yet confirmed by Keplr/Web3Auth. Do not trust attacker addresses from random posts or DMs — only ones confirmed by Keplr, Web3Auth, or a reputable tracer.</p>';
   }
 
   function renderFlowMap() {
