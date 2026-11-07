@@ -43,18 +43,6 @@
     var inc = data.incident, t = inc.totals;
     el('statusBadge').textContent = inc.status;
     el('updatedLine').textContent = 'Last data update: ' + shortTime(inc.lastUpdated) + ' • live balances refresh every 60s';
-    el('statCards').innerHTML =
-      statCard(t.takenUsd, 'total taken — on-chain analysis, Nov 7') +
-      statCard(t.walletsDrained, 'wallets drained') +
-      statCard(String(t.chains.length), 'chains: ' + esc(t.chains.join(', '))) +
-      statCard(t.cashedOutUsd, 'cashed out yet');
-    el('takenNote').textContent = t.takenNote + ' ' + t.walletsNote + ' ' + t.cashedOutNote;
-    el('controlList').innerHTML =
-      kv('Cause', esc(inc.cause)) +
-      kv('Attacker', '<span class="unknown">' + esc(inc.attacker) + '</span>') +
-      kv('Affected', esc(inc.affected)) +
-      kv('Safe', '<span class="safe">' + esc(inc.safe) + '</span>');
-    el('flowNote').textContent = 'Flow as reported so far: victims (Google/Apple-login Keplr accounts) → 11 tracked attacker wallets → cash-out: $0 moved yet. When new attacker addresses are published, they appear on this map with live balances.';
     el('timeline').innerHTML = inc.timeline.map(function (ev) {
       return '<li><time>' + esc(ev.time) + '</time>' + esc(ev.event) + '</li>';
     }).join('');
@@ -64,7 +52,6 @@
     el('footerNote').textContent = 'Sources: Keplr and Web3Auth official notices (Nov 6–7, 2026), Keplr co-founder Josh Lee, MBTrace, and community on-chain analysis (Nov 7). Totals and wallet counts are from the on-chain analysis. Live balances come from public chain APIs; if one fails, use the explorer link on each wallet card.';
     renderAttackers();
     renderSuspiciousTxs();
-    renderFlowMap();
   }
   function statCard(num, lbl) {
     return '<div class="card"><div class="num">' + esc(num) + '</div><div class="lbl">' + esc(lbl) + '</div></div>';
@@ -99,38 +86,6 @@
         '<div class="addr">' + esc(w.address) + '</div>' +
         (w.note ? '<div class="note2">' + esc(w.note) + '</div>' : '') + '</div>';
     }).join('') + '<p class="muted" style="font-size:12px">Reported on X. Treat any other address claiming to be the attacker as unverified until Keplr, Web3Auth, or a reputable tracer confirms it.</p>';
-  }
-
-  function renderFlowMap() {
-    var t = data.incident.totals;
-    el('flowmap').innerHTML =
-      '<svg viewBox="0 0 720 300" role="img" aria-label="Money flow map">' +
-      '<defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#ffb020"/></marker>' +
-      '<marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#ff8a80"/></marker></defs>' +
-      '<style>.fl { stroke-dasharray: 6 6; animation: dash 1.2s linear infinite; } @keyframes dash { to { stroke-dashoffset: -12; } } ' +
-      '.n { font: 700 15px sans-serif; fill: #f2e9e4; } .s { font: 12px sans-serif; fill: #b8a49c; } .big { font: 800 22px sans-serif; fill: #ffb020; } .bad { font: 800 22px sans-serif; fill: #ff8a80; }</style>' +
-      node(20, 30, 190, 96, t.walletsDrained, 'wallets drained', '#ffb020') +
-      node(265, 30, 190, 96, 'ATTACKER', '11 wallets tracked', '#ff8a80') +
-      node(510, 30, 190, 96, t.cashedOutUsd, 'cashed out yet', '#9c8a83') +
-      '<line x1="210" y1="78" x2="258" y2="78" stroke="#ffb020" stroke-width="3" class="fl" marker-end="url(#arr)"/>' +
-      '<line x1="455" y1="78" x2="503" y2="78" stroke="#555" stroke-width="3" stroke-dasharray="3 6" marker-end="url(#arrR)"/>' +
-      '<text x="235" y="66" class="s">Total lost: ' + esc(t.takenUsd) + '</text>' +
-      '<text x="478" y="66" class="s">destination: drain wallets</text>' +
-      '<text x="20" y="190" class="s">Chains: Cosmos Hub · Osmosis · Injective. Evmos also drained Nov 6.</text>' +
-      '<text x="20" y="220" class="s">Money in: victims lost funds to the drain wallets.</text>' +
-      '<text x="20" y="242" class="s">Money out: $0 moved — Circle can freeze ~$188K Noble USDC in the Osmosis drain wallet.</text>' +
-      '<text x="20" y="264" class="s">Cause: Web3Auth security issue (social-login keys). Seed-phrase &amp; hardware wallets not affected.</text>' +
-      '<text x="20" y="286" class="s">Attacker identity: under investigation. 11 wallets tracked live.</text>' +
-      '</svg>';
-    function node(x, y, w, h, big, small, color) {
-      return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="8" fill="#160a0a" stroke="' + color + '" stroke-width="1.5"/>' +
-        '<text x="' + (x + 16) + '" y="' + (y + 42) + '" class="' + (color === '#ff8a80' ? 'bad' : 'big') + '">' + esc(big) + '</text>' +
-        '<text x="' + (x + 16) + '" y="' + (y + 68) + '" class="s">' + esc(small) + '</text>';
-    }
-    function chainChip(x, y, name) {
-      return '<g><rect x="' + x + '" y="' + y + '" width="150" height="34" rx="17" fill="#111" stroke="#2a2a2a"/>' +
-        '<text x="' + (x + 75) + '" y="' + (y + 22) + '" text-anchor="middle" class="n">' + esc(name) + '</text></g>';
-    }
   }
 
   /* ---------- LIVE NOW — direct from the chains, every 60s ---------- */
