@@ -8,7 +8,7 @@
     {
       "address": "osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw",
       "chain": "osmosis",
-      "note": "Drain wallet, Osmosis — same key as the Cosmos Hub drain."
+      "note": "Drain wallet, Osmosis — same key as the Cosmos Hub drain. DRAIN RESUMED Nov 7 ~18:24 EST: receiving fresh victim sends again (~1 MsgSend per block from distinct wallets), uOSMO balance rising past 2.18M OSMO and climbing; still sequence 0 ($0 out)."
     },
     {
       "address": "inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g",
@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T18:11:18-05:00",
+    "lastUpdated": "2026-11-07T18:34:39-05:00",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -156,7 +156,7 @@
     ],
     "safe": "Seed-phrase and hardware wallets are NOT affected (confirmed again by Keplr Nov 7). If you used Google/Apple login: do not send new funds to that account; move any remaining liquid assets to a recovery-phrase or hardware-wallet account. Do not export the social-login account’s keys into another wallet. Keplr + Web3Auth are building a checker for whether your account is affected.",
     "started": "2026-11-06",
-    "status": "DRAIN OVER — MITIGATION ONGOING",
+    "status": "DRAIN ACTIVE AGAIN ON OSMOSIS",
     "timeline": [
       {
         "event": "Web3Auth pauses its embedded-wallet service after a security issue affecting third parties.",
@@ -305,6 +305,10 @@
       {
         "time": "2026-11-07 ~17:59 EST",
         "event": "Sith Lord second cluster wallet osmo1ctpu5… moved again: sequence 3753 → 3754 (1 send), balance fell ~36,527.54 OSMO (3,899,278.91 → 3,862,751.37 OSMO) since the 17:05 EST check — continued distribution. Traced: the send was 36,527.50 OSMO to osmo1qncvykhzq9kdpaprh4nzsznfuveuq5gs4ymx7a (tx 9A2580CD…, height 74438972, 23:00:27 UTC) — its top distribution recipient (~2.93M OSMO sent there before, per hunt part 5). Case wallet unchanged at 3,747,743.42 OSMO, seq 13010; funder unchanged, seq 29476. All 4 drain wallets still sequence 0 — $0 out."
+      },
+      {
+        "time": "2026-11-07 ~18:24-18:34 EST",
+        "event": "DRAIN RESUMED ON OSMOSIS — the Osmosis drain wallet is receiving fresh victim sends again: ~1 MsgSend per block from distinct wallets (verified in blocks 74441057-74441359; sample tx 7DF4078DDE1C1676ED9F14378879D5BAFFFAE395D8F34BAB307D0380F30F862D at height 74441359, victim osmo1gz347f4cklnzqnmgwpjtlp35c5fjzs7spr3ec0 sending gamm/IBC tokens to the drain wallet). uOSMO balance rose 2,094,511 → 2,183,819 OSMO in ~15 min (+89,308 OSMO). Cosmos Hub scan of the last 15 blocks: 0 sends to its drain wallet, balance unchanged at 532,933.18 ATOM; Injective (67,987.05 INJ) and Babylon (1,407,799.79 BBN) drain balances unchanged. All 4 drain wallets still sequence 0 — $0 out. The earlier 'drain over' finding no longer holds for Osmosis."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
@@ -319,7 +323,7 @@
         "Injective"
       ],
       "cashedOutUsd": "$0",
-      "cashedOutNote": "Nothing has left any of the 4 drain wallets — all have sequence 0 (never signed a transaction), confirmed by full block scans of all four chains Nov 7 ~17:00 UTC. The drain is OVER: last activity Nov 7 10:34 UTC on Osmosis, Injective and Babylon, and 15:33:49 UTC on Cosmos Hub. Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet."
+      "cashedOutNote": "Nothing has left any of the 4 drain wallets — all have sequence 0 (never signed a transaction). The drain is OVER on Cosmos Hub, Injective and Babylon (last activity Nov 7 10:34 UTC on Osmosis/Injective/Babylon, 15:33:49 UTC on Cosmos Hub, per full block scans). BUT ON OSMOSIS THE DRAIN HAS RESUMED (Nov 7 ~18:24 EST): fresh victim sends are arriving at the Osmosis drain wallet again and its balance is rising — still $0 OUT. Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet."
     },
     "suspiciousTxs": [
       {
