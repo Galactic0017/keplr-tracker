@@ -437,7 +437,7 @@
         <li><b>It DID receive money during the drain</b> — including 2,499,999.87 OSMO on Nov 7 ~09:30 UTC, right in the middle of the attack, from that same sender.</li>
         <li><b>The sender still holds 579.19 AKT on Osmosis</b> — a remainder, consistent with swapping AKT for OSMO in batches and leaving a little behind.</li>
         <li><b>It never sent anything to the main Osmosis drain wallet</b> (osmo1atuap…). It does not appear in our full block scans of the drain.</li>
-        <li><b>Verdict:</b> his 40,066.86 AKT theft is PROVEN on-chain — but it happened Nov 1, before the Keplr hack, so it is likely a separate theft. The case wallet is still not confirmed as a main drain wallet. The full trail is proven: 12,888 AKT → 159,744 OSMO into this wallet, and 27,178.85 AKT → 33,096.36 stablecoins, IBC’d to the attacker’s Celestia address celestia1w05l… (tx 6AB14050…).</li>
+        <li><b>Verdict:</b> his 40,066.86 AKT theft is PROVEN on-chain — but it happened Nov 1, before the Keplr hack, so it is likely a separate theft. The case wallet is still not confirmed as a main drain wallet. The full trail is proven: 12,888 AKT → 159,744 OSMO into this wallet, and 27,178.85 AKT → 33,096.36 TIA, IBC’d to the attacker’s Celestia address celestia1w05l… (tx 6AB14050…).</li>
       </ul>
     </div>
     <h2>Live <span>map</span> — the money trail, traced on-chain</h2>
@@ -484,12 +484,12 @@
     <div class="stage">
       <div class="stagelabel">7 · WHERE THE REST WENT — CELESTIA</div>
       <div class="mid" style="word-break:break-all">celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z</div>
-      <div class="sm">The other 27,178.85 AKT was swapped to <b style="color:#f2e9e4">33,096.36 stablecoins</b> and IBC’d here Nov 2 00:20:58 UTC (tx 6AB14050…, height 73820352). Same key as the Osmosis swapper. Now holds only ~8.28 TIA (seq 16) — most has moved on; the onward destination is the open lead. Tracked live on the Wallets tab. <a href="https://www.mintscan.io/celestia/address/celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z" target="_blank" rel="noopener">Open in Mintscan</a></div>
+      <div class="sm">The other 27,178.85 AKT was swapped to <b style="color:#f2e9e4">33,096.36 TIA</b> and IBC’d here Nov 2 00:20:58 UTC (tx 6AB14050…, height 73820352). Same key as the Osmosis swapper. Now holds only ~8.28 TIA (seq 16) — most has moved on; the onward destination is the open lead. Tracked live on the Wallets tab. <a href="https://www.mintscan.io/celestia/address/celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z" target="_blank" rel="noopener">Open in Mintscan</a></div>
     </div>
     <h2>What he needs <span>to know</span></h2>
     <div class="panel"><ul class="checklist" style="font-size:14px">
       <li>His theft is <b>proven and traced to Osmosis</b> — but it happened Nov 1, five days before the Keplr hack. It is likely a separate theft, and his funds did <b>not</b> go to the main drain wallets (the 4 on the Wallets tab).</li>
-      <li>The final hop — from his swapped AKT to this case wallet — is now <b>proven</b>: 9 lockstep tx pairs tie osmo1w05l… → the funder → this wallet, and the full 40,066.85 AKT is accounted for (159,744 OSMO here + 33,096.36 stablecoins on Celestia). The 7xpfv “marker” turned out to be the chains’ fee_collector module account, not an operator tag.</li>
+      <li>The final hop — from his swapped AKT to this case wallet — is now <b>proven</b>: 9 lockstep tx pairs tie osmo1w05l… → the funder → this wallet, and the full 40,066.85 AKT is accounted for (159,744 OSMO here + 33,096.36 TIA on Celestia). The 7xpfv “marker” turned out to be the chains’ fee_collector module account, not an operator tag.</li>
       <li>His 40,066 AKT accounts for 159,744 OSMO of the 3.85M OSMO in this wallet — proven on-chain. The rest came from other sources: the funder has forwarded OSMO here since ~Sep 19.</li>
       <li>Unlike the main drain wallets (sequence 0, frozen in place), this wallet is <b>active and can move money</b> — that is why it is tracked live here.</li>
       <li>$0 has moved out of the main drain wallets. The drain is over. Freezes are in motion.</li>
