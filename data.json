@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T18:00:00-05:00",
+    "lastUpdated": "2026-11-07T18:11:18-05:00",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -304,7 +304,7 @@
       },
       {
         "time": "2026-11-07 ~17:59 EST",
-        "event": "Sith Lord second cluster wallet osmo1ctpu5… moved again: sequence 3753 → 3754 (1 send), balance fell ~36,527.54 OSMO (3,899,278.91 → 3,862,751.37 OSMO) since the 17:05 EST check — continued distribution. Destination of the send not yet identified (Osmosis tx index unavailable). Case wallet unchanged at 3,747,743.42 OSMO, seq 13010; funder unchanged, seq 29476. All 4 drain wallets still sequence 0 — $0 out."
+        "event": "Sith Lord second cluster wallet osmo1ctpu5… moved again: sequence 3753 → 3754 (1 send), balance fell ~36,527.54 OSMO (3,899,278.91 → 3,862,751.37 OSMO) since the 17:05 EST check — continued distribution. Traced: the send was 36,527.50 OSMO to osmo1qncvykhzq9kdpaprh4nzsznfuveuq5gs4ymx7a (tx 9A2580CD…, height 74438972, 23:00:27 UTC) — its top distribution recipient (~2.93M OSMO sent there before, per hunt part 5). Case wallet unchanged at 3,747,743.42 OSMO, seq 13010; funder unchanged, seq 29476. All 4 drain wallets still sequence 0 — $0 out."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
