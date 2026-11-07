@@ -27,7 +27,7 @@
     "affected": "Keplr wallets created with Google or Apple login. Early estimate: about 20% of social-login accounts affected, only a fraction of those actually drained.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Security issue at Web3Auth, the social-login provider Keplr uses. Keplr co-founder Josh Lee says the incident originated at Web3Auth, not in Keplr's own code. The full technical root cause has not been published yet.",
-    "lastUpdated": "2026-11-07T10:00:00-05:00",
+    "lastUpdated": "2026-11-07T10:15:00-05:00",
     "links": [
       {
         "label": "Keplr on X (official updates)",
@@ -75,23 +75,19 @@
         "time": "2026-11-07 10:29 UTC"
       },
       {
-        "event": "Community trackers report $4.5M+ taken from 41,500+ wallets across Cosmos Hub, Osmosis and Injective; $0 cashed out so far.",
+        "event": "No confirmed loss total or drained-wallet count has been published by Keplr or Web3Auth. Earlier circulating figures were wrong and are not used here.",
         "time": "2026-11-07"
       }
     ],
     "title": "Keplr / Web3Auth Incident",
     "totals": {
-      "cashedOutNote": "None of the stolen funds has moved / been cashed out yet, per the tracker.",
-      "cashedOutUsd": "$0",
-      "chains": [
-        "Cosmos Hub",
-        "Osmosis",
-        "Injective"
-      ],
-      "takenNote": "Tracker-reported figure (from a community tracker image), at current prices. Keplr/Web3Auth have NOT confirmed a final loss total in their official statements.",
-      "takenUsd": "$4.5M+",
-      "walletsDrained": "41,500+",
-      "walletsNote": "Tracker-reported count of drained wallets."
+      "cashedOutNote": "Unknown — no official statement on whether any stolen funds have moved or been cashed out. The $0 figure from the circulating image is wrong and has been removed.",
+      "cashedOutUsd": "Unknown",
+      "chains": [],
+      "takenNote": "No loss total has been confirmed. An image circulating earlier reported $4.5M+ — that figure is wrong and has been removed. Keplr/Web3Auth have not published a final total.",
+      "takenUsd": "Not confirmed",
+      "walletsDrained": "Not confirmed",
+      "walletsNote": "No drained-wallet count has been confirmed. The 41,500+ figure from the circulating image is wrong and has been removed."
     }
   },
   "watchlist": []

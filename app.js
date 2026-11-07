@@ -43,10 +43,10 @@
     el('statusBadge').textContent = inc.status;
     el('updatedLine').textContent = 'Last data update: ' + shortTime(inc.lastUpdated) + ' • live balances refresh every 60s';
     el('statCards').innerHTML =
-      statCard(t.takenUsd, 'taken so far, at current prices') +
+      statCard(t.takenUsd, 'total taken') +
       statCard(t.walletsDrained, 'wallets drained') +
-      statCard(String(t.chains.length), 'chains: ' + esc(t.chains.join(', '))) +
-      statCard(t.cashedOutUsd, 'cashed out yet: none of it has moved');
+      statCard(t.chains.length ? String(t.chains.length) : '?', t.chains.length ? 'chains: ' + esc(t.chains.join(', ')) : 'chains affected: not confirmed') +
+      statCard(t.cashedOutUsd, 'cashed out yet');
     el('takenNote').textContent = t.takenNote + ' ' + t.walletsNote + ' ' + t.cashedOutNote;
     el('controlList').innerHTML =
       kv('Cause', esc(inc.cause)) +
@@ -62,7 +62,7 @@
       return '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + '</a></li>';
     }).join('');
     el('footerNote').textContent = 'Sources: Keplr and Web3Auth official notices (Nov 6–7, 2026), Keplr co-founder Josh Lee, MBTrace, and community tracker figures. ' +
-      'Dollar and wallet counts are tracker-reported, not officially confirmed totals. Live balances come from public chain APIs; if one fails, use the explorer link on each wallet card.';
+      'No loss total, wallet count, or cashed-out figure has been officially confirmed. Live balances come from public chain APIs; if one fails, use the explorer link on each wallet card.';
     renderAttackers();
     renderFlowMap();
   }
@@ -93,19 +93,16 @@
       '<marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#ff8a8a"/></marker></defs>' +
       '<style>.fl { stroke-dasharray: 6 6; animation: dash 1.2s linear infinite; } @keyframes dash { to { stroke-dashoffset: -12; } } ' +
       '.n { font: 700 15px sans-serif; fill: #e8e8e8; } .s { font: 12px sans-serif; fill: #9a9a9a; } .big { font: 800 22px sans-serif; fill: #b8f135; } .bad { font: 800 22px sans-serif; fill: #ff8a8a; }</style>' +
-      node(20, 30, 190, 96, t.walletsDrained + ' wallets', 'drained victims', '#b8f135') +
+      node(20, 30, 190, 96, t.walletsDrained, 'wallets drained', '#b8f135') +
       node(265, 30, 190, 96, 'ATTACKER', 'wallets unknown', '#ff8a8a') +
-      node(510, 30, 190, 96, '$0 cashed out', 'nothing has moved', '#8a8a8a') +
+      node(510, 30, 190, 96, 'Unknown', 'cashed out: unconfirmed', '#8a8a8a') +
       '<line x1="210" y1="78" x2="258" y2="78" stroke="#b8f135" stroke-width="3" class="fl" marker-end="url(#arr)"/>' +
       '<line x1="455" y1="78" x2="503" y2="78" stroke="#555" stroke-width="3" stroke-dasharray="3 6" marker-end="url(#arrR)"/>' +
-      '<text x="235" y="66" class="s">' + esc(t.takenUsd) + ' taken</text>' +
-      '<text x="478" y="66" class="s">blocked / held</text>' +
-      chainChip(30, 170, 'Cosmos Hub') + chainChip(200, 170, 'Osmosis') + chainChip(370, 170, 'Injective') +
-      '<line x1="120" y1="168" x2="120" y2="130" stroke="#555" stroke-width="2"/>' +
-      '<line x1="280" y1="168" x2="280" y2="130" stroke="#555" stroke-width="2"/>' +
-      '<line x1="450" y1="168" x2="450" y2="130" stroke="#555" stroke-width="2"/>' +
-      '<text x="20" y="220" class="s">Money in: victims lose funds to the attacker wallets above.</text>' +
-      '<text x="20" y="242" class="s">Money out: $0 so far — the stolen funds are sitting still, which is why they can still be traced.</text>' +
+      '<text x="235" y="66" class="s">Total lost: ' + esc(t.takenUsd) + '</text>' +
+      '<text x="478" y="66" class="s">destination unknown</text>' +
+      '<text x="20" y="190" class="s">Chains affected: not officially confirmed.</text>' +
+      '<text x="20" y="220" class="s">Money in: victims lost funds to attacker wallets (not yet identified).</text>' +
+      '<text x="20" y="242" class="s">Money out: unconfirmed — no official word on whether funds moved or were cashed out.</text>' +
       '<text x="20" y="264" class="s">Cause: Web3Auth security issue (social-login keys). Seed-phrase &amp; hardware wallets not affected.</text>' +
       '<text x="20" y="286" class="s">Attacker identity: unknown. No verified attacker addresses published yet.</text>' +
       '</svg>';
