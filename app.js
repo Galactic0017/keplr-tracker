@@ -44,7 +44,7 @@
     el('statusBadge').textContent = inc.status;
     el('updatedLine').textContent = 'Last data update: ' + shortTime(inc.lastUpdated) + ' • live balances refresh every 60s';
     el('statCards').innerHTML =
-      statCard(t.takenUsd, 'total taken — per HooTang Clan, Nov 7') +
+      statCard(t.takenUsd, 'total taken — on-chain analysis, Nov 7') +
       statCard(t.walletsDrained, 'wallets drained') +
       statCard(String(t.chains.length), 'chains: ' + esc(t.chains.join(', '))) +
       statCard(t.cashedOutUsd, 'cashed out yet');
@@ -61,7 +61,7 @@
     el('linkList').innerHTML = inc.links.map(function (l) {
       return '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + '</a></li>';
     }).join('');
-    el('footerNote').textContent = 'Sources: Keplr and Web3Auth official notices (Nov 6–7, 2026), Keplr co-founder Josh Lee, MBTrace, and HooTang Clan on-chain analysis (Nov 7). Totals and wallet counts are HooTang Clan’s figures. Live balances come from public chain APIs; if one fails, use the explorer link on each wallet card.';
+    el('footerNote').textContent = 'Sources: Keplr and Web3Auth official notices (Nov 6–7, 2026), Keplr co-founder Josh Lee, MBTrace, and community on-chain analysis (Nov 7). Totals and wallet counts are from the on-chain analysis. Live balances come from public chain APIs; if one fails, use the explorer link on each wallet card.';
     renderAttackers();
     renderSuspiciousTxs();
     renderFlowMap();
