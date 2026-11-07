@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keplr / Web3Auth Incident Tracker</title>
+<meta name="description" content="Live tracker for the Keplr / Web3Auth incident: how much was drained, wallets affected, where the money is going, and wallet watch.">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #050505; color: #e8e8e8; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.5; }
+  a { color: #b8f135; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 20px 16px 60px; }
+  header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 18px 0 6px; }
+  h1 { font-size: 26px; letter-spacing: .3px; }
+  h1 span { color: #b8f135; }
+  .status { background: #2a0a0a; border: 1px solid #ff5252; color: #ff8a8a; font-weight: 700; font-size: 13px; padding: 6px 12px; border-radius: 999px; }
+  .sub { color: #9a9a9a; font-size: 14px; margin-bottom: 20px; }
+  .sub b { color: #e8e8e8; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 18px 0 8px; }
+  .card { background: #111; border: 1px solid #2a2a2a; border-radius: 18px; padding: 20px; }
+  .card .num { color: #b8f135; font-size: 38px; font-weight: 800; line-height: 1.1; }
+  .card .lbl { color: #bdbdbd; font-size: 15px; margin-top: 6px; }
+  .note { color: #8a8a8a; font-size: 13px; margin: 4px 0 18px; }
+  h2 { font-size: 20px; margin: 30px 0 10px; }
+  h2 span { color: #b8f135; }
+  .panel { background: #111; border: 1px solid #2a2a2a; border-radius: 18px; padding: 20px; margin-bottom: 14px; }
+  .panel p { margin-bottom: 10px; }
+  .panel p:last-child { margin-bottom: 0; }
+  .kv { display: grid; grid-template-columns: 150px 1fr; gap: 6px 12px; font-size: 15px; }
+  .kv dt { color: #9a9a9a; }
+  .kv dd { word-break: break-word; }
+  .unknown { color: #ff8a8a; font-weight: 700; }
+  .safe { color: #b8f135; font-weight: 700; }
+  #flowmap { width: 100%; overflow-x: auto; }
+  #flowmap svg { min-width: 680px; width: 100%; height: auto; display: block; }
+  .wallet { background: #111; border: 1px solid #2a2a2a; border-radius: 18px; padding: 18px 20px; margin-bottom: 14px; }
+  .wallet h3 { font-size: 16px; margin-bottom: 4px; }
+  .wallet .addr { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; color: #b8f135; word-break: break-all; }
+  .bal { font-size: 22px; font-weight: 800; margin: 10px 0 2px; }
+  .bal small { font-size: 13px; color: #9a9a9a; font-weight: 400; }
+  .txs { margin-top: 12px; font-size: 14px; }
+  .txs table { width: 100%; border-collapse: collapse; }
+  .txs th, .txs td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #222; vertical-align: top; }
+  .txs th { color: #9a9a9a; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
+  .in { color: #b8f135; font-weight: 700; }
+  .out { color: #ff8a8a; font-weight: 700; }
+  .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .muted { color: #8a8a8a; }
+  form.add { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+  form.add input { flex: 1 1 260px; background: #0a0a0a; border: 1px solid #333; color: #e8e8e8; border-radius: 10px; padding: 10px 12px; font-size: 14px; }
+  form.add input::placeholder { color: #666; }
+  button { background: #b8f135; color: #111; border: 0; border-radius: 10px; padding: 10px 16px; font-size: 14px; font-weight: 700; cursor: pointer; }
+  button.ghost { background: transparent; color: #b8f135; border: 1px solid #b8f135; padding: 6px 10px; font-size: 12px; }
+  .timeline { list-style: none; }
+  .timeline li { padding: 10px 0 10px 18px; border-left: 2px solid #b8f135; margin-left: 6px; position: relative; }
+  .timeline li::before { content: ""; position: absolute; left: -7px; top: 16px; width: 12px; height: 12px; background: #b8f135; border-radius: 50%; }
+  .timeline time { color: #9a9a9a; font-size: 13px; display: block; }
+  .checklist li { margin: 0 0 8px 20px; }
+  .links li { margin: 0 0 8px 20px; }
+  .refresh { font-size: 13px; color: #8a8a8a; }
+  footer { margin-top: 36px; color: #666; font-size: 13px; }
+  @media (max-width: 640px) { .kv { grid-template-columns: 1fr; } .card .num { font-size: 30px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>KEPLR / WEB3AUTH <span>INCIDENT TRACKER</span></h1>
+    <span class="status" id="statusBadge">LOADING…</span>
+  </header>
+  <p class="sub">Live watch on the Nov 6–7, 2026 hack: how much was taken, which wallets were drained, where the money is going, and who is behind it. <span class="refresh" id="updatedLine"></span></p>
+
+  <div class="cards" id="statCards"></div>
+  <p class="note" id="takenNote"></p>
+
+  <h2>WHO CONTROLS <span>WHAT</span></h2>
+  <div class="panel"><dl class="kv" id="controlList"></dl></div>
+
+  <h2>MONEY FLOW <span>MAP</span></h2>
+  <div class="panel"><div id="flowmap"></div>
+    <p class="note" id="flowNote" style="margin:12px 0 0"></p>
+  </div>
+
+  <h2>WALLET <span>WATCH</span></h2>
+  <p class="sub">Live balances + recent transactions, refreshed every 60 seconds. Add any Cosmos, Osmosis or Injective address to watch it. <button class="ghost" id="refreshBtn" type="button">Refresh now</button></p>
+  <div id="watchlist"></div>
+  <form class="add" id="addForm">
+    <input id="addAddr" type="text" placeholder="Paste a wallet address (cosmos1…, osmo1…, inj1…)" autocomplete="off" spellcheck="false">
+    <input id="addLabel" type="text" placeholder="Label (optional)" autocomplete="off" spellcheck="false">
+    <button type="submit">Track wallet</button>
+  </form>
+  <p class="note" id="addMsg"></p>
+
+  <h2>ATTACKER <span>WALLETS</span></h2>
+  <div class="panel" id="attackerPanel"></div>
+
+  <h2>TIMELINE</h2>
+  <div class="panel"><ul class="timeline" id="timeline"></ul></div>
+
+  <h2>STAY <span>SAFE</span></h2>
+  <div class="panel"><ul class="checklist">
+    <li><b>Do NOT send new funds</b> to any wallet created with Google or Apple login until Keplr says it is safe.</li>
+    <li><b>Do NOT re-import or recreate</b> a Google/Apple-login Keplr account anywhere.</li>
+    <li><b>Seed-phrase and hardware wallets are safe</b> — move funds there if you can do it from a safe wallet.</li>
+    <li><b>Trust only official Keplr / Web3Auth channels.</b> Ignore every DM offering “recovery” — they are scams.</li>
+    <li><b>Check activity read-only</b> in an explorer (links below). Reading never needs a wallet connection or a signature.</li>
+  </ul></div>
+
+  <h2>OFFICIAL <span>LINKS</span></h2>
+  <div class="panel"><ul class="links" id="linkList"></ul></div>
+
+  <footer id="footerNote"></footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
