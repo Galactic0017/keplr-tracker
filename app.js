@@ -15,6 +15,7 @@
   function chainFor(addr) {
     if (/^osmo1/i.test(addr)) return chains.osmosis || chains.cosmos;
     if (/^inj1/i.test(addr)) return chains.injective || chains.cosmos;
+    if (/^bbn1/i.test(addr)) return chains.babylon || chains.cosmos;
     return chains.cosmos;
   }
   function mintscanAddr(chain, addr) { return chain.explorer + '/address/' + addr; }
@@ -223,8 +224,8 @@
       ev.preventDefault();
       var addr = el('addAddr').value.trim();
       var label = el('addLabel').value.trim();
-      if (!/^(cosmos1|osmo1|inj1)[a-z0-9]{20,}$/i.test(addr)) {
-        el('addMsg').textContent = 'That does not look like a Cosmos, Osmosis or Injective address. Paste the full address (starts with cosmos1, osmo1 or inj1).';
+      if (!/^(cosmos1|osmo1|inj1|bbn1)[a-z0-9]{20,}$/i.test(addr)) {
+        el('addMsg').textContent = 'That does not look like a Cosmos, Osmosis, Injective or Babylon address. Paste the full address (starts with cosmos1, osmo1, inj1 or bbn1).';
         return;
       }
       saveExtra({ address: addr, label: label || addr, chain: chainFor(addr).id });
