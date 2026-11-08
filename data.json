@@ -8,7 +8,7 @@
     {
       "address": "osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw",
       "chain": "osmosis",
-      "note": "Drain wallet, Osmosis — same key as the Cosmos Hub drain. DRAIN RESUMED Nov 7 ~18:24 EST (fresh victim sends, ~1/block), then STALLED: balance exactly flat at 2,203,944.17 OSMO since ~18:48 EST — re-verified still flat at ~19:13 EST; still sequence 0 ($0 out)."
+      "note": "Drain wallet, Osmosis — same key as the Cosmos Hub drain. DRAIN RESUMED Nov 7 ~18:24 EST (fresh victim sends, ~1/block), then STALLED: balance exactly flat at 2,203,944.17 OSMO since ~18:48 EST — re-verified still flat at ~19:44 EST; still sequence 0 ($0 out)."
     },
     {
       "address": "inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g",
@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T19:22:27-05:00",
+    "lastUpdated": "2026-11-07T19:44:00-05:00",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -337,6 +337,10 @@
       {
         "time": "2026-11-07 ~19:13-19:16 EST",
         "event": "Sith cluster MOVED again: ctpu sent ~824,557.54 OSMO in one send (balance 3,862,751.37 -> 3,038,193.83 OSMO, seq 3754 -> 3755) and the case wallet sent ~37,051.43 OSMO (balance 3,747,743.42 -> 3,710,691.99 OSMO, seq 13010 -> 13011). Biggest single ctpu send yet. TRACED by block scan: ctpu -> osmo1zzq607... (the 10.7M mega-holder) 824,557.50 OSMO, tx 4E51F626A275C99F4E3AD2D53C41BD71737C2F8C5FEC60B009893871C72404E2, height 74444001, Nov 8 00:09:55 UTC — that wallet now holds ~11.56M OSMO, confirming it is cluster consolidation, not an exchange. Case wallet -> osmo1qncvyk... 37,051.40 OSMO, tx 0D4A9FD493A9EE74959AEFDF993D645291A3A994CF10FB1BE5FBD2688C4E0902, height 74444431, Nov 8 00:15:52 UTC — qncvyk is ctpu's top distribution recipient, not an exchange. Main drain wallets unchanged and quiet."
+      },
+      {
+        "time": "2026-11-07 ~19:44 EST",
+        "event": "Sith cluster MOVED again — round trip: ctpu received ~925,188.96 OSMO back from its top recipient osmo1zzq607… (balance 3,038,193.83 -> 3,963,382.79 OSMO, seq unchanged 3755 — inflow only). zzq607 sent once (seq 68 -> 69) and fell to 10,637,479.84 OSMO; the amounts reconcile exactly (outflow 925,189.02 = inflow 925,188.96 + 0.06 fee) — cluster consolidation, not an exchange. Tx hash not obtained (Osmosis tx index rejects the query). Case wallet unchanged at 3,710,691.99 OSMO, seq 13011; funder unchanged at 4,615.53 OSMO, seq 29476. All 4 drain wallets still sequence 0 — $0 out; Osmosis drain still flat at 2,203,944.17 OSMO (inflow stalled since ~23:40 UTC)."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
