@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-08T04:47:25Z",
+    "lastUpdated": "2026-11-08T04:50:01Z",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -376,7 +376,7 @@
       },
       {
         "time": "2026-11-08 ~04:47 UTC",
-        "event": "Sith Lord case wallet osmo10p7dg… moved again: sequence 13012 → 13013 (1 send), balance fell ~29,398.43 OSMO (3,248,927.69 → 3,219,529.26 OSMO) since the 04:12 UTC check — continued distribution. Destination not identified (Osmosis tx index unavailable). ctpu unchanged at 3,860,558.47 OSMO, seq 3757; funder unchanged at 4,615.83 OSMO, seq 29479. All 4 drain wallets still sequence 0 — $0 out; Osmosis drain still flat at 2,206,358.40 OSMO (no new victim sends since ~01:30 UTC); Cosmos drain unchanged at 532,933.18 ATOM; Babylon drain unchanged at 1,407,799.79 BBN. Injective drain balance unverified again this run (Injective LCD unreachable). Web search: still no post-mortem, no official loss total, no new attacker addresses, no Web3Auth recovery-address list."
+        "event": "Sith Lord case wallet osmo10p7dg… moved again: sequence 13012 → 13013 (1 send), balance fell ~29,398.43 OSMO (3,248,927.69 → 3,219,529.26 OSMO) since the 04:12 UTC check — continued distribution. Destination not identified (Osmosis tx index unavailable). ctpu unchanged at 3,860,558.47 OSMO, seq 3757; funder unchanged at 4,615.83 OSMO, seq 29479. All 4 drain wallets still sequence 0 — $0 out; Osmosis drain still flat at 2,206,358.40 OSMO (no new victim sends since ~01:30 UTC); Cosmos drain unchanged at 532,933.18 ATOM; Babylon drain unchanged at 1,407,799.79 BBN. Injective drain verified unchanged at 67,987.05 INJ (Keplr LCD; publicnode LCD unreachable). Web search: still no post-mortem, no official loss total, no new attacker addresses, no Web3Auth recovery-address list."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
