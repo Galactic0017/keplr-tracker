@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-08T03:07:17Z",
+    "lastUpdated": "2026-11-08T04:07:59Z",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -365,6 +365,10 @@
       {
         "time": "2026-11-08 ~03:05 UTC",
         "event": "Sith Lord cluster MOVED again — both wallets in one check: case wallet osmo10p7dg… sent once (seq 13011 → 13012), balance fell ~462,872.43 OSMO (3,710,691.99 → 3,247,819.56 OSMO) — its biggest single-send drop yet; ctpu osmo1ctpu5… sent once (seq 3756 → 3757), balance fell ~92,476.54 OSMO (3,953,035.01 → 3,860,558.47 OSMO) — continued distribution. Destinations not identified (Osmosis tx index returns 403). Funder unchanged at 4,615.53 OSMO, seq 29476. All 4 drain wallets still sequence 0 — $0 out; Osmosis drain still flat at 2,206,358.40 OSMO; Cosmos drain unchanged at 532,933.18 ATOM; Babylon drain unchanged at 1,407,799.79 BBN. Injective drain balance unverified this run (Injective LCD unreachable)."
+      },
+      {
+        "time": "2026-11-08 ~04:05 UTC",
+        "event": "Sith cluster moved again — small activity: case wallet osmo10p7dg… received ~899.51 OSMO inflow (balance 3,247,819.56 → 3,248,719.07 OSMO, seq unchanged 13012 — no sends, so this is money arriving; sender not identified). The funder osmo13pet0… signed 1 tx (seq 29476 → 29477), balance essentially flat at 4,615.63 OSMO — destination/amount not identified (Osmosis tx index unavailable). ctpu unchanged at 3,860,558.47 OSMO, seq 3757. All 4 drain wallets still sequence 0 — $0 out; Osmosis drain still flat at 2,206,358.40 OSMO (verified on two LCD endpoints)."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
