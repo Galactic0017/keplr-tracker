@@ -171,6 +171,7 @@
     <button class="tabbtn" role="tab" data-tab="hit" aria-selected="false">Were You Hit?<small>Compromised? Start here</small></button>
     <button class="tabbtn" role="tab" data-tab="sith" aria-selected="false">Sith Lord's Wallet<small>Traced live · Nov 1 theft · 40,066 AKT</small></button>
     <button class="tabbtn" role="tab" data-tab="origin" aria-selected="false">Where It Started<small>The origin chain, A to Z</small></button>
+    <button class="tabbtn" role="tab" data-tab="live" aria-selected="false">Live Activity<small>Every move, as it happens</small></button>
   </nav>
 
   <!-- TAB 1 : THE ATTACK -->
@@ -544,6 +545,39 @@
       <div class="sm">The drain started <b style="color:#f2e9e4">Nov 6 20:52:37 UTC</b> with an operator rehearsal, and the operator funding chain runs back to <b style="color:#f2e9e4">Aug 17, 2026</b> &mdash; then the public record ends. The trail does not end at one wallet: it dissolves into two old, hyperactive wallets whose depositors cannot be separated on-chain. The next step is an archive node.</div>
     </div>
     <p class="note" style="margin-top:14px">The funding wallets above (jr9v, t5u0 and the wallets that funded them) are <b>not</b> listed as attacker wallets &mdash; their identities are unverified and they may be exchanges or pass-throughs. Only the 13 wallets on the Wallets tab are tracked as attacker wallets.</p>
+  </section>
+
+  <section class="tabpanel" id="tab-live" role="tabpanel">
+    <p class="tabdesc">Every movement we track, in one place. Live balances for every wallet that matters, and the full feed of everything that has happened &mdash; newest first. Balances refresh every 60 seconds, straight from the chains.</p>
+    <div class="stage">
+      <div class="stagelabel">LIVE NOW &mdash; THE MAIN HACK DRAIN WALLETS</div>
+      <div class="minigrid">
+        <div class="minicard"><div class="c">COSMOS HUB</div><div class="a">cosmos1atuap&hellip;qtnmwu</div><div class="v js-liveAtom">&mdash; ATOM</div><div class="s">live from the chain</div></div>
+        <div class="minicard"><div class="c">OSMOSIS</div><div class="a">osmo1atuap&hellip;gsqtcw</div><div class="v js-liveOsmo">&mdash; OSMO</div><div class="s">live from the chain</div></div>
+        <div class="minicard"><div class="c">INJECTIVE</div><div class="a">inj1lqmd&hellip;vt7g</div><div class="v js-liveInj">&mdash; INJ</div><div class="s">live from the chain</div></div>
+        <div class="minicard"><div class="c">BABYLON</div><div class="a">bbn1atuap&hellip;h4z239</div><div class="v js-liveBbn">&mdash; BBN</div><div class="s">live from the chain</div></div>
+      </div>
+      <div class="sm" style="margin-top:8px">Outflows: <b style="color:#f2e9e4" class="js-liveSeq">&mdash;</b> <span class="js-liveSeqSub"></span></div>
+    </div>
+    <div class="stage">
+      <div class="stagelabel">LIVE NOW &mdash; SITH LORD CLUSTER + WATCHED WALLETS</div>
+      <div class="minigrid">
+        <div class="minicard"><div class="c">CASE WALLET</div><div class="a">osmo10p7dg&hellip;g67c4hx</div><div class="v js-caseOsmo">&mdash; OSMO</div><div class="s js-caseSeq">seq &mdash;</div></div>
+        <div class="minicard"><div class="c">SECOND HUB (CTPU)</div><div class="a">osmo1ctpu5&hellip;gjzu9k</div><div class="v js-liveCtpuOsmo">&mdash; OSMO</div><div class="s js-liveCtpuSeq">seq &mdash;</div></div>
+        <div class="minicard"><div class="c">FUNDER / RELAY</div><div class="a">osmo13pet0&hellip;eaad94</div><div class="v js-caseFundOsmo">&mdash; OSMO</div><div class="s js-caseFundSeq">seq &mdash;</div></div>
+        <div class="minicard"><div class="c">MEGA-HOLDER 1</div><div class="a">osmo1zzq607&hellip;06lmka</div><div class="v js-liveZzqOsmo">&mdash; OSMO</div><div class="s">likely cluster consolidation</div></div>
+        <div class="minicard"><div class="c">MEGA-HOLDER 2</div><div class="a">osmo16desyyz&hellip;uvmr4v</div><div class="v js-live16dOsmo">&mdash; OSMO</div><div class="s">likely cluster consolidation</div></div>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="stagelabel">THE FEED &mdash; EVERYTHING THAT HAS HAPPENED, NEWEST FIRST</div>
+      <ol class="timeline" id="liveFeed"></ol>
+    </div>
+    <div class="stage">
+      <div class="stagelabel">WHAT WE WATCH FOR</div>
+      <div class="sm">&middot; Any outflow from the 4 drain wallets &mdash; that is the moment the stolen money starts moving.<br>&middot; Any send from the case wallet, ctpu, the funder or the relay &mdash; the Sith Lord cluster distributing.<br>&middot; Any send to a confirmed exchange address &mdash; that is the freeze moment (Sith Lord files the police report then).<br>&middot; Any movement from the two mega-holders (10.7M / 6.8M OSMO).<br>&middot; Any new victim sends into the Osmosis drain wallet &mdash; the drain starting again.</div>
+    </div>
+    <p class="note">The feed is the tracker's timeline, newest first. New entries appear here as soon as they are verified and pushed &mdash; usually within 5 minutes of the move.</p>
   </section>
 
   <footer id="footerNote"></footer>
