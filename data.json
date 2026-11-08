@@ -120,7 +120,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-08T07:00:43Z",
+    "lastUpdated": "2026-11-08T11:39:37Z",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -446,6 +446,14 @@
       {
         "time": "2026-11-08 06:58 UTC",
         "event": "Checker wording corrected: the tracker now attributes the recovery-vault claim to Web3Auth instead of stating control as fact. What is verified on-chain: the 12 addresses, their balances, and $0 out of every vault (all seq 0). What is NOT verifiable on-chain: who holds the keys. Web3Auth's claim that it controls the vaults comes from its official X post (Nov 8 06:23 UTC) and Josh Lee (Nov 8 06:02 UTC). Open question: the LSM batch fee was paid by the known attacker fee-payer wallet, which leaves the recovery claim unproven."
+      },
+      {
+        "time": "2026-11-08 ~09:35 UTC",
+        "event": "Sith cluster — ctpu moved again: sequence 3757 → 3759 (2 sends), balance fell ~71,743.46 OSMO (3,860,558.47 → 3,788,815.01 OSMO) since the 07:26 UTC check — continued distribution. The two sends in that window are not yet traced to tx hashes (they landed before the scanned block range). Case wallet took in ~1,435.79 OSMO only (balance 3,204,128.73 OSMO, seq 13014 — no sends); funder signed 5 txs, balance flat ~4,616.33 OSMO. All 4 drain wallets still sequence 0 — $0 out."
+      },
+      {
+        "time": "2026-11-08 ~09:35–10:54 UTC",
+        "event": "Sith cluster MOVED again — fully traced by block scan (heights 74484700–74490549): ctpu sent 63,680.50 OSMO to osmo1qncvyk… (tx BEC44E39843C67B7D8EFA414BAD3AACB4A196D3F8CA5530DC42C9FE65DA2BF31, height 74484848, 09:35:30 UTC) and 78,401.50 OSMO to osmo15qyz6e… (tx 94D59E03074254AAB7E64D0F0364A41D652EFA2784381B6606B9AC51A0880CEE, height 74490168, 10:49:39 UTC) — both known distribution recipients, not exchanges. The case wallet sent 42,330.40 OSMO to the relay osmo180qdt2… (tx 039D0B3DDB607B97C72C5D4F09CFEEE2B12A39DBF3F73FF09601037E75C80872, height 74490320, 10:51:52 UTC) — its first outflow since 05:18 UTC — and the relay forwarded 42,330.36 OSMO to ctpu 18 seconds later (tx 4204ED35BB000C3CFF69AD2B3688207AA7334445D4D010E73B8EF6A403F28AC4, height 74490342, 10:52:10 UTC): the case → relay → ctpu pipeline is live again. A second relay pass-through followed: new wallet osmo155svs6… sent 33,176.73 OSMO to the relay (tx E5134990E23A2A6E55FFE6C4F04504E798B0408140B7ED5F3EB0CB7229B0B575, height 74490447, 10:53:40 UTC), forwarded to ctpu as 33,176.69 OSMO 27 seconds later (tx 67CC1E405B0887235F1D23BA6B2D6A04382DBD5C36ACDE3403C1881344F568F9, height 74490478, 10:54:07 UTC). The funder topped the case wallet up with 1,320.18 OSMO (tx A9F6B90A64F257E207E9A67956FB32C6EDB679BA4D8BE4491C78E4C1A7048467, height 74490427, 10:53:22 UTC) after receiving 1,320.31 OSMO from new wallet osmo152fwq… (tx 69049925DB792DE9F2AFF4A02A2D6ADADA0CC6F5A2D7D960B7F756827A135189, height 74490318, 10:51:50 UTC) — lockstep in/out minus 0.13 OSMO, the funder's usual pass-through. New leads to watch: osmo152fwqsla5lxfu3sgy65naf7w2up0za8fd54ght and osmo155svs6sgxe55rnvs6ghprtqu0mh69kehtguak3. Net since the 09:35 UTC check: ~107,585 OSMO out of the case wallet + ctpu combined (balances reconcile exactly with the traced txs + fees). Case wallet now 3,163,118.48 OSMO (seq 13015); ctpu 3,722,239.99 OSMO (seq 3761); funder ~4,616.43 OSMO (seq 29485); relay empty again. All 4 drain wallets still sequence 0 — $0 out; Osmosis drain still flat at 2,206,358.40 OSMO (no new victim sends since ~01:30 UTC)."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
