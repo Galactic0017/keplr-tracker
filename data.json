@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-07T21:11:00-05:00",
+    "lastUpdated": "2026-11-08T02:11:00Z",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -351,8 +351,8 @@
         "event": "Osmosis drain wallet moved UP again: balance rose ~2,414.23 OSMO (2,203,944.17 -> 2,206,358.40 OSMO) since the 20:22 EST check, after sitting exactly flat for ~1.5 hours — fresh victim sends trickling in again. Senders not identified (Osmosis tx index unavailable). Still sequence 0 — $0 out. Cosmos Hub (532,933.18 ATOM, seq 0), Injective (67,987.05 INJ) and Babylon (1,407,799.79 BBN, seq 0) drain wallets unchanged and quiet; Sith Lord cluster unchanged (case 3,710,691.99 OSMO seq 13011; ctpu 3,953,035.01 seq 3756; funder 4,615.53 seq 29476). No post-mortem, no official loss total, no new attacker addresses, no Web3Auth recovery-address list yet."
       },
       {
-        "time": "2026-11-07 ~21:11 EST",
-        "event": "Keplr co-founder Josh Lee posted in the $ATOM OG Community Chat (~02:06-02:10 UTC): Web3Auth told Keplr about 11k keys out of 59.5k seemed to have been maliciously exported from their infra. He expected a rescue operation for the 11k affected keys, but it seems Web3Auth may have done it for the remaining ~47k keys instead — Keplr was NOT notified of this; he is getting more info. He is optimistic a large number of accounts are recoverable and will share how the process works as more information comes. Caveat from Josh himself: this info is not final and subject to change as they investigate/verify further. He added (9:11 PM): \"we are not working on verifying the recovery addresses.\""
+        "time": "2026-11-08 ~02:11 UTC",
+        "event": "Keplr co-founder Josh Lee posted in the $ATOM OG Community Chat (~02:06-02:10 UTC): Web3Auth told Keplr about 11k keys out of 59.5k seemed to have been maliciously exported from their infra. He expected a rescue operation for the 11k affected keys, but it seems Web3Auth may have done it for the remaining ~47k keys instead — Keplr was NOT notified of this; he is getting more info. He is optimistic a large number of accounts are recoverable and will share how the process works as more information comes. Caveat from Josh himself: this info is not final and subject to change as they investigate/verify further. He added (02:11 UTC): \"we are not working on verifying the recovery addresses.\""
       }
     ],
     "title": "Keplr / Web3Auth Incident",
