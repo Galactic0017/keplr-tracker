@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-08T02:11:00Z",
+    "lastUpdated": "2026-11-08T02:38:00Z",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -353,6 +353,10 @@
       {
         "time": "2026-11-08 ~02:11 UTC",
         "event": "Keplr co-founder Josh Lee posted in the $ATOM OG Community Chat (~02:06-02:10 UTC): Web3Auth told Keplr about 11k keys out of 59.5k seemed to have been maliciously exported from their infra. He expected a rescue operation for the 11k affected keys, but it seems Web3Auth may have done it for the remaining ~47k keys instead — Keplr was NOT notified of this; he is getting more info. He is optimistic a large number of accounts are recoverable and will share how the process works as more information comes. Caveat from Josh himself: this info is not final and subject to change as they investigate/verify further. He added (02:11 UTC): \"we are not working on verifying the recovery addresses.\""
+      },
+      {
+        "time": "2026-11-08 ~02:36 UTC",
+        "event": "CORRECTION from Keplr co-founder Josh Lee in the $ATOM OG Community Chat (02:36 UTC): his line \"we are not working on verifying the recovery addresses\" was a TYPO — he meant \"we are NOW working on verifying the recovery addresses.\" He added (02:37 UTC): for people to know whether their account is actually exploited vs sitting in a recovery address will provide a huge sense of relief."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
