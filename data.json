@@ -8,7 +8,7 @@
     {
       "address": "osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw",
       "chain": "osmosis",
-      "note": "Drain wallet, Osmosis — same key as the Cosmos Hub drain. DRAIN RESUMED Nov 7 ~18:24 EST, then stalled flat at 2,203,944.17 OSMO — but FRESH INFLOW again ~20:30 EST: balance up ~2,414 OSMO to 2,206,358.40 OSMO (senders not identified, tx index unavailable). Still sequence 0 ($0 out)."
+      "note": "Drain wallet, Osmosis — same key as the Cosmos Hub drain. DRAIN RESUMED Nov 7 ~23:24 UTC, then stalled flat at 2,203,944.17 OSMO — but FRESH INFLOW again ~01:30 UTC: balance up ~2,414 OSMO to 2,206,358.40 OSMO (senders not identified, tx index unavailable). Still sequence 0 ($0 out)."
     },
     {
       "address": "inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g",
@@ -180,7 +180,7 @@
       },
       {
         "event": "Attacker wallet addresses reported on X by Katie V Holmes (@lady_in_c...): cosmos1atuap9kfnt6y8ykvn3437e7j3z8qffh3qtnmwu, osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw, inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g, bbn1atuap9kfnt6y8ykvn3437e7j3z8qffh3h4z239. Chains asked to freeze them. All four are now watched live on this tracker.",
-        "time": "2026-11-07 ~08:25 EST"
+        "time": "2026-11-07 ~13:25 UTC"
       },
       {
         "time": "2026-11-05 04:00 UTC",
@@ -243,11 +243,11 @@
         "event": "Supporting wallets traced: fee payer funded by 3 transfers totaling 228.61 ATOM with 2,520 batch self-sends; control wallet rehearsed every step; the wtdg key spans 8 chains (Cosmos, Osmosis, Babylon, Noble, dYdX, Axelar, Saga, Agoric). Funding-source identities remain unverified. (On-chain block scan, part 2)"
       },
       {
-        "time": "2026-11-07 ~12:18 EST",
+        "time": "2026-11-07 ~17:18 UTC",
         "event": "Keplr: “What this means for Keplr users” — seed/hardware wallets NOT affected (confirmed again). Web3Auth infrastructure vulnerability led to a private key breach. Keplr + Web3Auth are actively securing/protecting assets; some Google/Apple accounts may show a reduced or empty balance as a result of that mitigation, not theft. Advice: do not send new funds; move remaining liquid assets to a seed/hardware account. A checker for whether your account is affected is being built. Only trust @keplrwallet / @Web3Auth; ignore “recovery” DMs."
       },
       {
-        "time": "2026-11-07 ~12:06 EST",
+        "time": "2026-11-07 ~17:06 UTC",
         "event": "Web3Auth: whitehat recovery is moving funds out of vulnerable (not yet drained) wallets using the same path as the attacker — some of these transfers look like attacker activity but are recovery, and the funds are safe. Web3Auth will publish a verified list of recovery addresses; until then, trust only addresses from official Web3Auth/Keplr channels — any other recovery address may be phishing."
       },
       {
@@ -255,100 +255,100 @@
         "event": "Keplr: recovery operations may explain some empty social-login balances. Web3Auth plans a verified list so users can identify recovery transfers. (The Defiant)"
       },
       {
-        "time": "2026-11-07 ~13:17 EST",
+        "time": "2026-11-07 ~18:17 UTC",
         "event": "Community report — Sith Lord ($ATOM OG Community Chat): wallet osmo10p7dg5nh8kwjhfucq0uxjppg6wkevzmg67c4hx reported as holding stolen funds; he lost 40,000+ AKT, which the attacker moved to another AKT address then swapped for OSMO ~1,000 AKT at a time. On-chain check: the wallet holds 3,853,217.84 OSMO, seq 13007 (old active account, not a seq-0 drain wallet); its only funder is osmo13pet0rwjjzgz7f3058xklc2y05eg5cjneaad94, which still holds 579.19 AKT; it received 2,499,999.87 OSMO during the drain (Nov 7 ~09:30 UTC) and never sent to the main Osmosis drain wallet. Reported case, under investigation — new tab added to the tracker."
       },
       {
-        "time": "2026-11-07 ~14:01 EST",
+        "time": "2026-11-07 ~19:01 UTC",
         "event": "Sith Lord posted his AKT account (akash1vk6mqt3jaxu4ys9a2849qu2u0k0kt8kuajg5dv) — his 40,066.86 AKT theft (Nov 1, 21:19-21:20 UTC) is traced on-chain: akash1vk6m… → akash1w05lm0ng2y6wfthhwtqsmuc7xx83j7r49406f4 (txs 5A82C4FC73BE688B… / 5DCDA1DCF643A311…) → IBC to Osmosis (tx CEA57DBAE1A47C21…, channel-9 → channel-1, packet 485820) → osmo1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4q43dxa, which swapped the AKT away. The theft predates the Keplr hack by 5 days — likely a separate theft. CORRECTION (hunt part 3): the final hop is now PROVEN — 9 lockstep tx pairs (each funder→case send exactly 0.13 OSMO less than the matching w05→funder send); the funder sent 7,890,851.15 OSMO to the case wallet in 51 transfers. Full AKT reconciliation: 12,888 AKT → 159,744 OSMO + 27,178.85 AKT → 33,096.36 TIA, IBC'd to the attacker's Celestia address celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z (tx 6AB14050…). The 7xpfv 'marker key' is the chains' fee_collector module account (gas fees), NOT an operator tag. His AKT account now holds 0.003 AKT."
       },
       {
-        "time": "2026-11-07 ~14:29 EST",
-        "event": "Hunt part 3 complete — Sith Lord theft fully traced and proven on-chain. 13th wallet now tracked: the attacker's Celestia address celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z (same key as the Osmosis swapper; received the 33,096.36 TIA Nov 2; now holds only ~8.28 TIA — most moved on, onward destination not yet traced). Note: the hunt report first labeled the IBC'd funds 'stablecoins'; the denom trace + hash check prove ibc/D79E… is TIA. Case wallet unchanged at 3,853,217.84 OSMO, seq 13007 (re-verified 14:14 EST); funder unchanged at 4,615.43 OSMO + 579.19 AKT. Overlap found: two wallets that funded the funder were later swept by the Keplr drain (osmo1n3yyv… / osmo1xadzkk…) — the clusters share victims, but the thefts are separate."
+        "time": "2026-11-07 ~19:29 UTC",
+        "event": "Hunt part 3 complete — Sith Lord theft fully traced and proven on-chain. 13th wallet now tracked: the attacker's Celestia address celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z (same key as the Osmosis swapper; received the 33,096.36 TIA Nov 2; now holds only ~8.28 TIA — most moved on, onward destination not yet traced). Note: the hunt report first labeled the IBC'd funds 'stablecoins'; the denom trace + hash check prove ibc/D79E… is TIA. Case wallet unchanged at 3,853,217.84 OSMO, seq 13007 (re-verified 19:14 UTC); funder unchanged at 4,615.43 OSMO + 579.19 AKT. Overlap found: two wallets that funded the funder were later swept by the Keplr drain (osmo1n3yyv… / osmo1xadzkk…) — the clusters share victims, but the thefts are separate."
       },
       {
-        "time": "2026-11-07 ~15:22 EST",
-        "event": "Sith Lord case wallet moved again: sequence 13007 → 13009 (2 sends) and balance fell ~58,319 OSMO (3,853,217.84 → 3,794,898.98 OSMO) since the 14:14 EST re-verification — continued distribution from the attacker-controlled consolidation wallet. The second cluster wallet osmo1ctpu5… is unchanged at 3,879,800.09 OSMO. All 4 drain wallets still sequence 0 — $0 out."
+        "time": "2026-11-07 ~20:22 UTC",
+        "event": "Sith Lord case wallet moved again: sequence 13007 → 13009 (2 sends) and balance fell ~58,319 OSMO (3,853,217.84 → 3,794,898.98 OSMO) since the 19:14 UTC re-verification — continued distribution from the attacker-controlled consolidation wallet. The second cluster wallet osmo1ctpu5… is unchanged at 3,879,800.09 OSMO. All 4 drain wallets still sequence 0 — $0 out."
       },
       {
-        "time": "2026-11-07 ~14:43 EST",
+        "time": "2026-11-07 ~19:43 UTC",
         "event": "Hunt part 4 complete — the origin chain, from Wandering Cosmonaut's idea. The drain started Nov 6 20:52:37 UTC (10 × 13,242 uatom rehearsal batch), 65 minutes earlier than first reported. The operator funding chain runs back to Aug 17, 2026 — then the public nodes run out (pruned to Aug 17 13:47 UTC); no single origin wallet exists in the observable trail. New 'Where It Started' tab with the full A–Z chain."
       },
       {
-        "time": "2026-11-07 ~15:36 EST",
+        "time": "2026-11-07 ~20:36 UTC",
         "event": "Hunt part 5 complete — Sith Lord's second wallet traced and proven: osmo1ctpu5… holds 3,879,800 OSMO, active since Aug 11, ~39.9M OSMO sent to 138 wallets. Relay osmo180qdt2… carried 222,611 OSMO from the case wallet to it in 4 lockstep forwards (Nov 5–7); it fed the funder 1,228,994 OSMO in Aug–Oct, before the theft — the senior hub of the same operation. Different key, never sent to the Keplr drain wallets. New lead: osmo1re9zkt… sent it 2,222,173.88 OSMO. Added to the Sith Lord tab."
       },
       {
-        "time": "2026-11-07 ~15:51 EST",
-        "event": "Sith Lord second cluster wallet osmo1ctpu5… moved again: sequence 3752 → 3753 (1 send), balance fell ~30,977 OSMO (3,879,800.09 → 3,848,823.55 OSMO) since the 15:36 EST check — continued distribution. STRD balance unchanged at 1,809,440.59. Destination of the send not yet identified (Osmosis tx index unavailable). Case wallet unchanged at 3,794,898.98 OSMO, seq 13009. All 4 drain wallets still sequence 0 — $0 out."
+        "time": "2026-11-07 ~20:51 UTC",
+        "event": "Sith Lord second cluster wallet osmo1ctpu5… moved again: sequence 3752 → 3753 (1 send), balance fell ~30,977 OSMO (3,879,800.09 → 3,848,823.55 OSMO) since the 20:36 UTC check — continued distribution. STRD balance unchanged at 1,809,440.59. Destination of the send not yet identified (Osmosis tx index unavailable). Case wallet unchanged at 3,794,898.98 OSMO, seq 13009. All 4 drain wallets still sequence 0 — $0 out."
       },
       {
-        "time": "2026-11-07 ~16:26 EST",
+        "time": "2026-11-07 ~21:26 UTC",
         "event": "Sith Lord freeze ask — outcome from Osmosis (Jason Banfield): a freeze is only possible with a chain upgrade, and any freeze/seize would be done in bulk (all accounts together, not individual accounts); he shared the case with the team and validators. The user sent Jason the full flag package (case wallet, funder, ctpu + the 3 theft tx hashes + tracker link). Jason: Osmosis can't flag on exchanges, and exchanges usually only act after a police/cybercrime report is filed — so the police report is now the key step that unlocks exchange action."
       },
       {
-        "time": "2026-11-07 ~16:27 EST",
+        "time": "2026-11-07 ~21:27 UTC",
         "event": "Jason Banfield added: the victim himself has to ask the exchanges (it's his wallet) — Osmosis can't do that for him. He also asked internally if Osmosis has any way to flag, and said if anybody does it would be Keplr wallet, as they are core to everything Cosmos. So the exchange-flag route runs through Sith Lord himself, plus Keplr."
       },
       {
-        "time": "2026-11-07 ~16:29 EST",
+        "time": "2026-11-07 ~21:29 UTC",
         "event": "Jason Banfield: he has done what he can — he requested input from the validators and the team and doesn't want to overstep; he seems to be the only one active on Osmosis Slack all day. Josh from Keplr is active at 4am his time. The Osmosis route is now exhausted; the live contacts are Sith Lord himself (exchanges + police report) and Keplr."
       },
       {
-        "time": "2026-11-07 ~16:30 EST",
+        "time": "2026-11-07 ~21:30 UTC",
         "event": "Sith Lord will NOT file a police report — so the exchange-flagging route that needs a report is closed unless he changes his mind. Remaining levers: continued tracking of the three wallets, Keplr (the one party who could flag), and a possible bulk Osmosis freeze via chain upgrade."
       },
       {
-        "time": "2026-11-07 ~16:35 EST",
+        "time": "2026-11-07 ~21:35 UTC",
         "event": "Jason Banfield: Osmosis cannot do anything themselves — it is up to the validators. He suggested the user start a forum debate and tag validators on X to join in. The user asked whether the chain upgrade will happen and whether validators were contacted — awaiting Jason's reply."
       },
       {
-        "time": "2026-11-07 ~17:59 EST",
-        "event": "Sith Lord second cluster wallet osmo1ctpu5… moved again: sequence 3753 → 3754 (1 send), balance fell ~36,527.54 OSMO (3,899,278.91 → 3,862,751.37 OSMO) since the 17:05 EST check — continued distribution. Traced: the send was 36,527.50 OSMO to osmo1qncvykhzq9kdpaprh4nzsznfuveuq5gs4ymx7a (tx 9A2580CD…, height 74438972, 23:00:27 UTC) — its top distribution recipient (~2.93M OSMO sent there before, per hunt part 5). Case wallet unchanged at 3,747,743.42 OSMO, seq 13010; funder unchanged, seq 29476. All 4 drain wallets still sequence 0 — $0 out."
+        "time": "2026-11-07 ~22:59 UTC",
+        "event": "Sith Lord second cluster wallet osmo1ctpu5… moved again: sequence 3753 → 3754 (1 send), balance fell ~36,527.54 OSMO (3,899,278.91 → 3,862,751.37 OSMO) since the 22:05 UTC check — continued distribution. Traced: the send was 36,527.50 OSMO to osmo1qncvykhzq9kdpaprh4nzsznfuveuq5gs4ymx7a (tx 9A2580CD…, height 74438972, 23:00:27 UTC) — its top distribution recipient (~2.93M OSMO sent there before, per hunt part 5). Case wallet unchanged at 3,747,743.42 OSMO, seq 13010; funder unchanged, seq 29476. All 4 drain wallets still sequence 0 — $0 out."
       },
       {
-        "time": "2026-11-07 ~18:48 EST",
-        "event": "Osmosis drain STILL ACTIVE: drain wallet at 2,203,944.17 OSMO (up ~6,079 OSMO since the 18:37 EST check), still receiving fresh victim sends; seq 0 — $0 out. Sith Lord case wallet unchanged at 3,747,743.42 OSMO (seq 13010), ctpu unchanged (seq 3754), funder unchanged (seq 29476). Cosmos drain seq 0; no new activity indicated on Cosmos Hub, Injective or Babylon. No post-mortem, no official loss total, no new attacker addresses published yet — Web3Auth recovery-address list still pending."
+        "time": "2026-11-07 ~23:48 UTC",
+        "event": "Osmosis drain STILL ACTIVE: drain wallet at 2,203,944.17 OSMO (up ~6,079 OSMO since the 23:37 UTC check), still receiving fresh victim sends; seq 0 — $0 out. Sith Lord case wallet unchanged at 3,747,743.42 OSMO (seq 13010), ctpu unchanged (seq 3754), funder unchanged (seq 29476). Cosmos drain seq 0; no new activity indicated on Cosmos Hub, Injective or Babylon. No post-mortem, no official loss total, no new attacker addresses published yet — Web3Auth recovery-address list still pending."
       },
       {
-        "time": "2026-11-07 ~18:24-18:34 EST",
+        "time": "2026-11-07 ~23:24-23:34 UTC",
         "event": "DRAIN RESUMED ON OSMOSIS — the Osmosis drain wallet is receiving fresh victim sends again: ~1 MsgSend per block from distinct wallets (verified in blocks 74441057-74441359; sample tx 7DF4078DDE1C1676ED9F14378879D5BAFFFAE395D8F34BAB307D0380F30F862D at height 74441359, victim osmo1gz347f4cklnzqnmgwpjtlp35c5fjzs7spr3ec0 sending gamm/IBC tokens to the drain wallet). uOSMO balance rose 2,094,511 → 2,183,819 OSMO in ~15 min (+89,308 OSMO). Cosmos Hub scan of the last 15 blocks: 0 sends to its drain wallet, balance unchanged at 532,933.18 ATOM; Injective (67,987.05 INJ) and Babylon (1,407,799.79 BBN) drain balances unchanged. All 4 drain wallets still sequence 0 — $0 out. The earlier 'drain over' finding no longer holds for Osmosis."
       },
       {
-        "time": "2026-11-07 ~19:00 EST",
+        "time": "2026-11-08 ~00:00 UTC",
         "event": "Exchange check (Sith case): every wallet the cluster ever sent to (case wallet 119 recipients, ctpu 138, funder, swapper) checked against every verifiable exchange address — no confirmed exchange send found. Two recipients look exchange-like but are UNVERIFIED (osmo15x7y2z… got 2,480,603.71 OSMO from the case wallet; osmo129uhlq… got 390,888.82 + 663,789.36 OSMO) — if either is confirmed as an exchange, a freeze request can be filed retroactively. Two fresh mega-holders now watched: osmo1zzq607… (10.7M OSMO) and osmo16desyyz… (6.8M OSMO). No public list of Osmosis exchange hot wallets exists, so the check is limited to verifiable addresses. Sith Lord now says he WILL file a police report the moment it hits an exchange."
       },
       {
-        "time": "2026-11-07 ~18:55 EST",
-        "event": "Osmosis drain inflow STALLED: drain wallet balance exactly flat at 2,203,944.17 OSMO since ~18:48 EST — zero new victim sends in ~7 min after ~1 send/block during the ~18:24 EST resumption; seq 0, $0 out. Too soon to call the resumed drain over — next checks will confirm whether it is ending or just lulling. Cosmos Hub (532,933.18 ATOM, seq 0), Injective (67,987.05 INJ) and Babylon (1,407,799.79 BBN, seq 0) drain wallets unchanged and quiet; Sith Lord cluster unchanged (case 3,747,743.42 OSMO seq 13010; ctpu 3,862,751.37 seq 3754; funder 4,615.53 seq 29476)."
+        "time": "2026-11-07 ~23:55 UTC",
+        "event": "Osmosis drain inflow STALLED: drain wallet balance exactly flat at 2,203,944.17 OSMO since ~23:48 UTC — zero new victim sends in ~7 min after ~1 send/block during the ~23:24 UTC resumption; seq 0, $0 out. Too soon to call the resumed drain over — next checks will confirm whether it is ending or just lulling. Cosmos Hub (532,933.18 ATOM, seq 0), Injective (67,987.05 INJ) and Babylon (1,407,799.79 BBN, seq 0) drain wallets unchanged and quiet; Sith Lord cluster unchanged (case 3,747,743.42 OSMO seq 13010; ctpu 3,862,751.37 seq 3754; funder 4,615.53 seq 29476)."
       },
       {
         "time": "2026-11-07 ~23:21-23:40 UTC",
         "event": "Resumed Osmosis drain — FULL COUNT (block scan heights 74440500-74442000): 1,001 victim sends from 999 different wallets, 110,534.29 OSMO taken. First send 23:21:34 UTC, last send 23:40:14 UTC. Biggest single victim: 56,227.79 OSMO (tx 7F7C358349E73730824C00B2DD83C1E66145CA9E6D1754B2E1E73931AE9E2A74, from osmo1vffjvqgeydq23mgxfv6gqyrd8v6u869udcqhmk at 23:24:44 UTC). Inflow stalled after 23:40 UTC — balance flat at 2,203,944.17 OSMO, $0 out, seq 0."
       },
       {
-        "time": "2026-11-07 ~19:13 EST",
-        "event": "Sith Lord second cluster wallet osmo1ctpu5… moved AGAIN — its biggest single send yet: sequence 3754 → 3755 (1 send), balance fell ~824,557.54 OSMO (3,862,751.37 → 3,038,193.83 OSMO) since the 17:59 EST check — continued distribution. Destination not identified (Osmosis tx index returns 500/404). Case wallet unchanged at 3,747,743.42 OSMO, seq 13010; funder unchanged at 4,615.53 OSMO, seq 29476. All 4 drain wallets still sequence 0 — $0 out. Osmosis drain still flat at 2,203,944.17 OSMO (resumed-drain inflow stalled since ~23:40 UTC)."
+        "time": "2026-11-08 ~00:13 UTC",
+        "event": "Sith Lord second cluster wallet osmo1ctpu5… moved AGAIN — its biggest single send yet: sequence 3754 → 3755 (1 send), balance fell ~824,557.54 OSMO (3,862,751.37 → 3,038,193.83 OSMO) since the 22:59 UTC check — continued distribution. Destination not identified (Osmosis tx index returns 500/404). Case wallet unchanged at 3,747,743.42 OSMO, seq 13010; funder unchanged at 4,615.53 OSMO, seq 29476. All 4 drain wallets still sequence 0 — $0 out. Osmosis drain still flat at 2,203,944.17 OSMO (resumed-drain inflow stalled since ~23:40 UTC)."
       },
       {
         "time": "2026-11-08 ~00:20 UTC",
         "event": "Sith Lord case wallet osmo10p7dg... moved again: balance fell ~37,051.43 OSMO (3,747,743.42 -> 3,710,691.99 OSMO) since the 00:13 UTC check — continued distribution. Destination not identified (Osmosis tx index returns 500). ctpu unchanged at 3,038,193.83 OSMO; funder unchanged at 4,615.53 OSMO. All 4 drain wallets still sequence 0 — $0 out; Osmosis drain still flat at 2,203,944.17 OSMO (resumed-drain inflow stalled since ~23:40 UTC)."
       },
       {
-        "time": "2026-11-07 ~19:13-19:16 EST",
+        "time": "2026-11-08 ~00:13-00:16 UTC",
         "event": "Sith cluster MOVED again: ctpu sent ~824,557.54 OSMO in one send (balance 3,862,751.37 -> 3,038,193.83 OSMO, seq 3754 -> 3755) and the case wallet sent ~37,051.43 OSMO (balance 3,747,743.42 -> 3,710,691.99 OSMO, seq 13010 -> 13011). Biggest single ctpu send yet. TRACED by block scan: ctpu -> osmo1zzq607... (the 10.7M mega-holder) 824,557.50 OSMO, tx 4E51F626A275C99F4E3AD2D53C41BD71737C2F8C5FEC60B009893871C72404E2, height 74444001, Nov 8 00:09:55 UTC — that wallet now holds ~11.56M OSMO, confirming it is cluster consolidation, not an exchange. Case wallet -> osmo1qncvyk... 37,051.40 OSMO, tx 0D4A9FD493A9EE74959AEFDF993D645291A3A994CF10FB1BE5FBD2688C4E0902, height 74444431, Nov 8 00:15:52 UTC — qncvyk is ctpu's top distribution recipient, not an exchange. Main drain wallets unchanged and quiet."
       },
       {
-        "time": "2026-11-07 ~19:44 EST",
+        "time": "2026-11-08 ~00:44 UTC",
         "event": "Sith cluster MOVED again — round trip: ctpu received ~925,188.96 OSMO back from its top recipient osmo1zzq607… (balance 3,038,193.83 -> 3,963,382.79 OSMO, seq unchanged 3755 — inflow only). zzq607 sent once (seq 68 -> 69) and fell to 10,637,479.84 OSMO; the amounts reconcile exactly (outflow 925,189.02 = inflow 925,188.96 + 0.06 fee) — cluster consolidation, not an exchange. Tx hash not obtained (Osmosis tx index rejects the query). Case wallet unchanged at 3,710,691.99 OSMO, seq 13011; funder unchanged at 4,615.53 OSMO, seq 29476. All 4 drain wallets still sequence 0 — $0 out; Osmosis drain still flat at 2,203,944.17 OSMO (inflow stalled since ~23:40 UTC)."
       },
       {
-        "time": "2026-11-07 ~20:22 EST",
-        "event": "Sith Lord second cluster wallet osmo1ctpu5… moved again: sequence 3755 → 3756 (1 send), balance fell ~10,347.78 OSMO (3,963,382.79 → 3,953,035.01 OSMO) since the 19:44 EST check — continued distribution. Destination TRACED: 10,347.74 OSMO to osmo15qyz6e… (a known ctpu distribution recipient, 1,726,681.80 OSMO in 27 earlier txs — regular cluster distribution, not an exchange), tx A0584F49601BCF50D98E6F84C63B2F34FD670B3428C1DFEACDE1EC25EADC86DB, height 74448894, 01:17:22 UTC. Case wallet unchanged at 3,710,691.99 OSMO, seq 13011; funder unchanged at 4,615.53 OSMO, seq 29476. All 4 drain wallets still sequence 0 — $0 out; Osmosis drain still flat at 2,203,944.17 OSMO (inflow stalled since ~23:40 UTC)."
+        "time": "2026-11-08 ~01:22 UTC",
+        "event": "Sith Lord second cluster wallet osmo1ctpu5… moved again: sequence 3755 → 3756 (1 send), balance fell ~10,347.78 OSMO (3,963,382.79 → 3,953,035.01 OSMO) since the 00:44 UTC check — continued distribution. Destination TRACED: 10,347.74 OSMO to osmo15qyz6e… (a known ctpu distribution recipient, 1,726,681.80 OSMO in 27 earlier txs — regular cluster distribution, not an exchange), tx A0584F49601BCF50D98E6F84C63B2F34FD670B3428C1DFEACDE1EC25EADC86DB, height 74448894, 01:17:22 UTC. Case wallet unchanged at 3,710,691.99 OSMO, seq 13011; funder unchanged at 4,615.53 OSMO, seq 29476. All 4 drain wallets still sequence 0 — $0 out; Osmosis drain still flat at 2,203,944.17 OSMO (inflow stalled since ~23:40 UTC)."
       },
       {
-        "time": "2026-11-07 ~20:30 EST",
-        "event": "Osmosis drain wallet moved UP again: balance rose ~2,414.23 OSMO (2,203,944.17 -> 2,206,358.40 OSMO) since the 20:22 EST check, after sitting exactly flat for ~1.5 hours — fresh victim sends trickling in again. Senders not identified (Osmosis tx index unavailable). Still sequence 0 — $0 out. Cosmos Hub (532,933.18 ATOM, seq 0), Injective (67,987.05 INJ) and Babylon (1,407,799.79 BBN, seq 0) drain wallets unchanged and quiet; Sith Lord cluster unchanged (case 3,710,691.99 OSMO seq 13011; ctpu 3,953,035.01 seq 3756; funder 4,615.53 seq 29476). No post-mortem, no official loss total, no new attacker addresses, no Web3Auth recovery-address list yet."
+        "time": "2026-11-08 ~01:30 UTC",
+        "event": "Osmosis drain wallet moved UP again: balance rose ~2,414.23 OSMO (2,203,944.17 -> 2,206,358.40 OSMO) since the 01:22 UTC check, after sitting exactly flat for ~1.5 hours — fresh victim sends trickling in again. Senders not identified (Osmosis tx index unavailable). Still sequence 0 — $0 out. Cosmos Hub (532,933.18 ATOM, seq 0), Injective (67,987.05 INJ) and Babylon (1,407,799.79 BBN, seq 0) drain wallets unchanged and quiet; Sith Lord cluster unchanged (case 3,710,691.99 OSMO seq 13011; ctpu 3,953,035.01 seq 3756; funder 4,615.53 seq 29476). No post-mortem, no official loss total, no new attacker addresses, no Web3Auth recovery-address list yet."
       },
       {
         "time": "2026-11-08 ~02:11 UTC",
@@ -367,7 +367,7 @@
         "Injective"
       ],
       "cashedOutUsd": "$0",
-      "cashedOutNote": "Nothing has left any of the 4 drain wallets — all have sequence 0 (never signed a transaction). The drain is OVER on Cosmos Hub, Injective and Babylon (last activity Nov 7 10:34 UTC on Osmosis/Injective/Babylon, 15:33:49 UTC on Cosmos Hub, per full block scans). BUT ON OSMOSIS THE DRAIN HAS RESUMED (Nov 7 ~18:24 EST): fresh victim sends are arriving at the Osmosis drain wallet again and its balance is rising — still $0 OUT. Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet."
+      "cashedOutNote": "Nothing has left any of the 4 drain wallets — all have sequence 0 (never signed a transaction). The drain is OVER on Cosmos Hub, Injective and Babylon (last activity Nov 7 10:34 UTC on Osmosis/Injective/Babylon, 15:33:49 UTC on Cosmos Hub, per full block scans). BUT ON OSMOSIS THE DRAIN HAS RESUMED (Nov 7 ~23:24 UTC): fresh victim sends are arriving at the Osmosis drain wallet again and its balance is rising — still $0 OUT. Circle can freeze ~$188K of Noble USDC in the Osmosis drain wallet."
     },
     "suspiciousTxs": [
       {
