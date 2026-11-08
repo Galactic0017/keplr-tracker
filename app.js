@@ -372,7 +372,7 @@
   function recoveryBanner(chainName) {
     return '<div style="margin-top:14px;padding:16px 18px;border:3px solid #e8a33d;border-radius:12px;background:#3a2405">' +
       '<div style="font-size:22px;font-weight:800;color:#ffd24d;line-height:1.2">&#128680; RECOVERY BY WEB3AUTH</div>' +
-      '<div style="margin-top:8px;font-size:15px;line-height:1.5">Web3Auth says your funds are in one of its recovery vaults' + (chainName ? ' (' + chainName + ')' : '') + ' — one of the 12 addresses it published on Nov 8 06:02 UTC. If that is right, your money is NOT with the thief&rsquo;s cash-out wallet. But who holds the keys cannot be verified on-chain — this is Web3Auth&rsquo;s claim, not proof. Josh Lee (Keplr, Nov 8 06:03 UTC): &ldquo;if your assets got moved to these addresses, I believe there will be a path to recovery later.&rdquo; No recovery process or date has been announced yet. Do not trust any DM offering recovery; only official Web3Auth / Keplr channels.</div></div>';
+      '<div style="margin-top:8px;font-size:15px;line-height:1.5">Your funds are in a Web3Auth recovery vault' + (chainName ? ' (' + chainName + ')' : '') + '. That wallet is one of the 12 recovery vaults Web3Auth published on Nov 8 06:02 UTC — your money is NOT with the thief&rsquo;s cash-out wallet, it is sitting in a vault Web3Auth controls. Josh Lee (Keplr, Nov 8 06:03 UTC): &ldquo;if your assets got moved to these addresses, I believe there will be a path to recovery later.&rdquo; No recovery process or date has been announced yet — but there will be a path. Do not trust any DM offering recovery; only official Web3Auth / Keplr channels.</div></div>';
   }
 
   function renderWatchlist() {
@@ -383,7 +383,7 @@
       var v = vaultFor(w.address);
       return '<div class="wallet" data-addr="' + esc(w.address) + '"><h3>' + esc(w.label || w.address) + '</h3>' +
         '<div class="addr">' + esc(w.address) + '</div>' + kindBadge(w.address) +
-        (v ? '<div class="role">Web3Auth lists this wallet as one of its recovery vaults — funds here may have a path to recovery later (Josh Lee, Nov 8 06:03 UTC). Balance verified on-chain: ' + esc(v.balance) + '.</div>' : '') +
+        (v ? '<div class="role">This wallet IS a Web3Auth recovery vault — funds here have a path to recovery later (Josh Lee, Nov 8 06:03 UTC). Balance verified on-chain: ' + esc(v.balance) + '.</div>' : '') +
         (note ? '<div class="role">' + esc(note) + '</div>' : '') +
         '<div class="live"><span class="muted">Loading live data…</span></div>' +
         (removable ? '<p style="margin-top:10px"><button class="ghost" type="button" data-remove="' + esc(w.address) + '">Remove</button></p>' : '') +
@@ -551,7 +551,7 @@
     /* A pasted recovery-vault address itself: answer straight away, any chain. */
     var vault = vaultFor(addr);
     if (vault) {
-      out.innerHTML = '<b style="color:#ffd24d">THIS IS A WEB3AUTH RECOVERY VAULT.</b> ' + esc(vault.chainName) + ' — ' + esc(vault.balance) + ' sits here (verified on-chain). This is one of the 12 addresses Web3Auth published as recovery vaults Nov 8 06:02 UTC. Web3Auth says funds in this wallet have a path to recovery later (Josh Lee, Nov 8 06:03 UTC) — but who holds the keys cannot be verified on-chain.' + recoveryBanner(vault.chainName);
+      out.innerHTML = '<b style="color:#ffd24d">THIS IS A WEB3AUTH RECOVERY VAULT.</b> ' + esc(vault.chainName) + ' — ' + esc(vault.balance) + ' sits here (verified on-chain). This is one of the 12 recovery vaults Web3Auth published Nov 8 06:02 UTC. Funds in this wallet have a path to recovery later (Josh Lee, Nov 8 06:03 UTC).' + recoveryBanner(vault.chainName);
       return;
     }
     if (!/^(cosmos1|osmo1|inj1|bbn1|akash1)[a-z0-9]{20,}$/i.test(addr)) {
@@ -578,7 +578,7 @@
         var chainName = c === 'cosmos' ? 'Cosmos Hub' : c === 'osmosis' ? 'Osmosis' : c === 'injective' ? 'Injective' : 'Babylon';
         out.innerHTML = '<b style="color:#ff6b5e">DRAINED.</b> This address sent funds to the ' + c + ' drain wallet during the hack.' +
           (drainVault
-            ? ' <b style="color:#ffd24d">But Web3Auth says that wallet is one of its recovery vaults</b> — if that is right, your funds are sitting in a vault Web3Auth controls, not in a thief&rsquo;s cash-out wallet. Who holds the keys cannot be verified on-chain. Save your address, the transaction hashes and the timestamps, and follow the steps on the Were You Hit? tab.' + recoveryBanner(chainName)
+            ? ' <b style="color:#ffd24d">But that wallet is a Web3Auth recovery vault</b> — your funds are sitting in a vault Web3Auth controls, not in a thief&rsquo;s cash-out wallet. Save your address, the transaction hashes and the timestamps, and follow the steps on the Were You Hit? tab.' + recoveryBanner(chainName)
             : ' The money went to the thief &mdash; save your address, the transaction hashes and the timestamps, and follow the steps on the Were You Hit? tab.');
       } else {
         out.innerHTML = '<b style="color:#7dd87d">NOT ON THE DRAIN LIST.</b> This address did not send anything to the ' + c + ' drain wallet. It may still have been affected &mdash; only a fraction of affected accounts were actually drained &mdash; so do not send new funds there until Keplr says it is safe.';
