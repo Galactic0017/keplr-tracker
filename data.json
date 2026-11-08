@@ -107,7 +107,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-08T05:24:00Z",
+    "lastUpdated": "2026-11-08T05:56:56Z",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -385,6 +385,10 @@
       {
         "time": "2026-11-08 ~05:24 UTC",
         "event": "Sith Lord case wallet osmo10p7dg… moved again: sequence 13013 → 13014 (1 send), balance fell ~16,836.32 OSMO (3,219,529.26 → 3,202,692.94 OSMO) since the 04:47 UTC check — continued distribution. Destination not identified (Osmosis tx index unavailable). ctpu unchanged at 3,860,558.47 OSMO, seq 3757; funder unchanged at 4,615.83 OSMO, seq 29479. All 4 drain wallets still sequence 0 — $0 out; Osmosis drain still flat at 2,206,358.40 OSMO (no new victim sends since ~01:30 UTC); Cosmos drain unchanged at 532,933.18 ATOM; Injective drain unchanged at 67,987.05 INJ; Babylon drain unchanged at 1,407,799.79 BBN. Web search: still no post-mortem, no official loss total, no new attacker addresses, no Web3Auth recovery-address list."
+      },
+      {
+        "time": "2026-11-08 ~05:55 UTC",
+        "event": "Press report (The Defiant, via CommsTrader, Nov 8 04:48 UTC): a Nov 7 10:18 UTC Cosmos Hub tx moved 2,265.59 staked ATOM from 6 accounts into one address, memo 'lsm recovery batch' (27 msgs: withdrawal-address changes + LSM tokenisations + share-token transfers). One delegator (Stan, Cosmos forum) says 356.01 ATOM was tokenised without his approval. Whether the batch is Web3Auth whitehat recovery or attacker consolidation is UNRESOLVED — the reports do not name the destination address or tx hash, and Web3Auth's verified recovery-address list is still pending. No onward movement from the destination at time of reporting. This run's checks: all 4 drain wallets still sequence 0 ($0 out); Osmosis drain unchanged at 2,206,358.40 OSMO; Sith cluster quiet (ctpu 3,860,558.47 OSMO seq 3757, funder 4,615.83 OSMO seq 29479, case wallet seq 13014 — all unchanged). Cosmos uatom, INJ and BBN drain balances unverified this run (LCD endpoints returning 501/403)."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
