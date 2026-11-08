@@ -96,7 +96,7 @@
   function initTabs() {
     var saved = null;
     try { saved = localStorage.getItem(TAB_KEY); } catch (e) {}
-    var valid = ['attack', 'wallets', 'money', 'chains', 'safe', 'hit', 'sith', 'origin', 'live'];
+    var valid = ['attack', 'wallets', 'money', 'chains', 'safe', 'hit', 'sith', 'origin', 'live', 'check'];
     if (saved && valid.indexOf(saved) !== -1) setTab(saved);
     document.querySelectorAll('.tabbtn').forEach(function (b) {
       b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); });
@@ -447,6 +447,73 @@
       .catch(function () {});
   }
 
+
+  /* ---------- wallet checker: were you drained? ---------- */
+  var VICTIM_FILES = { cosmos: 'victims/cosmos.json', osmosis: 'victims/osmosis.json', injective: 'victims/injective.json', babylon: 'victims/babylon.json' };
+  var victimSets = null;
+  var victimMeta = {};
+  function loadVictims() {
+    if (victimSets) return Promise.resolve(victimSets);
+    var chains = Object.keys(VICTIM_FILES);
+    return Promise.all(chains.map(function (c) {
+      return fetch(VICTIM_FILES[c]).then(function (r) { if (!r.ok) throw new Error('missing'); return r.json(); }).then(function (d) {
+        victimMeta[c] = { count: (d.senders || []).length, drain: d.drain || '' };
+        return [c, new Set(d.senders || [])];
+      }).catch(function () { victimMeta[c] = null; return [c, null]; });
+    })).then(function (pairs) {
+      victimSets = {};
+      pairs.forEach(function (p) { victimSets[p[0]] = p[1]; });
+      return victimSets;
+    });
+  }
+  function chainForAddr(addr) {
+    if (/^cosmos1/i.test(addr)) return 'cosmos';
+    if (/^osmo1/i.test(addr)) return 'osmosis';
+    if (/^inj1/i.test(addr)) return 'injective';
+    if (/^bbn1/i.test(addr)) return 'babylon';
+    return null;
+  }
+  function runCheck() {
+    var input = el('checkAddr');
+    var out = el('checkResult');
+    if (!input || !out) return;
+    var addr = input.value.trim();
+    if (!/^(cosmos1|osmo1|inj1|bbn1)[a-z0-9]{20,}$/i.test(addr)) {
+      out.innerHTML = 'That does not look like a Cosmos, Osmosis, Injective or Babylon address. Paste the full address.';
+      return;
+    }
+    out.textContent = 'Checking…';
+    loadVictims().then(function () {
+      var c = chainForAddr(addr);
+      var set = c ? victimSets[c] : null;
+      if (!set) {
+        out.innerHTML = 'The victim list for this chain is still being built &mdash; check back soon. Nothing was found yet, which is not an answer either way.';
+        return;
+      }
+      var hit = set.has(addr.toLowerCase());
+      if (hit) {
+        out.innerHTML = '<b style="color:#ff6b5e">DRAINED.</b> This address sent funds to the ' + c + ' drain wallet during the hack. The money went to the thief &mdash; save your address, the transaction hashes and the timestamps, and follow the steps on the Were You Hit? tab.';
+      } else {
+        out.innerHTML = '<b style="color:#7dd87d">NOT ON THE DRAIN LIST.</b> This address did not send anything to the ' + c + ' drain wallet. It may still have been affected &mdash; only a fraction of affected accounts were actually drained &mdash; so do not send new funds there until Keplr says it is safe.';
+      }
+    });
+  }
+  function initChecker() {
+    var btn = el('checkBtn');
+    var input = el('checkAddr');
+    if (!btn || !input) return;
+    btn.addEventListener('click', runCheck);
+    input.addEventListener('keydown', function (ev) { if (ev.key === 'Enter') runCheck(); });
+    loadVictims().then(function () {
+      var out = el('checkResult');
+      if (!out) return;
+      var loaded = Object.keys(victimMeta).filter(function (c) { return victimMeta[c]; });
+      if (loaded.length === 0) { out.textContent = 'Victim lists are still being built — check back soon.'; return; }
+      var total = loaded.reduce(function (n, c) { return n + victimMeta[c].count; }, 0);
+      out.textContent = 'Victim lists loaded: ' + total.toLocaleString() + ' drained wallets checked (' + loaded.map(function (c) { return c + ' ' + victimMeta[c].count.toLocaleString(); }).join(', ') + '). Paste your address above.';
+    });
+  }
+
   function refreshAll() { renderWatchlist(); fetchLive(); fetchCase(); fetchLiveExtra(); }
 
   /* ---------- boot ---------- */
@@ -454,6 +521,7 @@
     data = d;
     (data.chains || []).forEach(function (c) { chains[c.id] = c; });
     initTabs();
+    initChecker();
     renderStatic();
     renderWatchlist();
     fetchLive();
