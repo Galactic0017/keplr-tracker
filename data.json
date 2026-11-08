@@ -120,7 +120,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-08T06:45:47Z",
+    "lastUpdated": "2026-11-08T06:58:14Z",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -442,6 +442,10 @@
       {
         "time": "2026-11-08 06:45 UTC",
         "event": "Checker now also covers Sith Lord's separate Nov 1 Akash theft: pasting his AKT address akash1vk6mqt3jaxu4ys9a2849qu2u0k0kt8kuajg5dv shows just DRAINED — 40,066.86 AKT stolen, money went to the thief, NOT in a Web3Auth recovery vault. It is the only checker result with no recovery banner, because it is the only tracked theft whose funds did not go to a recovery vault. Akash victim list: 1 address."
+      },
+      {
+        "time": "2026-11-08 06:58 UTC",
+        "event": "Checker wording corrected: the tracker now attributes the recovery-vault claim to Web3Auth instead of stating control as fact. What is verified on-chain: the 12 addresses, their balances, and $0 out of every vault (all seq 0). What is NOT verifiable on-chain: who holds the keys. Web3Auth's claim that it controls the vaults comes from its official X post (Nov 8 06:23 UTC) and Josh Lee (Nov 8 06:02 UTC). Open question: the LSM batch fee was paid by the known attacker fee-payer wallet, which leaves the recovery claim unproven."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
