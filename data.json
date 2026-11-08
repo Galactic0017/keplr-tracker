@@ -3,67 +3,80 @@
     {
       "address": "cosmos1atuap9kfnt6y8ykvn3437e7j3z8qffh3qtnmwu",
       "chain": "cosmos",
-      "note": "Drain wallet, Cosmos Hub — holds the stolen ATOM and tokenised staked ATOM. Holds 532,933 ATOM (Nov 7 15:30 UTC); 42,363 victim sends observed on-chain."
+      "note": "Drain wallet, Cosmos Hub — holds the stolen ATOM and tokenised staked ATOM. Holds 532,933 ATOM (Nov 7 15:30 UTC); 42,363 victim sends observed on-chain. Confirmed Nov 8 06:02 UTC as Web3Auth's recovery vault on this chain (Josh Lee, Keplr) — funds here have a path to recovery later.",
+      "kind": "recovery"
     },
     {
       "address": "osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw",
       "chain": "osmosis",
-      "note": "Drain wallet, Osmosis — same key as the Cosmos Hub drain. DRAIN RESUMED Nov 7 ~23:24 UTC, then stalled flat at 2,203,944.17 OSMO — but FRESH INFLOW again ~01:30 UTC: balance up ~2,414 OSMO to 2,206,358.40 OSMO (senders not identified, tx index unavailable). Still sequence 0 ($0 out)."
+      "note": "Drain wallet, Osmosis — same key as the Cosmos Hub drain. DRAIN RESUMED Nov 7 ~23:24 UTC, then stalled flat at 2,203,944.17 OSMO — but FRESH INFLOW again ~01:30 UTC: balance up ~2,414 OSMO to 2,206,358.40 OSMO (senders not identified, tx index unavailable). Still sequence 0 ($0 out). Confirmed Nov 8 06:02 UTC as Web3Auth's recovery vault on this chain (Josh Lee, Keplr) — funds here have a path to recovery later.",
+      "kind": "recovery"
     },
     {
       "address": "inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g",
       "chain": "injective",
-      "note": "Drain wallet, Injective — holds the stolen INJ, USDT and USDC."
+      "note": "Drain wallet, Injective — holds the stolen INJ, USDT and USDC. Confirmed Nov 8 06:02 UTC as Web3Auth's recovery vault on this chain (Josh Lee, Keplr) — funds here have a path to recovery later.",
+      "kind": "recovery"
     },
     {
       "address": "bbn1atuap9kfnt6y8ykvn3437e7j3z8qffh3h4z239",
       "chain": "babylon",
-      "note": "Reported on X by Katie V Holmes Nov 7 2026 (same key as the Cosmos address); chains asked to freeze."
+      "note": "Reported on X by Katie V Holmes Nov 7 2026 (same key as the Cosmos address); chains asked to freeze. Confirmed Nov 8 06:02 UTC as Web3Auth's recovery vault on this chain (Josh Lee, Keplr) — funds here have a path to recovery later.",
+      "kind": "recovery"
     },
     {
       "chain": "cosmos",
       "address": "cosmos1pa0n22gcyyjnv6vqe9qgphrfhyhhf52t6kqud0",
-      "note": "Batch fee payer — funded by exactly 3 transfers totaling 228.61 ATOM; made 2,520 self-sends of 1 uatom, one per tokenize batch (Nov 7 09:57–15:33 UTC)."
+      "note": "Batch fee payer — funded by exactly 3 transfers totaling 228.61 ATOM; made 2,520 self-sends of 1 uatom, one per tokenize batch (Nov 7 09:57–15:33 UTC).",
+      "kind": "attacker"
     },
     {
       "chain": "cosmos",
       "address": "cosmos1wtdg9v0q95kvyyk2wz7n60vzq4gms3mc7fewv8",
-      "note": "Control wallet — rehearsed every step of the attack before going live (seeded test accounts, cross-chain IBC tests, LSM rehearsal). Its key spans 8 chains."
+      "note": "Control wallet — rehearsed every step of the attack before going live (seeded test accounts, cross-chain IBC tests, LSM rehearsal). Its key spans 8 chains.",
+      "kind": "attacker"
     },
     {
       "chain": "osmo",
       "address": "osmo1wtdg9v0q95kvyyk2wz7n60vzq4gms3mckj2764",
-      "note": "Test wallet, Osmosis — the operator’s cross-chain rehearsal hub. Its first-ever Osmosis drain send (Nov 6 21:08:30 UTC) was a test."
+      "note": "Test wallet, Osmosis — the operator’s cross-chain rehearsal hub. Its first-ever Osmosis drain send (Nov 6 21:08:30 UTC) was a test.",
+      "kind": "attacker"
     },
     {
       "chain": "cosmos",
       "address": "cosmos18asm0m6m4f7havhdp59knxjxhsur9ukkmy9zm9",
-      "note": "Test wallet, Cosmos Hub — operator-seeded (0.03 ATOM from the control wallet), then forwarded 26,253 uatom to the drain wallet Nov 6 21:57:39 UTC. Not a victim."
+      "note": "Test wallet, Cosmos Hub — operator-seeded (0.03 ATOM from the control wallet), then forwarded 26,253 uatom to the drain wallet Nov 6 21:57:39 UTC. Not a victim.",
+      "kind": "attacker"
     },
     {
       "chain": "cosmos",
       "address": "cosmos1cldur22h6ey3dh9ak2spzlwqwkwwswr90qau2x",
-      "note": "Test wallet, Cosmos Hub — operator-seeded, then forwarded 26,253 uatom to the drain wallet Nov 6 21:57:39 UTC. Not a victim."
+      "note": "Test wallet, Cosmos Hub — operator-seeded, then forwarded 26,253 uatom to the drain wallet Nov 6 21:57:39 UTC. Not a victim.",
+      "kind": "attacker"
     },
     {
       "chain": "cosmos",
       "address": "cosmos1jr9vwrjtv2z4nkngzu0yrmw9gfxj0n97uy9hkt",
-      "note": "Funding source — identity UNVERIFIED (exchange label unconfirmed). Attack-linked transfers: 8.46 ATOM to the control wallet, 45.70 + 109.62 ATOM to the fee payer (163.78 ATOM total)."
+      "note": "Funding source — identity UNVERIFIED (exchange label unconfirmed). Attack-linked transfers: 8.46 ATOM to the control wallet, 45.70 + 109.62 ATOM to the fee payer (163.78 ATOM total).",
+      "kind": "attacker"
     },
     {
       "chain": "cosmos",
       "address": "cosmos1t5u0jfg3ljsjrh2m9e47d4ny2hea7eehxrzdgd",
-      "note": "Funding source — identity UNVERIFIED (exchange label unconfirmed). In 225,297.75 ATOM, out 234,474.75 ATOM; its only attack-linked transfer is 73.29 ATOM to the fee payer."
+      "note": "Funding source — identity UNVERIFIED (exchange label unconfirmed). In 225,297.75 ATOM, out 234,474.75 ATOM; its only attack-linked transfer is 73.29 ATOM to the fee payer.",
+      "kind": "attacker"
     },
     {
       "chain": "babylon",
       "address": "bbn1wtdg9v0q95kvyyk2wz7n60vzq4gms3mcfhgln7",
-      "note": "Test wallet, Babylon — same wtdg key as the control wallet; sent the BBN seed (9,773,023 ubbn) to the Babylon drain wallet Nov 7 02:38:08 UTC."
+      "note": "Test wallet, Babylon — same wtdg key as the control wallet; sent the BBN seed (9,773,023 ubbn) to the Babylon drain wallet Nov 7 02:38:08 UTC.",
+      "kind": "attacker"
     },
     {
       "address": "celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z",
       "chain": "celestia",
-      "note": "Attacker's own Celestia address (same key as the Osmosis swapper osmo1w05l… — payload 73e9fdbe…). Received 33,096.36 TIA via IBC from Osmosis Nov 2 00:20:58 UTC (tx 6AB14050…, height 73820352). Final destination of the stolen AKT's phase-2 proceeds — Sith Lord case (Nov 1 theft, separate from the Keplr drain). Now holds only ~8.28 TIA (seq 16); most has moved on."
+      "note": "Attacker's own Celestia address (same key as the Osmosis swapper osmo1w05l… — payload 73e9fdbe…). Received 33,096.36 TIA via IBC from Osmosis Nov 2 00:20:58 UTC (tx 6AB14050…, height 73820352). Final destination of the stolen AKT's phase-2 proceeds — Sith Lord case (Nov 1 theft, separate from the Keplr drain). Now holds only ~8.28 TIA (seq 16); most has moved on.",
+      "kind": "attacker"
     }
   ],
   "chains": [
@@ -107,7 +120,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-08T06:10:57Z",
+    "lastUpdated": "2026-11-08T06:14:10Z",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -393,6 +406,34 @@
       {
         "time": "2026-11-08 ~06:10 UTC",
         "event": "LSM ‘recovery batch’ RESOLVED — attacker consolidation, not whitehat recovery: Cosmos Hub tx D2283D7E35CC2B844BB29D2C5B904CBE598DE8B92549EE6A106E4AD735311599 (height 33,766,882, Nov 7 10:18:55 UTC) verified on-chain — all 6 delegators’ withdraw addresses were changed to the Cosmos drain wallet cosmos1atuap9…, and all 2,265.59 ATOM of tokenised shares (10 transfers) went to that same wallet; fee payer was the known fee-payer wallet cosmos1pa0n22…. Victim Stan (Cosmos forum, Nov 8 00:27 UTC) confirms his 356.01 ATOM was tokenised without his approval. One batch share denom (…/123133, 15.52) still sits in the drain wallet. This corrects entry #58: destination and tx hash are now confirmed. Balance check ~06:10 UTC: Sith cluster unchanged (case 3,202,692.94 OSMO seq 13014; ctpu 3,860,558.47 seq 3757; funder 4,615.83 seq 29479); Osmosis drain unchanged at 2,206,358.40 OSMO, seq 0 — inflow still stalled; Hub drain seq 0, BBN drain seq 0; INJ drain sequence unverified this run (LCD error). All 4 drain wallets still $0 out."
+      },
+      {
+        "time": "2026-11-08 05:36 UTC",
+        "event": "Sith movement #56 TRACED: case wallet osmo10p7dg… → osmo12epmgtyju2vn2j02u9n92a4tt9q7yrcd7fnekx, 16,836.28 OSMO, tx BBE0493607EA7FA9781810D374C6E40FDBA9F5B142C521F7CE08A2AA24AD6191 (height 74466398, 05:18:52 UTC, seq 13013 → 13014). The recipient already moved it all on — balance 0.0 OSMO now — and is a highly active wallet (seq 1890, account #1226191), not a fresh address. Next hop not yet traced. Case wallet now holds 3,202,692.94 OSMO."
+      },
+      {
+        "time": "2026-11-08 ~06:12 UTC",
+        "event": "Sith Lord case — the real link to the Keplr drain: two wallets that funded the funder (osmo13pet0…) were themselves swept by the Keplr drain on Nov 7 07:16 and 07:20 UTC. Shared victims, not proof of the same operator — his money never went to the drain wallet; it went funder → case wallet and sits there. His claim in the group that his attacker wallets sent to the Osmosis drain wallet was checked against the full victim list and is wrong."
+      },
+      {
+        "time": "2026-11-08 06:02 UTC",
+        "event": "Josh Lee (Keplr co-founder) posted the Web3Auth recovery vault address list in the $ATOM OG Community Chat: 12 vaults — Cosmos Hub, Osmosis, Celestia, Akash, Noble, Injective, dYdX, Babylon, Axelar, Saga, Agoric, plus one EVM address for all 8 EVM chains. The 4 known drain-wallet addresses (Cosmos, Osmosis, Injective, Babylon) ARE the recovery vaults on those chains. All 12 verified by this tracker (bech32-valid, balances checked on-chain, all seq 0). Full list on the Check Your Wallet tab and the new Recovery Map tab."
+      },
+      {
+        "time": "2026-11-08 06:03 UTC",
+        "event": "Josh Lee on recovery: \"While they haven't communicated to us what the recovery process will look like, if your assets got moved to these addresses, I believe there will be a path to recovery later.\" No recovery process, timeline, or claim method announced yet — Web3Auth has not said how or when funds return."
+      },
+      {
+        "time": "2026-11-08 06:04 UTC",
+        "event": "Josh Lee: \"im also building a checker to allow users to check.\" Keplr is building its own official checker for affected accounts. This tracker's Check Your Wallet tab already checks the drain list and now also flags recovery-vault matches."
+      },
+      {
+        "time": "2026-11-08 06:04 UTC",
+        "event": "Josh Lee apologised for the delay getting the vault list: \"sorry for the delay here guys. i've had to ask these guys like multiple times to get this.\""
+      },
+      {
+        "time": "2026-11-08 06:04 UTC",
+        "event": "Rose (cosmosrescue): \"that cosmos1atua 118 wallet was the one everyone's been seeing so that will make a lot of people relieved.\" The Cosmos drain wallet — the address the whole community has been watching — is confirmed as Web3Auth's recovery vault."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
@@ -445,55 +486,238 @@
   "watchlist": [
     {
       "address": "cosmos1atuap9kfnt6y8ykvn3437e7j3z8qffh3qtnmwu",
-      "label": "Attacker wallet — Cosmos"
+      "label": "Recovery vault — Cosmos",
+      "kind": "recovery"
     },
     {
       "address": "osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw",
-      "label": "Attacker wallet — Osmosis"
+      "label": "Recovery vault — Osmosis",
+      "kind": "recovery"
     },
     {
       "address": "inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g",
-      "label": "Attacker wallet — Injective"
+      "label": "Recovery vault — Injective",
+      "kind": "recovery"
     },
     {
       "address": "bbn1atuap9kfnt6y8ykvn3437e7j3z8qffh3h4z239",
-      "label": "Attacker wallet — Babylon"
+      "label": "Recovery vault — Babylon",
+      "kind": "recovery"
     },
     {
       "address": "cosmos1pa0n22gcyyjnv6vqe9qgphrfhyhhf52t6kqud0",
-      "label": "Attacker wallet — Cosmos"
+      "label": "Attacker wallet — Cosmos",
+      "kind": "attacker"
     },
     {
       "address": "cosmos1wtdg9v0q95kvyyk2wz7n60vzq4gms3mc7fewv8",
-      "label": "Attacker wallet — Cosmos"
+      "label": "Attacker wallet — Cosmos",
+      "kind": "attacker"
     },
     {
       "address": "osmo1wtdg9v0q95kvyyk2wz7n60vzq4gms3mckj2764",
-      "label": "Attacker wallet — Osmo"
+      "label": "Attacker wallet — Osmo",
+      "kind": "attacker"
     },
     {
       "address": "cosmos18asm0m6m4f7havhdp59knxjxhsur9ukkmy9zm9",
-      "label": "Attacker wallet — Cosmos"
+      "label": "Attacker wallet — Cosmos",
+      "kind": "attacker"
     },
     {
       "address": "cosmos1cldur22h6ey3dh9ak2spzlwqwkwwswr90qau2x",
-      "label": "Attacker wallet — Cosmos"
+      "label": "Attacker wallet — Cosmos",
+      "kind": "attacker"
     },
     {
       "address": "cosmos1jr9vwrjtv2z4nkngzu0yrmw9gfxj0n97uy9hkt",
-      "label": "Attacker wallet — Cosmos"
+      "label": "Attacker wallet — Cosmos",
+      "kind": "attacker"
     },
     {
       "address": "cosmos1t5u0jfg3ljsjrh2m9e47d4ny2hea7eehxrzdgd",
-      "label": "Attacker wallet — Cosmos"
+      "label": "Attacker wallet — Cosmos",
+      "kind": "attacker"
     },
     {
       "address": "bbn1wtdg9v0q95kvyyk2wz7n60vzq4gms3mcfhgln7",
-      "label": "Test wallet — Babylon"
+      "label": "Test wallet — Babylon",
+      "kind": "attacker"
     },
     {
       "address": "celestia1w05lm0ng2y6wfthhwtqsmuc7xx83j7r4eynd2z",
-      "label": "Attacker wallet — Celestia"
+      "label": "Attacker wallet — Celestia",
+      "kind": "attacker"
+    }
+  ],
+  "recoveryVaults": [
+    {
+      "address": "cosmos1atuap9kfnt6y8ykvn3437e7j3z8qffh3qtnmwu",
+      "chain": "cosmos",
+      "chainName": "Cosmos Hub",
+      "kind": "recovery",
+      "balance": "532,933.18 ATOM",
+      "nativeAmount": "532933184644",
+      "nativeDenom": "uatom",
+      "sequence": 0,
+      "accountNumber": 3729966,
+      "sameAsDrainWallet": true,
+      "note": "Same address as the Cosmos drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Cosmos Hub. Holds 532,933.18 ATOM plus tokenised staked ATOM (LSM shares). Verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+    },
+    {
+      "address": "osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw",
+      "chain": "osmosis",
+      "chainName": "Osmosis",
+      "kind": "recovery",
+      "balance": "2,206,358.40 OSMO",
+      "nativeAmount": "2206358403930",
+      "nativeDenom": "uosmo",
+      "sequence": 0,
+      "accountNumber": 4713254,
+      "sameAsDrainWallet": true,
+      "note": "Same address as the Osmosis drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Osmosis. Holds 2,206,358.40 OSMO. Verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+    },
+    {
+      "address": "celestia1atuap9kfnt6y8ykvn3437e7j3z8qffh33pzt53",
+      "chain": "celestia",
+      "chainName": "Celestia",
+      "kind": "recovery",
+      "balance": "539,582.05 TIA",
+      "nativeAmount": "539582048437",
+      "nativeDenom": "utia",
+      "sequence": 0,
+      "accountNumber": 1707180,
+      "sameAsDrainWallet": false,
+      "note": "Web3Auth recovery vault on Celestia. Holds 539,582.05 TIA (plus 8,304,834 of an IBC denom). Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+    },
+    {
+      "address": "akash1atuap9kfnt6y8ykvn3437e7j3z8qffh3ds7uhx",
+      "chain": "akash",
+      "chainName": "Akash",
+      "kind": "recovery",
+      "balance": "650,989.84 AKT",
+      "nativeAmount": "650989836421",
+      "nativeDenom": "uakt",
+      "sequence": 0,
+      "accountNumber": 1161427,
+      "sameAsDrainWallet": false,
+      "note": "Web3Auth recovery vault on Akash. Holds 650,989.84 AKT (plus 17 IBC denoms). Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+    },
+    {
+      "address": "noble1atuap9kfnt6y8ykvn3437e7j3z8qffh3ggxnkj",
+      "chain": "noble",
+      "chainName": "Noble",
+      "kind": "recovery",
+      "balance": "81,006.21 USDC",
+      "nativeAmount": "81006205765",
+      "nativeDenom": "uusdc",
+      "sequence": 0,
+      "accountNumber": 433923,
+      "sameAsDrainWallet": false,
+      "note": "Web3Auth recovery vault on Noble. Holds 81,006.21 USDC (plus USDY, EURC, USN and IBC denoms). Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+    },
+    {
+      "address": "inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g",
+      "chain": "injective",
+      "chainName": "Injective",
+      "kind": "recovery",
+      "balance": "67,987.05 INJ",
+      "nativeAmount": "67987050875108577554647",
+      "nativeDenom": "inj",
+      "sequence": 0,
+      "accountNumber": 2407813,
+      "sameAsDrainWallet": true,
+      "note": "Same address as the Injective drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Injective. Holds 67,987.05 INJ. Verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+    },
+    {
+      "address": "dydx1atuap9kfnt6y8ykvn3437e7j3z8qffh3fjalwt",
+      "chain": "dydx",
+      "chainName": "dYdX",
+      "kind": "recovery",
+      "balance": "612,119.01 DYDX",
+      "nativeAmount": "612119007891349568502856",
+      "nativeDenom": "adydx",
+      "sequence": 0,
+      "accountNumber": 164559,
+      "sameAsDrainWallet": false,
+      "note": "Web3Auth recovery vault on dYdX. Holds 612,119.01 DYDX. Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+    },
+    {
+      "address": "bbn1atuap9kfnt6y8ykvn3437e7j3z8qffh3h4z239",
+      "chain": "babylon",
+      "chainName": "Babylon",
+      "kind": "recovery",
+      "balance": "1,407,799.79 BBN",
+      "nativeAmount": "1407799785095",
+      "nativeDenom": "ubbn",
+      "sequence": 0,
+      "accountNumber": 366843,
+      "sameAsDrainWallet": true,
+      "note": "Same address as the Babylon drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Babylon. Holds 1,407,799.79 BBN. Verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+    },
+    {
+      "address": "axelar1atuap9kfnt6y8ykvn3437e7j3z8qffh3y99n9a",
+      "chain": "axelar",
+      "chainName": "Axelar",
+      "kind": "recovery",
+      "balance": "648,855.63 AXL",
+      "nativeAmount": "648855629035",
+      "nativeDenom": "uaxl",
+      "sequence": 0,
+      "accountNumber": 647006,
+      "sameAsDrainWallet": false,
+      "note": "Web3Auth recovery vault on Axelar. Holds 648,855.63 AXL (59 denoms held). Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+    },
+    {
+      "address": "saga1atuap9kfnt6y8ykvn3437e7j3z8qffh37c2ff6",
+      "chain": "saga",
+      "chainName": "Saga",
+      "kind": "recovery",
+      "balance": "554,469.90 SAGA",
+      "nativeAmount": "554469904802",
+      "nativeDenom": "usaga",
+      "sequence": 0,
+      "accountNumber": 154062,
+      "sameAsDrainWallet": false,
+      "note": "Web3Auth recovery vault on Saga. Holds 554,469.90 SAGA. Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+    },
+    {
+      "address": "agoric1atuap9kfnt6y8ykvn3437e7j3z8qffh3jk3y72",
+      "chain": "agoric",
+      "chainName": "Agoric",
+      "kind": "recovery",
+      "balance": "1,111,980.50 BLD",
+      "nativeAmount": "1111980504655",
+      "nativeDenom": "ubld",
+      "sequence": 0,
+      "accountNumber": 94434,
+      "sameAsDrainWallet": false,
+      "note": "Web3Auth recovery vault on Agoric. Holds 1,111,980.50 BLD (plus 354.18 IST and IBC denoms). Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+    },
+    {
+      "address": "0x413e4F4De7E5FF010913488F781E679e76f706dA",
+      "chain": "evm",
+      "chainName": "EVM (all 8 chains)",
+      "kind": "recovery",
+      "balance": "10.38 BNB, 0.41 ETH (Optimism), 641.89 AVAX verified; Ethereum, Polygon, Arbitrum, Base, Evmos not reachable at check time",
+      "nativeAmount": null,
+      "nativeDenom": null,
+      "sequence": null,
+      "accountNumber": null,
+      "sameAsDrainWallet": false,
+      "note": "Web3Auth recovery vault on all 8 EVM chains (same address). Hex format valid. Balances verified via public RPCs 2026-11-08 ~06:11 UTC: BNB Chain 10.38 BNB, Optimism 0.41 ETH, Avalanche 641.89 AVAX. Ethereum (timeout), Polygon (401), Arbitrum (403), Base (403), Evmos (403) RPCs unreachable — not checked, not zero.",
+      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
     }
   ]
 }

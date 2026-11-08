@@ -173,6 +173,7 @@
     <button class="tabbtn" role="tab" data-tab="origin" aria-selected="false">Where It Started<small>The origin chain, A to Z</small></button>
     <button class="tabbtn" role="tab" data-tab="live" aria-selected="false">Live Activity<small>Every move, as it happens</small></button>
     <button class="tabbtn" role="tab" data-tab="check" aria-selected="false">Check Your Wallet<small>Were you drained? Check here</small></button>
+    <button class="tabbtn" role="tab" data-tab="recovery-map" aria-selected="false">Recovery Map<small>Recoverable vs still stolen</small></button>
   </nav>
 
   <!-- TAB 1 : THE ATTACK -->
@@ -354,9 +355,9 @@
       <li><b>Do NOT re-import or recreate</b> a Google/Apple-login Keplr account anywhere.</li>
       <li><b>Seed-phrase and hardware wallets are safe</b> — move funds there if you can do it from a safe wallet.</li>
       <li><b>Trust only official Keplr / Web3Auth channels.</b> Ignore every DM offering “recovery” — they are scams.</li>
-      <li><b>Whitehat recovery is real:</b> Web3Auth is moving funds out of vulnerable wallets that were not yet drained, using the same path the attacker used — those transfers look like theft on-chain but are recovery, and the funds are safe. A verified list of recovery addresses is coming; until then, trust only addresses published through official Web3Auth/Keplr channels.</li>
+      <li><b>Whitehat recovery is real:</b> Web3Auth is moving funds out of vulnerable wallets that were not yet drained, using the same path the attacker used — those transfers look like theft on-chain but are recovery, and the funds are safe. Web3Auth published the verified recovery vault list on Nov 8 06:02 UTC (via Josh Lee) — 12 vaults, on the Check Your Wallet and Recovery Map tabs. Trust only addresses published through official Web3Auth/Keplr channels.</li>
       <li><b>Check activity read-only</b> in an explorer (links below). Reading never needs a wallet connection or a signature.</li>
-      <li><b>A checker is coming:</b> Keplr + Web3Auth are building an official way to check whether your account is affected. Wait for it — never use a random “checker” site.</li>
+      <li><b>Keplr is building an official checker</b> (Josh Lee, Nov 8 06:04 UTC). This tracker&rsquo;s Check Your Wallet tab already checks the drain list and flags recovery-vault matches — never use a random “checker” site.</li>
     </ul></div>
     <h2>Trace the <span>thief</span></h2>
     <div class="panel"><ul class="checklist">
@@ -384,7 +385,7 @@
     <div class="stage">
       <div class="stagelabel">2 · CHECK — WERE YOU HIT?</div>
       <div class="mid">If your Keplr wallet was created with Google or Apple login, check it now</div>
-      <div class="sm">1. Find your address: check the withdrawal history of any exchange you funded the wallet from — the destination address there is your wallet. Or check the Keplr extension's local storage in your browser's Developer Tools.<br>2. Paste the address into Mintscan (links in the Stay Safe tab) and look at Nov 6–7. Any outgoing transfer you did not make means you were hit.<br>3. If nothing moved, you may be one of the lucky ones — <b style="color:#f2e9e4">only a fraction of affected accounts were actually drained</b>, and Keplr says the remaining accounts may be recoverable. Still: do not send new funds there until Keplr says it is safe.<br>4. <b style="color:#f2e9e4">Important:</b> if your balance looks reduced or empty, it may be Keplr + Web3Auth's mitigation moving your funds to safety — not the thief. Check the transaction history: a transfer to one of the drain wallets on this tracker means theft; a transfer done by the mitigation effort means protection. Web3Auth has also confirmed whitehat recovery: it is moving funds out of vulnerable wallets that were not yet drained, using the same path the attacker used — those transfers look like theft on-chain but are recovery, and the funds are safe. A verified list of recovery addresses is coming; until then, trust only addresses published through official Web3Auth/Keplr channels — any other recovery address may be phishing.</div>
+      <div class="sm">1. Find your address: check the withdrawal history of any exchange you funded the wallet from — the destination address there is your wallet. Or check the Keplr extension's local storage in your browser's Developer Tools.<br>2. Paste the address into Mintscan (links in the Stay Safe tab) and look at Nov 6–7. Any outgoing transfer you did not make means you were hit.<br>3. If nothing moved, you may be one of the lucky ones — <b style="color:#f2e9e4">only a fraction of affected accounts were actually drained</b>, and Keplr says the remaining accounts may be recoverable. Still: do not send new funds there until Keplr says it is safe.<br>4. <b style="color:#f2e9e4">Important:</b> if your balance looks reduced or empty, it may be Keplr + Web3Auth's mitigation moving your funds to safety — not the thief. Check the transaction history: a transfer to one of the drain wallets on this tracker means your funds went to a Web3Auth recovery vault — there will be a path to recovery later (Josh Lee, Nov 8 06:03 UTC). Web3Auth has also confirmed whitehat recovery: it is moving funds out of vulnerable wallets that were not yet drained, using the same path the attacker used — those transfers look like theft on-chain but are recovery, and the funds are safe. The verified recovery vault list is published (Nov 8 06:02 UTC, via Josh Lee) — trust only addresses published through official Web3Auth/Keplr channels; any other recovery address may be phishing.</div>
     </div>
     <div class="arrow">▼</div>
     <div class="stage">
@@ -586,7 +587,7 @@
     <p class="tabdesc">Paste your wallet address and find out if you were actually drained &mdash; checked against the full list of every wallet that sent funds to the 4 drain wallets, straight from the chain. Your address never leaves your browser: the check runs entirely on your device.</p>
     <div class="stage">
       <div class="stagelabel">CHECK 1 &mdash; WERE YOU DRAINED?</div>
-      <div class="sm">Paste any Cosmos Hub, Osmosis, Injective or Babylon address. If it sent funds to one of the 4 drain wallets during the hack, you were drained &mdash; the money went to the thief. If it is not on the list, your wallet did not send anything to the thief.</div>
+      <div class="sm">Paste any Cosmos Hub, Osmosis, Injective or Babylon address. If it sent funds to one of the 4 drain wallets during the hack, you were drained &mdash; but those wallets are now confirmed as Web3Auth&rsquo;s recovery vaults, so there is a path to recovery later (Josh Lee, Nov 8 06:03 UTC). If it is not on the list, your wallet did not send anything to the drain wallets.</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
         <input id="checkAddr" type="text" placeholder="cosmos1&hellip; / osmo1&hellip; / inj1&hellip; / bbn1&hellip;" style="flex:1;min-width:220px;padding:10px 12px;border-radius:8px;border:1px solid #5a3a32;background:#1a0f0d;color:#f2e9e4;font-size:15px" />
         <button id="checkBtn" style="padding:10px 18px;border-radius:8px;border:1px solid #e8a33d;background:#e8a33d;color:#1a0f0d;font-weight:700;font-size:15px;cursor:pointer">Check</button>
@@ -595,14 +596,22 @@
     </div>
     <div class="stage">
       <div class="stagelabel">CHECK 2 &mdash; IS IT IN A RECOVERY ADDRESS?</div>
-      <div class="sm">Web3Auth has not published the recovery address list yet. The moment it does, this checker will also tell you if your funds are sitting in a recovery address. Until then: we are scanning every transaction on all 4 chains for memos with "recovery" in them &mdash; the whitehat recovery moves may carry that memo, and the addresses they went to are the saved wallets. That idea came from GalacticBuilder. Any recovery address found this way will be listed here, and only addresses verified on-chain or published by Web3Auth/Keplr themselves will ever be shown &mdash; never trust a recovery address from a DM or a random post.</div>
-      <div class="sm" id="checkRecovery" style="margin-top:8px">Recovery list: not published yet &mdash; memo scan running.</div>
+      <div class="sm">Web3Auth published the recovery vault list on Nov 8 06:02 UTC (via Josh Lee, Keplr): 12 vaults across 12 chains. If your funds went to one of these vaults, there will be a path to recovery later. The memo scan of all 4 chains is complete (1,479 transactions flagged; none of them had "recovery" in the actual memo field). Only addresses verified on-chain or published by Web3Auth/Keplr themselves are ever shown here &mdash; never trust a recovery address from a DM or a random post.</div>
+      <div class="sm" id="checkRecovery" style="margin-top:8px">Recovery list: PUBLISHED Nov 8 06:02 UTC — 12 vaults. Loading&hellip;</div>
+      <div id="vaultList" style="margin-top:8px"></div>
     </div>
     <div class="stage">
       <div class="stagelabel">WHAT THE ANSWER MEANS</div>
-      <div class="sm">&middot; <b style="color:#f2e9e4">Drained:</b> your wallet sent funds to a drain wallet Nov 6&ndash;7. Save your address, the transaction hashes and the timestamps, and follow the steps on the Were You Hit? tab.<br>&middot; <b style="color:#f2e9e4">Not on the drain list:</b> your wallet did not send anything to the thief. It may still have been affected &mdash; only a fraction of affected accounts were actually drained &mdash; so do not send new funds there until Keplr says it is safe.<br>&middot; <b style="color:#f2e9e4">Recovery:</b> once the recovery list exists, a match here means your funds were moved to safety by the whitehat recovery &mdash; not stolen.</div>
+      <div class="sm">&middot; <b style="color:#f2e9e4">Drained:</b> your wallet sent funds to a drain wallet Nov 6&ndash;7. Those wallets are now confirmed as Web3Auth recovery vaults — your funds have a path to recovery later. Save your address, the transaction hashes and the timestamps, and follow the steps on the Were You Hit? tab.<br>&middot; <b style="color:#f2e9e4">Not on the drain list:</b> your wallet did not send anything to the drain wallets. It may still have been affected &mdash; only a fraction of affected accounts were actually drained &mdash; so do not send new funds there until Keplr says it is safe.<br>&middot; <b style="color:#f2e9e4">Recovery:</b> a match here means your funds were moved to a Web3Auth recovery vault &mdash; not stolen. Josh Lee (Keplr, Nov 8 06:03 UTC): &ldquo;if your assets got moved to these addresses, I believe there will be a path to recovery later.&rdquo;</div>
     </div>
     <p class="note">The victim lists come from our own on-chain scans of the drain wallets (Cosmos Hub, Osmosis, Injective, Babylon).</p>
+  </section>
+
+  <!-- TAB 11 : RECOVERY MAP -->
+  <section class="tabpanel" id="tab-recovery-map" role="tabpanel">
+    <p class="tabdesc">The live map, split in two: what Web3Auth can bring back, and what is still in attacker hands. The 4 drain wallets sit on the RECOVERY side — they are the same addresses as Web3Auth&rsquo;s recovery vaults on those chains.</p>
+    <div id="recoveryMap"><span class="muted">Loading the recovery map&hellip;</span></div>
+    <p class="note">Vault list: Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, Nov 8 06:02 UTC. All 12 vault addresses bech32-validated and balances checked on-chain by this tracker (~06:11 UTC, all seq 0). Sith cluster balances verified ~06:10 UTC. Attacker infrastructure wallet balances not verified this session — open them in the explorer for the live balance. No recovery process or date has been announced yet; Josh Lee: &ldquo;if your assets got moved to these addresses, I believe there will be a path to recovery later.&rdquo;</p>
   </section>
 
   <footer id="footerNote"></footer>

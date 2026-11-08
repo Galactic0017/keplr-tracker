@@ -96,7 +96,7 @@
   function initTabs() {
     var saved = null;
     try { saved = localStorage.getItem(TAB_KEY); } catch (e) {}
-    var valid = ['attack', 'wallets', 'money', 'chains', 'safe', 'hit', 'sith', 'origin', 'live', 'check'];
+    var valid = ['attack', 'wallets', 'money', 'chains', 'safe', 'hit', 'sith', 'origin', 'live', 'check', 'recovery-map'];
     if (saved && valid.indexOf(saved) !== -1) setTab(saved);
     document.querySelectorAll('.tabbtn').forEach(function (b) {
       b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); });
@@ -361,13 +361,29 @@
     });
   }
 
+  function vaultFor(addr) {
+    return (data.recoveryVaults || []).filter(function (v) { return v.address.toLowerCase() === String(addr).toLowerCase(); })[0] || null;
+  }
+  function kindBadge(addr) {
+    var v = vaultFor(addr);
+    if (v) return '<span style="display:inline-block;margin:6px 0 0;padding:3px 10px;border-radius:20px;background:#1d5c2e;color:#b9f5c9;font-weight:700;font-size:12px">&#128680; RECOVERY VAULT &mdash; Web3Auth</span>';
+    return '<span style="display:inline-block;margin:6px 0 0;padding:3px 10px;border-radius:20px;background:#5c1d1d;color:#ffb3ab;font-weight:700;font-size:12px">&#9888; HACK / ATTACKER</span>';
+  }
+  function recoveryBanner(chainName) {
+    return '<div style="margin-top:14px;padding:16px 18px;border:3px solid #e8a33d;border-radius:12px;background:#3a2405">' +
+      '<div style="font-size:22px;font-weight:800;color:#ffd24d;line-height:1.2">&#128680; RECOVERY BY WEB3AUTH</div>' +
+      '<div style="margin-top:8px;font-size:15px;line-height:1.5">Your funds are in a Web3Auth recovery vault' + (chainName ? ' (' + chainName + ')' : '') + '. That wallet is one of the 12 recovery vaults Web3Auth published on Nov 8 06:02 UTC — your money is NOT with the thief&rsquo;s cash-out wallet, it is sitting in a vault Web3Auth controls. Josh Lee (Keplr, Nov 8 06:03 UTC): &ldquo;if your assets got moved to these addresses, I believe there will be a path to recovery later.&rdquo; No recovery process or date has been announced yet — but there will be a path. Do not trust any DM offering recovery; only official Web3Auth / Keplr channels.</div></div>';
+  }
+
   function renderWatchlist() {
     var list = getWatchlist();
     el('watchlist').innerHTML = list.map(function (w, i) {
       var removable = i >= (data.watchlist || []).length;
       var note = attackerNote(w.address);
+      var v = vaultFor(w.address);
       return '<div class="wallet" data-addr="' + esc(w.address) + '"><h3>' + esc(w.label || w.address) + '</h3>' +
-        '<div class="addr">' + esc(w.address) + '</div>' +
+        '<div class="addr">' + esc(w.address) + '</div>' + kindBadge(w.address) +
+        (v ? '<div class="role">This wallet IS a Web3Auth recovery vault — funds here have a path to recovery later (Josh Lee, Nov 8 06:03 UTC). Balance verified on-chain: ' + esc(v.balance) + '.</div>' : '') +
         (note ? '<div class="role">' + esc(note) + '</div>' : '') +
         '<div class="live"><span class="muted">Loading live data…</span></div>' +
         (removable ? '<p style="margin-top:10px"><button class="ghost" type="button" data-remove="' + esc(w.address) + '">Remove</button></p>' : '') +
@@ -382,6 +398,59 @@
     });
   }
 
+
+  /* ---------- Recovery Map: recoverable vs still stolen ---------- */
+  var EXPLORER = { cosmos: 'https://www.mintscan.io/cosmos', osmosis: 'https://www.mintscan.io/osmosis', injective: 'https://www.mintscan.io/injective', babylon: 'https://www.mintscan.io/babylon', celestia: 'https://www.mintscan.io/celestia', akash: 'https://www.mintscan.io/akash', noble: 'https://www.mintscan.io/noble', dydx: 'https://www.mintscan.io/dydx', axelar: 'https://www.mintscan.io/axelar', saga: 'https://www.mintscan.io/saga', agoric: 'https://www.mintscan.io/agoric', evm: 'https://etherscan.io' };
+  function explorerAddr(chain, addr) { var b = EXPLORER[chain] || EXPLORER.cosmos; return b + '/address/' + addr; }
+  var SITH_NOT_RECOVERY = [
+    { label: 'Case wallet — Sith Lord', address: 'osmo10p7dg5nh8kwjhfucq0uxjppg6wkevzmg67c4hx', balance: '3,202,692.94 OSMO', note: 'Holds Sith Lord’s stolen AKT-turned-OSMO (only ~4% of it is his). Verified ~06:10 UTC, seq 13014. Still distributing — movement #56 out 05:18:52 UTC.' },
+    { label: 'ctpu — second senior hub', address: 'osmo1ctpu5ssl0hys60ukglv9pwzmqtys3x9ggjzu9k', balance: '3,860,558.47 OSMO', note: 'Upstream of the whole Sith chain. Verified ~06:10 UTC, seq 3757. Different key from all tracked wallets.' },
+    { label: 'Funder (relay)', address: 'osmo13pet0rwjjzgz7f3058xklc2y05eg5cjneaad94', balance: '4,615.83 OSMO', note: 'Attacker-controlled relay since ~Sep 19. Verified ~06:10 UTC, seq 29479.' },
+    { label: 'Relay osmo180qdt2…', address: 'osmo180qdt2wec39thju689d5sqgmh2add8zlzk77kq', balance: 'Balance not verified this session', note: 'Carried 222,611.44 OSMO case wallet → ctpu (Nov 5–7).' }
+  ];
+  function renderRecoveryMap() {
+    var box = el('recoveryMap');
+    if (!box) return;
+    var vaults = data.recoveryVaults || [];
+    var rec = vaults.map(function (v) {
+      return '<div class="wallet"><h3>' + esc(v.chainName) + '</h3><div class="addr">' + esc(v.address) + '</div>' +
+        '<span style="display:inline-block;margin:6px 0 0;padding:3px 10px;border-radius:20px;background:#1d5c2e;color:#b9f5c9;font-weight:700;font-size:12px">&#128680; RECOVERY VAULT</span>' +
+        '<div class="balrows"><div class="balrow"><span class="coin">Balance</span><span class="amt">' + esc(v.balance) + '</span></div></div>' +
+        '<div class="role">' + esc(v.note) + '</div>' +
+        '<div class="muted" style="font-size:13px"><a href="' + esc(explorerAddr(v.chain, v.address)) + '" target="_blank" rel="noopener">Open in explorer</a></div></div>';
+    }).join('');
+    var attackers = (data.attackerWallets || []).filter(function (w) { return w.kind === 'attacker'; }).map(function (w) {
+      return '<div class="wallet"><h3>' + esc(w.chain) + ' — attacker wallet</h3><div class="addr">' + esc(w.address) + '</div>' +
+        '<span style="display:inline-block;margin:6px 0 0;padding:3px 10px;border-radius:20px;background:#5c1d1d;color:#ffb3ab;font-weight:700;font-size:12px">&#9888; HACK / ATTACKER</span>' +
+        '<div class="role">' + esc(w.note || '') + '</div>' +
+        '<div class="muted" style="font-size:13px">Balance not verified this session — open in explorer for the live balance. <a href="' + esc(explorerAddr(w.chain, w.address)) + '" target="_blank" rel="noopener">Open in explorer</a></div></div>';
+    }).join('');
+    var sith = SITH_NOT_RECOVERY.map(function (w) {
+      return '<div class="wallet"><h3>' + esc(w.label) + '</h3><div class="addr">' + esc(w.address) + '</div>' +
+        '<span style="display:inline-block;margin:6px 0 0;padding:3px 10px;border-radius:20px;background:#5c1d1d;color:#ffb3ab;font-weight:700;font-size:12px">&#9888; HACK / ATTACKER — Sith case, Nov 1 theft</span>' +
+        '<div class="balrows"><div class="balrow"><span class="coin">Balance</span><span class="amt">' + esc(w.balance) + '</span></div></div>' +
+        '<div class="role">' + esc(w.note) + '</div>' +
+        '<div class="muted" style="font-size:13px"><a href="' + esc(explorerAddr('osmosis', w.address)) + '" target="_blank" rel="noopener">Open in Mintscan</a></div></div>';
+    }).join('');
+    box.innerHTML =
+      '<div class="stage"><div class="stagelabel" style="color:#b9f5c9">&#128680; RECOVERY — funds with a path back (12 vaults)</div>' +
+      '<div class="sm">Web3Auth&rsquo;s recovery vaults, published Nov 8 06:02 UTC via Josh Lee (Keplr). The 4 drain wallets are on THIS side — they are the same addresses as the recovery vaults on Cosmos, Osmosis, Injective and Babylon. If your assets moved to one of these, Josh Lee says there will be a path to recovery later. No process or date announced yet.</div>' +
+      '<div class="sm" style="margin-top:8px"><b style="color:#f2e9e4">Total recoverable:</b> ~$4.56M+ in the 4 drain-wallet vaults (community on-chain analysis, Nov 7 — Cosmos ~$2.93M, Osmosis ~$1.01M, Injective ~$616K; Babylon BBN not priced) + 539,582 TIA &middot; 650,990 AKT &middot; 81,006 USDC &middot; 612,119 DYDX &middot; 648,856 AXL &middot; 554,470 SAGA &middot; 1,111,981 BLD &middot; EVM: 10.38 BNB, 0.41 ETH, 641.89 AVAX verified.</div>' +
+      '<div style="margin-top:12px">' + rec + '</div></div>' +
+      '<div class="stage"><div class="stagelabel" style="color:#ffb3ab">&#9888; NOT RECOVERY — still in attacker hands</div>' +
+      '<div class="sm">Everything below is NOT part of the Web3Auth recovery. The Sith cluster is a separate Nov 1 theft, not the Keplr drain — its money stays on this side.</div>' +
+      '<div class="sm" style="margin-top:8px"><b style="color:#f2e9e4">Total still stolen / not recovered:</b> Sith cluster 7,067,867.24 OSMO still in attacker hands (case 3,202,692.94 + ctpu 3,860,558.47 + funder 4,615.83, verified ~06:10 UTC) + attacker infrastructure wallets below (balances not verified this session) + Celestia w05 (~8.28 TIA left, most moved on).</div>' +
+      '<div style="margin-top:12px">' + sith + attackers + '</div></div>';
+  }
+  function renderVaultList() {
+    var box = el('vaultList');
+    if (!box) return;
+    var vaults = data.recoveryVaults || [];
+    if (!vaults.length) { box.textContent = 'Recovery vault list not loaded — refresh the page to load the latest data.'; return; }
+    box.innerHTML = vaults.map(function (v) {
+      return '<div style="padding:6px 0;border-bottom:1px solid rgba(255,255,255,.08)"><b style="color:#f2e9e4">' + esc(v.chainName) + '</b> — <span class="mono" style="font-size:13px">' + esc(v.address) + '</span><br><span class="sm">' + esc(v.balance) + (v.sameAsDrainWallet ? ' &middot; same address as the ' + esc(v.chainName) + ' drain wallet' : '') + '</span></div>';
+    }).join('');
+  }
 
   /* ---------- Sith Lord case wallet — live OSMO balance + sequence ---------- */
   var CASE_ADDR = 'osmo10p7dg5nh8kwjhfucq0uxjppg6wkevzm' + 'g67c4hx';
@@ -478,6 +547,12 @@
     var out = el('checkResult');
     if (!input || !out) return;
     var addr = input.value.trim();
+    /* A pasted recovery-vault address itself: answer straight away, any chain. */
+    var vault = vaultFor(addr);
+    if (vault) {
+      out.innerHTML = '<b style="color:#ffd24d">THIS IS A WEB3AUTH RECOVERY VAULT.</b> ' + esc(vault.chainName) + ' — ' + esc(vault.balance) + ' sits here (verified on-chain). This is one of the 12 recovery vaults Web3Auth published Nov 8 06:02 UTC. Funds in this wallet have a path to recovery later (Josh Lee, Nov 8 06:03 UTC).' + recoveryBanner(vault.chainName);
+      return;
+    }
     if (!/^(cosmos1|osmo1|inj1|bbn1)[a-z0-9]{20,}$/i.test(addr)) {
       out.innerHTML = 'That does not look like a Cosmos, Osmosis, Injective or Babylon address. Paste the full address.';
       return;
@@ -492,7 +567,13 @@
       }
       var hit = set.has(addr.toLowerCase());
       if (hit) {
-        out.innerHTML = '<b style="color:#ff6b5e">DRAINED.</b> This address sent funds to the ' + c + ' drain wallet during the hack. The money went to the thief &mdash; save your address, the transaction hashes and the timestamps, and follow the steps on the Were You Hit? tab.';
+        /* On these 4 chains the drain wallet IS the Web3Auth recovery vault. */
+        var drainVault = vaultFor((victimMeta[c] || {}).drain || '');
+        var chainName = c === 'cosmos' ? 'Cosmos Hub' : c === 'osmosis' ? 'Osmosis' : c === 'injective' ? 'Injective' : 'Babylon';
+        out.innerHTML = '<b style="color:#ff6b5e">DRAINED.</b> This address sent funds to the ' + c + ' drain wallet during the hack.' +
+          (drainVault
+            ? ' <b style="color:#ffd24d">But that wallet is a Web3Auth recovery vault</b> — your funds are sitting in a vault Web3Auth controls, not in a thief&rsquo;s cash-out wallet. Save your address, the transaction hashes and the timestamps, and follow the steps on the Were You Hit? tab.' + recoveryBanner(chainName)
+            : ' The money went to the thief &mdash; save your address, the transaction hashes and the timestamps, and follow the steps on the Were You Hit? tab.');
       } else {
         out.innerHTML = '<b style="color:#7dd87d">NOT ON THE DRAIN LIST.</b> This address did not send anything to the ' + c + ' drain wallet. It may still have been affected &mdash; only a fraction of affected accounts were actually drained &mdash; so do not send new funds there until Keplr says it is safe.';
       }
@@ -514,7 +595,7 @@
     });
   }
 
-  function refreshAll() { renderWatchlist(); fetchLive(); fetchCase(); fetchLiveExtra(); }
+  function refreshAll() { renderWatchlist(); renderRecoveryMap(); renderVaultList(); fetchLive(); fetchCase(); fetchLiveExtra(); }
 
   /* ---------- boot ---------- */
   fetch('data.json').then(function (r) { return r.json(); }).then(function (d) {
@@ -524,6 +605,8 @@
     initChecker();
     renderStatic();
     renderWatchlist();
+    renderRecoveryMap();
+    renderVaultList();
     fetchLive();
     fetchCase();
     fetchLiveExtra();
