@@ -96,7 +96,7 @@
   function initTabs() {
     var saved = null;
     try { saved = localStorage.getItem(TAB_KEY); } catch (e) {}
-    var valid = ['attack', 'wallets', 'money', 'chains', 'safe', 'hit', 'sith', 'origin'];
+    var valid = ['attack', 'wallets', 'money', 'chains', 'safe', 'hit', 'sith', 'origin', 'live'];
     if (saved && valid.indexOf(saved) !== -1) setTab(saved);
     document.querySelectorAll('.tabbtn').forEach(function (b) {
       b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); });
@@ -111,6 +111,12 @@
     el('timeline').innerHTML = inc.timeline.map(function (ev) {
       return '<li><time>' + esc(ev.time) + '</time>' + esc(ev.event) + '</li>';
     }).join('');
+    var feed = el('liveFeed');
+    if (feed) {
+      feed.innerHTML = inc.timeline.slice().reverse().map(function (ev) {
+        return '<li><time>' + esc(ev.time) + '</time>' + esc(ev.event) + '</li>';
+      }).join('');
+    }
     el('linkList').innerHTML = inc.links.map(function (l) {
       return '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + '</a></li>';
     }).join('');
@@ -415,7 +421,33 @@
       .catch(function () {});
   }
 
-  function refreshAll() { renderWatchlist(); fetchLive(); fetchCase(); }
+  /* ---------- Live Activity tab — extra live balances ---------- */
+  var LIVE_OSMO = 'https://lcd-osmosis.keplr.app';
+  var LIVE_CTPU = 'osmo1ctpu5ssl0hys60ukglv9pwzmqtys3x9ggjzu9k';
+  var LIVE_ZZQ = 'osmo1zzq607ywveh63hsjvv82jsdlwmp7wg4e06lmka';
+  var LIVE_16D = 'osmo16desyyz0u8j8ujzpqtt3uqlny468yh8yuvmr4v';
+  function fetchLiveExtra() {
+    fetchJson(LIVE_OSMO + '/cosmos/bank/v1beta1/balances/osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw/by_denom?denom=uosmo')
+      .then(function (d) { if (d.balance) setAll('js-liveOsmo', trimNum(Number(d.balance.amount) / 1e6) + ' OSMO'); })
+      .catch(function () {});
+    fetchJson('https://lcd-injective.keplr.app/cosmos/bank/v1beta1/balances/inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g/by_denom?denom=inj')
+      .then(function (d) { if (d.balance) setAll('js-liveInj', trimNum(Number(d.balance.amount) / 1e18) + ' INJ'); })
+      .catch(function () {});
+    fetchJson(LIVE_OSMO + '/cosmos/bank/v1beta1/balances/' + LIVE_CTPU + '/by_denom?denom=uosmo')
+      .then(function (d) { if (d.balance) setAll('js-liveCtpuOsmo', trimNum(Number(d.balance.amount) / 1e6) + ' OSMO'); })
+      .catch(function () {});
+    fetchJson(LIVE_OSMO + '/cosmos/auth/v1beta1/accounts/' + LIVE_CTPU)
+      .then(function (d) { var s = findSeq(d); if (s != null) setAll('js-liveCtpuSeq', 'seq ' + s); })
+      .catch(function () {});
+    fetchJson(LIVE_OSMO + '/cosmos/bank/v1beta1/balances/' + LIVE_ZZQ + '/by_denom?denom=uosmo')
+      .then(function (d) { if (d.balance) setAll('js-liveZzqOsmo', trimNum(Number(d.balance.amount) / 1e6) + ' OSMO'); })
+      .catch(function () {});
+    fetchJson(LIVE_OSMO + '/cosmos/bank/v1beta1/balances/' + LIVE_16D + '/by_denom?denom=uosmo')
+      .then(function (d) { if (d.balance) setAll('js-live16dOsmo', trimNum(Number(d.balance.amount) / 1e6) + ' OSMO'); })
+      .catch(function () {});
+  }
+
+  function refreshAll() { renderWatchlist(); fetchLive(); fetchCase(); fetchLiveExtra(); }
 
   /* ---------- boot ---------- */
   fetch('data.json').then(function (r) { return r.json(); }).then(function (d) {
@@ -426,6 +458,7 @@
     renderWatchlist();
     fetchLive();
     fetchCase();
+    fetchLiveExtra();
     setInterval(tickClock, 1000);
     setInterval(refreshAll, REFRESH_MS);
     el('refreshBtn').addEventListener('click', refreshAll);
