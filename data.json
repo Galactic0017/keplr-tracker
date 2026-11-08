@@ -120,7 +120,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-08T06:14:10Z",
+    "lastUpdated": "2026-11-08T06:29:24Z",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -434,6 +434,10 @@
       {
         "time": "2026-11-08 06:04 UTC",
         "event": "Rose (cosmosrescue): \"that cosmos1atua 118 wallet was the one everyone's been seeing so that will make a lot of people relieved.\" The Cosmos drain wallet — the address the whole community has been watching — is confirmed as Web3Auth's recovery vault."
+      },
+      {
+        "time": "2026-11-08 06:23 UTC",
+        "event": "Web3Auth official X post (06:23 UTC, https://x.com/Web3Auth/status/2119314957057871935): 'Update on Keplr asset recovery' — Web3Auth confirms it has been transferring assets into secure recovery wallets with Keplr's assistance, and publishes the same 12 verified recovery addresses Josh Lee shared at 06:02 UTC, stating they are 'not attacker-controlled wallets' and that some recovery transactions 'have been mistaken for attacker activity.' List to be updated as more addresses are verified; warns of impersonators and fraudulent recovery requests. First public official confirmation of the vault list. It reframes the LSM batch (entry #59): the destination is confirmed recovery, but the fee was paid by the known fee-payer wallet, so whether that batch was attacker consolidation or recovery via the attacker's path is unresolved."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
@@ -563,7 +567,7 @@
       "accountNumber": 3729966,
       "sameAsDrainWallet": true,
       "note": "Same address as the Cosmos drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Cosmos Hub. Holds 532,933.18 ATOM plus tokenised staked ATOM (LSM shares). Verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
-      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+      "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
       "address": "osmo1atuap9kfnt6y8ykvn3437e7j3z8qffh3gsqtcw",
@@ -577,7 +581,7 @@
       "accountNumber": 4713254,
       "sameAsDrainWallet": true,
       "note": "Same address as the Osmosis drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Osmosis. Holds 2,206,358.40 OSMO. Verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
-      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+      "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
       "address": "celestia1atuap9kfnt6y8ykvn3437e7j3z8qffh33pzt53",
@@ -591,7 +595,7 @@
       "accountNumber": 1707180,
       "sameAsDrainWallet": false,
       "note": "Web3Auth recovery vault on Celestia. Holds 539,582.05 TIA (plus 8,304,834 of an IBC denom). Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
-      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+      "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
       "address": "akash1atuap9kfnt6y8ykvn3437e7j3z8qffh3ds7uhx",
@@ -605,7 +609,7 @@
       "accountNumber": 1161427,
       "sameAsDrainWallet": false,
       "note": "Web3Auth recovery vault on Akash. Holds 650,989.84 AKT (plus 17 IBC denoms). Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
-      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+      "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
       "address": "noble1atuap9kfnt6y8ykvn3437e7j3z8qffh3ggxnkj",
@@ -619,7 +623,7 @@
       "accountNumber": 433923,
       "sameAsDrainWallet": false,
       "note": "Web3Auth recovery vault on Noble. Holds 81,006.21 USDC (plus USDY, EURC, USN and IBC denoms). Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
-      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+      "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
       "address": "inj1lqmdmuczn5rxn5jkc34wwrqdeh70etpf5wvt7g",
@@ -633,7 +637,7 @@
       "accountNumber": 2407813,
       "sameAsDrainWallet": true,
       "note": "Same address as the Injective drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Injective. Holds 67,987.05 INJ. Verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
-      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+      "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
       "address": "dydx1atuap9kfnt6y8ykvn3437e7j3z8qffh3fjalwt",
@@ -647,7 +651,7 @@
       "accountNumber": 164559,
       "sameAsDrainWallet": false,
       "note": "Web3Auth recovery vault on dYdX. Holds 612,119.01 DYDX. Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
-      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+      "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
       "address": "bbn1atuap9kfnt6y8ykvn3437e7j3z8qffh3h4z239",
@@ -661,7 +665,7 @@
       "accountNumber": 366843,
       "sameAsDrainWallet": true,
       "note": "Same address as the Babylon drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Babylon. Holds 1,407,799.79 BBN. Verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
-      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+      "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
       "address": "axelar1atuap9kfnt6y8ykvn3437e7j3z8qffh3y99n9a",
@@ -675,7 +679,7 @@
       "accountNumber": 647006,
       "sameAsDrainWallet": false,
       "note": "Web3Auth recovery vault on Axelar. Holds 648,855.63 AXL (59 denoms held). Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
-      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+      "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
       "address": "saga1atuap9kfnt6y8ykvn3437e7j3z8qffh37c2ff6",
@@ -689,7 +693,7 @@
       "accountNumber": 154062,
       "sameAsDrainWallet": false,
       "note": "Web3Auth recovery vault on Saga. Holds 554,469.90 SAGA. Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
-      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+      "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
       "address": "agoric1atuap9kfnt6y8ykvn3437e7j3z8qffh3jk3y72",
@@ -703,7 +707,7 @@
       "accountNumber": 94434,
       "sameAsDrainWallet": false,
       "note": "Web3Auth recovery vault on Agoric. Holds 1,111,980.50 BLD (plus 354.18 IST and IBC denoms). Bech32-valid, verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
-      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+      "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
       "address": "0x413e4F4De7E5FF010913488F781E679e76f706dA",
@@ -717,7 +721,7 @@
       "accountNumber": null,
       "sameAsDrainWallet": false,
       "note": "Web3Auth recovery vault on all 8 EVM chains (same address). Hex format valid. Balances verified via public RPCs 2026-11-08 ~06:11 UTC: BNB Chain 10.38 BNB, Optimism 0.41 ETH, Avalanche 641.89 AVAX. Ethereum (timeout), Polygon (401), Arbitrum (403), Base (403), Evmos (403) RPCs unreachable — not checked, not zero.",
-      "source": "Web3Auth via Josh Lee (Keplr), $ATOM OG Community Chat, 2026-11-08 06:02 UTC"
+      "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     }
   ]
 }
