@@ -518,7 +518,7 @@
 
 
   /* ---------- wallet checker: were you drained? ---------- */
-  var VICTIM_FILES = { cosmos: 'victims/cosmos.json', osmosis: 'victims/osmosis.json', injective: 'victims/injective.json', babylon: 'victims/babylon.json' };
+  var VICTIM_FILES = { cosmos: 'victims/cosmos.json', osmosis: 'victims/osmosis.json', injective: 'victims/injective.json', babylon: 'victims/babylon.json', akash: 'victims/akash.json' };
   var victimSets = null;
   var victimMeta = {};
   function loadVictims() {
@@ -540,6 +540,7 @@
     if (/^osmo1/i.test(addr)) return 'osmosis';
     if (/^inj1/i.test(addr)) return 'injective';
     if (/^bbn1/i.test(addr)) return 'babylon';
+    if (/^akash1/i.test(addr)) return 'akash';
     return null;
   }
   function runCheck() {
@@ -553,8 +554,8 @@
       out.innerHTML = '<b style="color:#ffd24d">THIS IS A WEB3AUTH RECOVERY VAULT.</b> ' + esc(vault.chainName) + ' — ' + esc(vault.balance) + ' sits here (verified on-chain). This is one of the 12 recovery vaults Web3Auth published Nov 8 06:02 UTC. Funds in this wallet have a path to recovery later (Josh Lee, Nov 8 06:03 UTC).' + recoveryBanner(vault.chainName);
       return;
     }
-    if (!/^(cosmos1|osmo1|inj1|bbn1)[a-z0-9]{20,}$/i.test(addr)) {
-      out.innerHTML = 'That does not look like a Cosmos, Osmosis, Injective or Babylon address. Paste the full address.';
+    if (!/^(cosmos1|osmo1|inj1|bbn1|akash1)[a-z0-9]{20,}$/i.test(addr)) {
+      out.innerHTML = 'That does not look like a Cosmos, Osmosis, Injective, Babylon or Akash address. Paste the full address.';
       return;
     }
     out.textContent = 'Checking…';
@@ -567,6 +568,11 @@
       }
       var hit = set.has(addr.toLowerCase());
       if (hit) {
+        /* Akash covers one separate Nov 1 theft (Sith Lord case) — its funds went to the thief, not a recovery vault. */
+        if (c === 'akash') {
+          out.innerHTML = '<b style="color:#ff6b5e">DRAINED.</b> This address was drained on Nov 1 in a separate theft &mdash; 40,066.86 AKT was stolen and sent to the attacker&rsquo;s wallet. The money went to the thief &mdash; it is NOT in a Web3Auth recovery vault. Save your address, the transaction hashes and the timestamps, and follow the steps on the Were You Hit? tab.';
+          return;
+        }
         /* On these 4 chains the drain wallet IS the Web3Auth recovery vault. */
         var drainVault = vaultFor((victimMeta[c] || {}).drain || '');
         var chainName = c === 'cosmos' ? 'Cosmos Hub' : c === 'osmosis' ? 'Osmosis' : c === 'injective' ? 'Injective' : 'Babylon';
