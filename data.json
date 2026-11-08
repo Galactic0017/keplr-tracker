@@ -352,7 +352,7 @@
       },
       {
         "time": "2026-11-07 ~21:11 EST",
-        "event": "Keplr co-founder Josh Lee posted in the $ATOM OG Community Chat (~02:06-02:10 UTC): Web3Auth told Keplr about 11k keys out of 59.5k seemed to have been maliciously exported from their infra. He expected a rescue operation for the 11k affected keys, but it seems Web3Auth may have done it for the remaining ~47k keys instead — Keplr was NOT notified of this; he is getting more info. He is optimistic a large number of accounts are recoverable and will share how the process works as more information comes. Caveat from Josh himself: this info is not final and subject to change as they investigate/verify further."
+        "event": "Keplr co-founder Josh Lee posted in the $ATOM OG Community Chat (~02:06-02:10 UTC): Web3Auth told Keplr about 11k keys out of 59.5k seemed to have been maliciously exported from their infra. He expected a rescue operation for the 11k affected keys, but it seems Web3Auth may have done it for the remaining ~47k keys instead — Keplr was NOT notified of this; he is getting more info. He is optimistic a large number of accounts are recoverable and will share how the process works as more information comes. Caveat from Josh himself: this info is not final and subject to change as they investigate/verify further. He added (9:11 PM): \"we are not working on verifying the recovery addresses.\""
       }
     ],
     "title": "Keplr / Web3Auth Incident",
