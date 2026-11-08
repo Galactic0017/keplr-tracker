@@ -128,7 +128,7 @@
     var list = (data.incident && data.incident.suspiciousTxs) || [];
     var panel = el('suspTxPanel');
     if (!panel || !list.length) return;
-    panel.innerHTML = '<p style="font-size:14px;margin-bottom:12px">Drain transactions observed on-chain (Cosmos Hub block scan, Nov 7 15:35 UTC). No Cosmos Hub activity after Nov 7 15:33 UTC — but the drain has since RESUMED on Osmosis (fresh victim sends from Nov 7 ~18:24 EST).</p>' +
+    panel.innerHTML = '<p style="font-size:14px;margin-bottom:12px">Drain transactions observed on-chain (Cosmos Hub block scan, Nov 7 15:35 UTC). No Cosmos Hub activity after Nov 7 15:33 UTC — but the drain has since RESUMED on Osmosis (fresh victim sends from Nov 7 ~23:24 UTC).</p>' +
       list.map(function (t) {
         return '<div class="threat" style="border-color:rgba(255,176,32,.35);background:rgba(16,10,10,.6)">' +
           '<div class="meta"><span class="chain">' + esc(t.time || '') + '</span><span class="tag warn">HEIGHT ' + esc(String(t.height || '')) + '</span></div>' +
@@ -181,7 +181,7 @@
       '$0 moved out of any drain wallet',
       '13 wallets tracked',
       '42,363 victim sends observed',
-      'Drain RESUMED on Osmosis — fresh victim sends since Nov 7 ~18:24 EST'
+      'Drain RESUMED on Osmosis — fresh victim sends since Nov 7 ~23:24 UTC'
     ];
     var line = parts.join(' &nbsp;&nbsp;·&nbsp;&nbsp; ') + ' &nbsp;&nbsp;·&nbsp;&nbsp; ';
     t.innerHTML = line + line;
