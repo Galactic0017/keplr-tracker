@@ -120,7 +120,7 @@
     "affected": "Keplr wallets created with Google/Apple login. Community analysis: most victims imported their seed phrases into Keplr; wallets created in the browser extension and backed up as a file were most likely hit. Evmos was also drained Nov 6.",
     "attacker": "UNKNOWN — no attacker has been publicly named and no verified attacker wallet addresses have been published yet. Whoever controls the stolen funds has not cashed out anything so far.",
     "cause": "Web3Auth infrastructure vulnerability leading to a private key breach (Keplr, Nov 7). Community on-chain analysis (Nov 7): Web3Auth published MPC key shares and seed phrases in public GitHub repos (recorded May 22, 2025); the attacker collected them and waited. Affected wallets were mostly created in 2024 or earlier.",
-    "lastUpdated": "2026-11-10T05:18:00Z",
+    "lastUpdated": "2026-11-12T05:18:00Z",
     "links": [
       {
         "label": "X — @GalacticTools (by GalacticBuilder)",
@@ -466,6 +466,10 @@
       {
         "time": "2026-11-10 ~05:18 UTC",
         "event": "Sith cluster MOVED big — both wallets distributing hard since the Nov 9 ~03:54 UTC check: case wallet osmo10p7dg… sent 97x (seq 13024 → 13121), balance fell ~513,893.80 OSMO (3,020,043.13 → 2,506,149.33 OSMO) — its biggest single-window drop yet; ctpu osmo1ctpu5… sent 13x (seq 3774 → 3787), balance fell ~217,637.40 OSMO (3,988,415.99 → 3,770,778.59 OSMO). Combined ~731,531 OSMO out of the cluster in ~25 hours; destinations not yet traced. Funder not re-checked this run. All 4 drain wallets still sequence 0 — $0 out; Osmosis drain/recovery vault up slightly to 2,557,656.37 OSMO (+8,890.95 OSMO, seq 0). Web search: still no post-mortem, no official loss total, no new attacker or recovery addresses, no new chains — Nov 9 press re-reports the Nov 8 recovery list (The Block: ~$5.6M in the 12 recovery vaults; Bitquery’s $6.01M counts the same transfers including recovery moves, not an official theft total)."
+      },
+      {
+        "time": "2026-11-12 ~05:18 UTC",
+        "event": "Sith cluster MOVED big again since the Nov 10 05:18 UTC check: case wallet osmo10p7dg… sent 35x (seq 13121 → 13156), balance fell ~633,021.26 OSMO (2,506,149.33 → 1,873,128.07 OSMO); ctpu osmo1ctpu5… sent 26x (seq 3787 → 3813) but balance ROSE ~901,357.24 OSMO (3,770,778.59 → 4,672,135.83 OSMO) — inflows beat outflows, cluster consolidating into ctpu; destinations not yet traced. Funder osmo13pet0… 4,619.23 OSMO, seq 29513 (10 more sends since Nov 9, balance flat). All 4 drain/recovery vaults still sequence 0 — $0 out — but balances still climbing: Osmosis vault 2,605,627.26 OSMO (+47,970.89), Cosmos vault liquid 577,320.36 ATOM (+44,387.18; bulk remains LSM shares, delegations 0), Injective vault 111,256.45 INJ (+43,269.40), Babylon vault 2,165,843.39 BBN (+758,043.60) — recovery sweeps or fresh victim sends still arriving, indistinguishable on-chain. Web search: still no post-mortem, no official theft total, no new attacker addresses. Web3Auth Nov 9 19:16 UTC added confirmed recovery addresses for 8 more networks (Kava, Sentinel, Secret, Terra, Juno, Neutron, THORChain, ZetaChain) — the actual addresses were not republished in any accessible source, so none added to the tracker (no derived addresses); the 12 Nov 8 vaults remain the verified list. Press Nov 9–10 re-reports the Nov 8 list (The Hacker News Nov 9; GoPlus ≥$1M theft estimate, method unexplained)."
       }
     ],
     "title": "Keplr / Web3Auth Incident",
@@ -588,13 +592,13 @@
       "chain": "cosmos",
       "chainName": "Cosmos Hub",
       "kind": "recovery",
-      "balance": "532,933.18 ATOM",
-      "nativeAmount": "532933184644",
+      "balance": "577,320.36 ATOM",
+      "nativeAmount": "577320358205",
       "nativeDenom": "uatom",
       "sequence": 0,
       "accountNumber": 3729966,
       "sameAsDrainWallet": true,
-      "note": "Same address as the Cosmos drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Cosmos Hub. Holds 532,933.18 ATOM plus tokenised staked ATOM (LSM shares). Verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "note": "Same address as the Cosmos drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Cosmos Hub. Holds 577,320.36 ATOM liquid (+44,387.18 since Nov 8) plus tokenised staked ATOM (LSM shares); delegations 0. Verified on-chain 2026-11-12 ~05:18 UTC, seq 0.",
       "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
@@ -602,13 +606,13 @@
       "chain": "osmosis",
       "chainName": "Osmosis",
       "kind": "recovery",
-      "balance": "2,557,656.37 OSMO",
-      "nativeAmount": "2557656366377",
+      "balance": "2,605,627.26 OSMO",
+      "nativeAmount": "2605627259558",
       "nativeDenom": "uosmo",
       "sequence": 0,
       "accountNumber": 4713254,
       "sameAsDrainWallet": true,
-      "note": "Same address as the Osmosis drain wallet — per Josh Lee, this IS Web3Auth’s recovery vault on Osmosis. Holds 2,557,656.37 OSMO (up +8,890.95 OSMO since Nov 9 ~03:54 UTC — inflow continuing, whether victim sends or recovery sweeps is indistinguishable on-chain). Verified on-chain 2026-11-10 ~05:18 UTC, seq 0.",
+      "note": "Same address as the Osmosis drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Osmosis. Holds 2,605,627.26 OSMO (up +47,970.89 OSMO since Nov 10 05:18 UTC — inflow continuing, whether victim sends or recovery sweeps is indistinguishable on-chain). Verified on-chain 2026-11-12 ~05:18 UTC, seq 0.",
       "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
@@ -658,13 +662,13 @@
       "chain": "injective",
       "chainName": "Injective",
       "kind": "recovery",
-      "balance": "67,987.05 INJ",
-      "nativeAmount": "67987050875108577554647",
+      "balance": "111,256.45 INJ",
+      "nativeAmount": "111256452468027816254060",
       "nativeDenom": "inj",
       "sequence": 0,
       "accountNumber": 2407813,
       "sameAsDrainWallet": true,
-      "note": "Same address as the Injective drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Injective. Holds 67,987.05 INJ. Verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "note": "Same address as the Injective drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Injective. Holds 111,256.45 INJ (+43,269.40 since Nov 8). Verified on-chain 2026-11-12 ~05:18 UTC, seq 0.",
       "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
@@ -686,13 +690,13 @@
       "chain": "babylon",
       "chainName": "Babylon",
       "kind": "recovery",
-      "balance": "1,407,799.79 BBN",
-      "nativeAmount": "1407799785095",
+      "balance": "2,165,843.39 BBN",
+      "nativeAmount": "2165843390417",
       "nativeDenom": "ubbn",
       "sequence": 0,
       "accountNumber": 366843,
       "sameAsDrainWallet": true,
-      "note": "Same address as the Babylon drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Babylon. Holds 1,407,799.79 BBN. Verified on-chain 2026-11-08 ~06:11 UTC, seq 0.",
+      "note": "Same address as the Babylon drain wallet — per Josh Lee, this IS Web3Auth's recovery vault on Babylon. Holds 2,165,843.39 BBN (+758,043.60 since Nov 8). Verified on-chain 2026-11-12 ~05:18 UTC, seq 0.",
       "source": "Web3Auth official X post 2026-11-08 06:23 UTC (https://x.com/Web3Auth/status/2119314957057871935); first shared by Josh Lee (Keplr) 06:02 UTC"
     },
     {
